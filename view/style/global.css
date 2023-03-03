@@ -21,7 +21,6 @@ body {
 
 :root {
     /* CORES */
-
         /* Verde */
         --verde-agua: #009D7A;
         --verde-agua: #00949D;
@@ -35,4 +34,40 @@ body {
 
         /* Roxo */
         --lilas-claro: #85A1DB;
+
+    /* PESO DA FONTE  */
+    --regular: font-weight: 400;
+    --medium: font-weight: 500;
+    --semibold: font-weight: 600;
+    --bold: font-weight: 700;
+    --extrabold: font-weight: 800;
 }
+
+/* ESTILO DE FONTE  */
+
+.bold-24 {
+    font-weight: var(--bold);
+}
+
+.xbold-display-48 {
+    font-weight: var(--extrabold);
+}
+
+.bold-20 {
+    font-weight: var(--bold);
+}
+
+.bold-display-48 {
+    font-weight: var(--bold);
+}
+
+.xbold-36 {
+    font-weight: var(--extrabold);
+}
+
+.sbold-24 {
+    font-weight: var(--semibold);
+}
+
+
+
