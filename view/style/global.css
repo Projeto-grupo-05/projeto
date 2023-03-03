@@ -44,30 +44,45 @@ body {
 }
 
 /* ESTILO DE FONTE  */
+    /* Semibold */
+    .sbold-24 {
+        font-weight: var(--semibold);
+        font-size: 24px;
+    }
 
-.bold-24 {
-    font-weight: var(--bold);
-}
+    .sbold-16 {
+        font-weight: var(--semibold);
+        font-size: 16px;
+    }
 
-.xbold-display-48 {
-    font-weight: var(--extrabold);
-}
+    /* Bold */
+    .bold-24 {
+        font-weight: var(--bold);
+        font-size: 24px;
+    }
 
-.bold-20 {
-    font-weight: var(--bold);
-}
+    .bold-20 {
+        font-weight: var(--bold);
+        font-size: 20px;
+    }
 
-.bold-display-48 {
-    font-weight: var(--bold);
-}
+    .bold-display-48 {
+        font-weight: var(--bold);
+        font-size: 48px;
+    }
 
-.xbold-36 {
-    font-weight: var(--extrabold);
-}
+    /* Extrabold */
+    .xbold-display-48 {
+        font-weight: var(--extrabold);
+        font-size: 48px;
+    }
 
-.sbold-24 {
-    font-weight: var(--semibold);
-}
+    .xbold-36 {
+        font-weight: var(--extrabold);
+        font-size: 36px;
+    }
 
-
-
+    .xbold-16 {
+        font-weight: var(--extrabold);
+        font-size: 16px;
+    }
