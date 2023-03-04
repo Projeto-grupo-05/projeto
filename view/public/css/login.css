@@ -1,0 +1,168 @@
+/* Fonte Manrope */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+/* Reset CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+}
+
+body {
+    font-size: 100%;
+    height: 100%;
+}
+
+/* HEADER */
+
+.header{
+    width: auto;
+    height: 85px;
+    display: flex;
+    justify-content: center;
+}
+
+.header .container{
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.bg-lilas-claro{
+    background-color: #3680C2;
+}
+
+.bold-24{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.item{
+    width: 18%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.item-branco-azul a{
+    color: #F8F8FF;
+}
+
+.caixa-maior{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.corpo{
+    width: auto;
+    height: 540px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.bolinha{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.caixa-menor{
+    width: 80%;
+    padding-left: 18%;
+    padding-top: 6%;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.img-atrativa{
+    width: 40%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.frase{
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: #000A41;
+}
+
+.sombra {
+    width: 50%;
+    height: 380px;
+    border-radius: 20px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background: linear-gradient(140.37deg, #3182BF -5.96%, #A864FF 111.92%);
+}
+
+.formulario {
+    width: 95%;
+    height: 380px;
+    margin-block-end: 10%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #88B6FB;
+}
+
+.titulo-branco-azul{
+    font-weight: 700;
+    font-size: 24px;
+    margin-top: 12px;
+    color: #F8F8FF;
+}
+
+input{
+    width: 250px;
+    height: 32px;
+    border-radius: 4px;
+    border-style: none;
+    padding: 10px;
+    background-color: #ADC5F8;
+}
+
+.sbold-16{
+    font-weight: 600;
+    font-size: 13px;
+    color: #2569CE;
+}
+
+.sbold-16 a{
+    text-decoration-line: underline;
+    color: #2569CE;
+}
+
+.btn-login{
+    width: 140px;
+    height: 32px;
+    margin-block-end: 15px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #2569CE;
+    border-color: #2569CE;
+    background-color: #88B6FB;
+    align-items: center;
+    cursor: pointer;
+}
