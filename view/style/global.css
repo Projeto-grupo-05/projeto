@@ -30,6 +30,7 @@ body {
         --azul-ceu: #B2DAFF;
         --azul-bebe: #84B8E8;
         --azul: #00649D;
+        --azul-claro: #3680C2;
         --azul-caneta: #000A41;
 
         /* Roxo */
@@ -57,17 +58,17 @@ body {
 
     /* Bold */
     .bold-24 {
-        font-weight: var(--bold);
+        font-weight: 700;
         font-size: 24px;
     }
 
     .bold-20 {
-        font-weight: var(--bold);
+        font-weight: 700;
         font-size: 20px;
     }
 
     .bold-display-48 {
-        font-weight: var(--bold);
+        font-weight: 700;
         font-size: 48px;
     }
 
@@ -86,3 +87,12 @@ body {
         font-weight: var(--extrabold);
         font-size: 16px;
     }
+
+    .text-align-center {
+        text-align: center;
+    }
+
+/* BACKGROUND COLORS */
+.bg-azul-claro{
+    background-color: var(--azul-claro);
+}
