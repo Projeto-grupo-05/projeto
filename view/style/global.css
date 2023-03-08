@@ -96,3 +96,7 @@ body {
 .bg-azul-claro{
     background-color: var(--azul-claro);
 }
+
+.bg-azul-bebe {
+    background-color: var(--azul-bebe);
+}

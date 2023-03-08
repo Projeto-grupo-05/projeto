@@ -79,3 +79,51 @@
 .vantagens-titulo {
     margin: 92px 0 92px 0;
 }
+
+.info-section {
+    margin-top: 200px;
+}
+
+.infobg {
+    width: 700px;
+    position: relative;
+    height: 300px;
+}
+
+.info {
+    display: flex;
+}
+
+.img-info {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    right: 0;
+}
+
+.direita {
+    justify-content: flex-end;
+}
+
+.texto-info {
+    width: 500px;
+    align-self: center;
+    justify-self: flex-end;
+    text-align: end;
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+
+/* @media only screen and (min-width: 768px) {
+	.infobg {
+        background-color: red;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+	.infobg {
+        background-color: green;
+    }
+} */
