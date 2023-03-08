@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+.blobAzul {
+    display: flex;
+    background-image: url(../assets/AboutUs/Path.png);
+    background-size: 85%;
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 86vh;
+    width: 53%;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 23pt;
+    font-weight: 550;
+    color: var(--azul-caneta);
+}
+
+.logoMetade {
+    width: 20%;
+}
+
+.divContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
