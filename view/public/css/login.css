@@ -21,7 +21,7 @@ body {
 
 .header{
     width: auto;
-    height: 85px;
+    height: 13vh;
     display: flex;
     justify-content: center;
 }
@@ -63,7 +63,7 @@ body {
 
 .corpo{
     width: auto;
-    height: 540px;
+    height: 86vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -88,7 +88,7 @@ body {
 
 .img-atrativa{
     width: 40%;
-    height: 400px;
+    height: 63vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -106,7 +106,7 @@ body {
 
 .sombra {
     width: 50%;
-    height: 380px;
+    height: 60vh;
     border-radius: 20px;
     display: flex;
     justify-content:center;
@@ -116,7 +116,7 @@ body {
 
 .formulario {
     width: 95%;
-    height: 380px;
+    height: 61vh;
     margin-block-end: 10%;
     border-radius: 20px;
     display: flex;
@@ -135,7 +135,7 @@ body {
 
 input{
     width: 250px;
-    height: 32px;
+    height: 6vh;
     border-radius: 4px;
     border-style: none;
     padding: 10px;
@@ -155,7 +155,7 @@ input{
 
 .btn-login{
     width: 140px;
-    height: 32px;
+    height: 5vh;
     margin-block-end: 15px;
     border-radius: 4px;
     font-weight: 600;
