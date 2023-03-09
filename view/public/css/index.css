@@ -92,6 +92,7 @@
 
 .info {
     display: flex;
+    margin-bottom: 150px;
 }
 
 .img-info {
@@ -100,6 +101,13 @@
     bottom: 0;
     margin: auto 0;
     right: 0;
+}
+.img-info2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    left: 0;
 }
 
 .direita {
@@ -113,6 +121,13 @@
     text-align: end;
     margin-left: auto;
     margin-right: 50px;
+}
+
+.texto-info2 {
+    width: 500px;
+    align-self: center;
+    margin-left: 50px;
+    margin-right: auto;
 }
 
 
