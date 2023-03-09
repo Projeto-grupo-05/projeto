@@ -142,3 +142,19 @@
         background-color: green;
     }
 } */
+
+.bg-quem-somos {
+    background-image: url(../assets/images/bg-quem-somos.svg);
+    width: 50%;
+    background-repeat: no-repeat;
+}
+
+.quem-somos-conteudo {
+    background-color: var(--azul);
+    width: 550px;
+}
+
+.quem-somos {
+    display: flex;
+    justify-content: center;
+}
