@@ -37,11 +37,11 @@ body {
         --lilas-claro: #85A1DB;
 
     /* PESO DA FONTE  */
-    --regular: font-weight: 400;
-    --medium: font-weight: 500;
-    --semibold: font-weight: 600;
-    --bold: font-weight: 700;
-    --extrabold: font-weight: 800;
+    --regular: 400;
+    --medium: 500;
+    --semibold: 600;
+    --bold: 700;
+    --extrabold: 800;
 }
 
 /* ESTILO DE FONTE  */
@@ -58,17 +58,17 @@ body {
 
     /* Bold */
     .bold-24 {
-        font-weight: 700;
+        font-weight: var(--bold);
         font-size: 24px;
     }
 
     .bold-20 {
-        font-weight: 700;
+        font-weight: var(--bold);
         font-size: 20px;
     }
 
     .bold-display-48 {
-        font-weight: 700;
+        font-weight: var(--bold);
         font-size: 48px;
     }
 
@@ -108,4 +108,26 @@ body {
 /* COLORS */
 .color-white {
     color: var(--branco-azul);
+}
+
+/* FLEX  */
+.d-flex {
+    display: flex;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+.jc-between {
+    justify-content: space-between;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+/* MACETES  */
+.vis-hidden {
+    visibility: hidden;
 }

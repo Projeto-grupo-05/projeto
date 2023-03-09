@@ -12,10 +12,7 @@
     border-radius: 20px;
     height: 71px;
     cursor: pointer;
-}
-
-.hero-esquerda p {
-    max-width: 800px;
+    margin-top: 20px;
 }
 
 .hero {
@@ -130,6 +127,72 @@
     margin-right: auto;
 }
 
+.bg-quem-somos {
+    background-image: url(../assets/images/bg-quem-somos.svg);
+    width: 70%;
+    background-repeat: no-repeat;
+    height: 600px;
+    padding-top: 210px;
+    background-position: right;
+}
+
+.quem-somos-conteudo {
+    background-color: var(--azul);
+    width: 550px;
+    padding: 40px;
+}
+
+.quem-somos {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    height: 300px;
+}
+
+.footer-conteudo {
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+}
+.footer-conteudo2 {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.footer-esquerda {
+    width: 316px;
+}
+
+.quem-somos {
+    margin-bottom: 200px;
+}
+
+.footer-centro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slogan {
+    margin-top: 40px;
+}
+
+.contatos {
+    margin-top: 25px;
+}
+
+.footer-line {
+    height: 17px;
+    width: 100%;
+    background-color: var(--azul);
+}
+.footer-line-bg {
+    background-color: var(--azul-bebe);
+}
 
 /* @media only screen and (min-width: 768px) {
 	.infobg {
@@ -157,26 +220,41 @@
     }
 }
 
+/* 1292 */
 
-.bg-quem-somos {
-    background-image: url(../assets/images/bg-quem-somos.svg);
-    width: 70%;
-    background-repeat: no-repeat;
-    height: 600px;
-    padding-top: 210px;
-    background-position: right;
+@media only screen and (max-width: 1292px) {
+    .img-hero {
+        display: none;
+    }
+
+    .sombra-centro {
+        margin: 0 0px 0 100px;
+    }
+
+    .sombra-esquerda {
+        margin: 50px auto 0 auto;
+        
+    }
+
 }
 
-.quem-somos-conteudo {
-    background-color: var(--azul);
-    width: 550px;
-    height: 445px;
-    padding: 40px;
+/* 962 */
+
+@media only screen and (max-width: 1292px) {
+    .info {
+        flex-direction: column;
+    }
+
+    .texto-info {
+        margin: 0 auto;
+        width: 85%;
+    }
+
+    .infobg {
+        width: 100%;
+    }
+
+    .img-info {
+        left: 50%;
+    }
 }
-
-.quem-somos {
-    display: flex;
-    justify-content: center;
-}
-
-
