@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
+body {
+    background-color: var(--branco-azul);
+}
+
+/*TELA INICIO*/
+
 .blobAzul {
     display: flex;
     background-image: url(../assets/AboutUs/Path.png);
-    background-size: 85%;
+    background-size: 66%;
     background-repeat: no-repeat;
     background-position: right;
-    height: 86vh;
-    width: 53%;
+    height: 87vh;
+    width: 52%;
     align-items: center;
     justify-content: flex-start;
     font-size: 23pt;
@@ -25,4 +31,58 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+/* O QUE OFERECEMOS */
+
+.containerOferecemos {
+    background-color: var(--azul-claro);
+    padding: 6%;
+    color: var(--branco-azul);
+    text-align: justify;
+}
+
+.textoOferecemos p {
+    margin-top: 3%;
+}
+
+/* NOSSO COMPROMISSO*/
+
+.containerCompromisso {
+    margin-top: 3%;
+    padding: 6%;
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+}
+
+.textoCompromisso p {
+    margin-top: 12%;
+}
+
+/*SEGURANÇA*/
+.containerSeguranca {
+    margin-top: 3%;
+    margin-left: 6%;
+    display: flex;
+    flex-direction: row;
+    text-align: justify;
+    justify-content: center;
+}
+
+.containerSeguranca img {
+    height: 20%;
+    margin-top: 8%;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.texto b {
+    font-weight: 600;
+    text-align: center;
 }
