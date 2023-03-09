@@ -2,6 +2,7 @@
 
 body {
     background-color: var(--branco-azul);
+    overflow-x: hidden;
 }
 
 /*TELA INICIO*/
@@ -63,17 +64,30 @@ body {
 /*SEGURANÇA*/
 .containerSeguranca {
     margin-top: 3%;
-    margin-left: 6%;
+    padding-left: 6%;
     display: flex;
     flex-direction: row;
     text-align: justify;
     justify-content: center;
+    background-image: url(../assets/AboutUs/EngrenagemCima.png);
+    background-repeat: no-repeat;
+    background-position-x: 25px;
+    background-position-y: 35px;
+    background-size: 130px;
 }
 
 .containerSeguranca img {
     height: 20%;
     margin-top: 8%;
 }
+/* 
+.containerSeguranca div {
+    background-image: url(../assets/AboutUs/EngrenagemCima.png);
+    background-repeat: no-repeat;
+    background-size: 130px;
+    background-position-x: left;
+    background-position-y: 70px;
+} */
 
 .texto {
     display: flex;
