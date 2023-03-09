@@ -100,3 +100,12 @@ body {
 .bg-azul-bebe {
     background-color: var(--azul-bebe);
 }
+
+.bg-azul {
+    background-color: var(--azul);
+}
+
+/* COLORS */
+.color-white {
+    color: var(--branco-azul);
+}

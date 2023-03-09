@@ -143,18 +143,40 @@
     }
 } */
 
+
+
+@media only screen and (max-width: 1184px) {
+    .bg-quem-somos {
+        background-image: none!important;
+        padding: 0;
+        width: 100%;
+    }
+
+    .quem-somos-conteudo {
+        width: 100%!important;
+    }
+}
+
+
 .bg-quem-somos {
     background-image: url(../assets/images/bg-quem-somos.svg);
-    width: 50%;
+    width: 70%;
     background-repeat: no-repeat;
+    height: 600px;
+    padding-top: 210px;
+    background-position: right;
 }
 
 .quem-somos-conteudo {
     background-color: var(--azul);
     width: 550px;
+    height: 445px;
+    padding: 40px;
 }
 
 .quem-somos {
     display: flex;
     justify-content: center;
 }
+
+
