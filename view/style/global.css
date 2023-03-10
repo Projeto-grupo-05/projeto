@@ -1,6 +1,6 @@
 /* Fonte Manrope */
 
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 /* Reset CSS */
 
@@ -34,6 +34,7 @@ body {
     --azul-claro: #3680C2;
 
     /* Roxo */
+    --roxo: #4F72BA;
     --lilas-claro: #85A1DB;
 
     /* PESO DA FONTE  */
@@ -73,6 +74,12 @@ body {
 }
 
 /* Extrabold */
+
+.xbold-display-110 {
+    font-weight: 600;
+    font-size: 140px;
+}
+
 .xbold-display-48 {
     font-weight: var(--extrabold);
     font-size: 48px;
@@ -81,6 +88,11 @@ body {
 .xbold-36 {
     font-weight: var(--extrabold);
     font-size: 36px;
+}
+
+.xbold-30 {
+    font-weight: var(--extrabold);
+    font-size: 20px;
 }
 
 .xbold-16 {

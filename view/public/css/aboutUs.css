@@ -78,23 +78,55 @@ body {
 
 .containerSeguranca img {
     height: 20%;
-    margin-top: 8%;
-}
-/* 
-.containerSeguranca div {
-    background-image: url(../assets/AboutUs/EngrenagemCima.png);
-    background-repeat: no-repeat;
+    margin-top: 4%;
+    background-image: url(../assets/AboutUs/EngrenagemBaixo.png);
     background-size: 130px;
-    background-position-x: left;
-    background-position-y: 70px;
-} */
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: 80px;
+}
+
+/*NOSSO TIME*/
+
+.containerNossoTime {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerLinhaNomes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding: 3%;
+}
+
+.segundaLinha {
+    width: 70%;
+}
+
+.divNome {
+    display: flex;
+    height: 215px;
+    width: 215px;
+    align-items: end;
+    justify-content: end;
+    border-radius: 10px;
+}
+
+.divNome span{
+    color: var(--branco-azul);
+    height: 200px;
+    line-height: 295px;
+}
 
 .texto {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 
 .texto b {
     font-weight: 600;
