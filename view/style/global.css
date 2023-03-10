@@ -136,3 +136,16 @@ body {
 .item-branco-azul a {
     color: #F8F8FF;
 }
+
+/*FOOTER*/
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 260px;
+    color: var(--branco-azul);
+}
+
+.footer img {
+    margin-left: 290px;
+}

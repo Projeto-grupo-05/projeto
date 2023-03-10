@@ -89,7 +89,7 @@ body {
 /*NOSSO TIME*/
 
 .containerNossoTime {
-    margin-top: 5%;
+    margin-top: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,6 +101,11 @@ body {
     justify-content: space-around;
     width: 100%;
     padding: 3%;
+    text-align: center;
+}
+
+.nomes {
+    font-weight: 600;
 }
 
 .segundaLinha {
@@ -114,9 +119,10 @@ body {
     align-items: end;
     justify-content: end;
     border-radius: 10px;
+    margin-bottom: 8px;
 }
 
-.divNome span{
+.divNome span {
     color: var(--branco-azul);
     height: 200px;
     line-height: 295px;
