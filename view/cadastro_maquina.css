@@ -1,4 +1,8 @@
 /*Css geral*/
+html {
+    background-color: var(--branco-azul);
+}
+
 .container2{
     display: flex;
     flex-direction: row;
