@@ -98,18 +98,21 @@
     bottom: 0;
     margin: auto 0;
     right: 0;
+    padding-right: 40px;
 }
+
 .img-info2 {
     position: absolute;
     top: 0;
     bottom: 0;
     margin: auto 0;
     left: 0;
+    padding-left: 40px;
 }
 
-.direita {
+/* .direita {
     justify-content: flex-end;
-}
+} */
 
 .texto-info {
     width: 500px;
@@ -120,7 +123,7 @@
     margin-right: 50px;
 }
 
-.texto-info2 {
+.texto-info2, .texto-info3 {
     width: 500px;
     align-self: center;
     margin-left: 50px;
@@ -194,19 +197,6 @@ footer {
     background-color: var(--azul-bebe);
 }
 
-/* @media only screen and (min-width: 768px) {
-	.infobg {
-        background-color: red;
-    }
-}
-
-@media only screen and (min-width: 1000px) {
-	.infobg {
-        background-color: green;
-    }
-} */
-
-
 
 @media only screen and (max-width: 1184px) {
     .bg-quem-somos {
@@ -222,6 +212,8 @@ footer {
 
 /* 1292 */
 
+
+
 @media only screen and (max-width: 1292px) {
     .img-hero {
         display: none;
@@ -233,9 +225,26 @@ footer {
 
     .sombra-esquerda {
         margin: 50px auto 0 auto;
-        
+    }
+    
+    /* .texto-info3::after {
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore";
+    }     */
+
+    .oito::after {
+        display: none;
     }
 
+}
+
+/* 1988 */
+/* @media only screen and (max-width: 1988px) { */
+.oito::after {
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore";
+}
+
+.texto-info3 {
+    display: none;
 }
 
 /* 962 */
@@ -245,16 +254,37 @@ footer {
         flex-direction: column;
     }
 
-    .texto-info {
-        margin: 0 auto;
+    .texto-info, .texto-info2, .texto-info3 {
+        margin: 128px auto 0 auto;
         width: 85%;
+        display: block;
+        text-align: center;
     }
 
     .infobg {
         width: 100%;
     }
+}
 
-    .img-info {
-        left: 50%;
+/* 929 */
+
+@media only screen and (max-width: 1292px) {
+    .sombra-centro {
+        margin: 50px 0 50px 0;
+    }
+
+    .sombra-direita, .sombra-esquerda {
+        -webkit-box-shadow: 0px 16px 0px 8px rgba(0,100,157,1);
+        -moz-box-shadow: 0px 16px 0px 8px rgba(0,100,157,1);
+        box-shadow: 0px 16px 0px 8px rgba(0,100,157,1);
+    }
+
+    .sombra-esquerda {
+        margin: 0;
+    }
+
+    .card-section {
+        align-items: center;
+        flex-direction: column;
     }
 }
