@@ -1,5 +1,5 @@
 /*Css geral*/
-.container{
+.container2{
     display: flex;
     flex-direction: row;
 }
@@ -7,6 +7,7 @@
 .menu-lateral{
     height: 100vh;
     width: 24vw;
+    display: block;
 }
 
 .menu-icones{
@@ -41,9 +42,14 @@
 }
 
 .logo{
-    background-color: blue;
+    /* background-color: blue; */
     height: 15vh;
     width: 100%;
+    background-image: url(logo-dark.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 40px 0 40px 0;
 }
 
 .divprincipal{
@@ -192,11 +198,17 @@
     font-size: 18px;
     line-height: 22px;
     border: solid 2px #2569CE;
+    transition: 0.5s;
 }
 
+.formulario-botao button:hover {
+    background-color: var(--azul);
+    color: var(--branco-azul);
+    border-radius: 5px;
+}
 
 @media only screen and (min-width: 1200px){
-    .container{
+    .container2{
         display: flex;
         flex-direction: row;
     }
@@ -204,6 +216,7 @@
     .menu-lateral{
         height: 100vh;
         width: 24vw;
+        display: block;
     }
     
     .menu-icones{
@@ -238,9 +251,11 @@
     }
     
     .logo{
-        background-color: blue;
-        height: 15vh;
-        width: 100%;
+        background-image: url(logo-dark.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 40px 0 40px 0;
     }
     
     .divprincipal{
@@ -393,7 +408,7 @@
 }
 
 @media only screen and (max-width: 992px){
-.container{
+.container2{
     display: flex;
     flex-direction: row;
 }
@@ -401,6 +416,7 @@
 .menu-lateral{
     height: 100vh;
     width: 24vw;
+    display: block;
 }
 
 .menu-icones{
@@ -435,9 +451,10 @@
 }
 
 .logo{
-    background-color: blue;
-    height: 15vh;
-    width: 100%;
+    background-image: url(logo-dark.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .divprincipal{
@@ -590,7 +607,7 @@
 }
 
 @media only screen and (max-width: 768px){
-    .container{
+    .container2{
         display: flex;
         flex-direction: row;
     }
@@ -632,9 +649,11 @@
     }
     
     .logo{
-        background-color: blue;
-        height: 15vh;
-        width: 100%;
+        background-image: url(logo-dark.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 40px 0 40px 0;
     }
     
     .divprincipal{
@@ -657,10 +676,13 @@
     
     .texto-titulo{
         margin-top: 5px;
-        font-size: 28px;
+        font-size: 25px;
         line-height: 49px;
         font-weight: 800;
         color: #00649D;
+        display: flex;
+        text-align: center;
+        align-items: center;
     }
     
     .botoes-selecao{
@@ -701,12 +723,12 @@
     
     .formulario{
         width: 65vw;
-        height: 70vh;   
+        height: fit-content;   
     }
     
     .formulario-titulo{
         background-color: var(--azul-ceu);
-        margin-top: 10px;
+        margin-top: 25px;
         display: flex;
         align-items: center;
         font-size: 20px;
@@ -727,7 +749,6 @@
     
     .formulario-inputs{
         width: 100%;
-        height: 45vh;
         display: flex;
     }
     
@@ -768,7 +789,7 @@
     }
     
     .formulario-botao{
-        margin-top: 10px;
+        margin-top: 40px;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -787,7 +808,7 @@
 }
 
 @media only screen and (max-width: 600px){
-    .container{
+    .container2{
         display: flex;
         flex-direction: row;
     }
@@ -830,9 +851,11 @@
     }
     
     .logo{
-        background-color: blue;
-        height: 15vh;
-        width: 100%;
+        background-image: url(logo-dark.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 40px 0 40px 0;
     }
     
     .divprincipal{
@@ -899,12 +922,11 @@
     
     .formulario{
         width: 65vw;
-        height: 70vh;   
+        height: fit-content;   
     }
     
     .formulario-titulo{
         background-color: var(--azul-ceu);
-        margin-top: 35px;
         display: flex;
         align-items: center;
         font-size: 16px;
@@ -917,6 +939,7 @@
         border-bottom-right-radius: 20px;
         border-top-left-radius: 20px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        margin-top: 25px;
     }
     
     .spam-titulo-formulario{
@@ -966,7 +989,7 @@
     }
     
     .formulario-botao{
-        margin-top: 0px;
+        margin-top: 40px;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -983,3 +1006,57 @@
         border: solid 2px #2569CE;
     }
 }
+
+@media only screen and (max-width: 430px){
+    .formulario-titulo {
+        margin-top: 50px;
+    }
+
+}
+
+/* 600 */
+.icon-hamb {
+    display: none;
+}
+@media only screen and (max-width: 630px){
+    .menu-lateral {
+        display: none;
+    }
+
+    .menu-lateral-hamburguer {
+        background-color: var(--branco-azul);
+    }
+
+    .icon-hamb {
+        width: 30px;
+        display: block;
+        margin-right: 15px;
+    }
+
+    .formulario-inputs {
+        flex-direction: column;
+        height: 100%;
+    } 
+
+    .div-formulario-input input, .div-formulario-input, .formulario-inputs-esquerda, .formulario-inputs-direita {
+        width: 100%;
+    }
+
+    .formulario-inputs-esquerda {
+        height: fit-content;
+    }
+
+    .inputs-titulos {
+        font-size: 20px;
+    }
+}
+
+
+/* 500 */
+
+@media only screen and (max-width: 499px){
+    .texto-titulo {
+        font-size: 19px;
+    }
+}
+
