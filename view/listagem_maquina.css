@@ -1,0 +1,239 @@
+.container2{
+    display: flex;
+    flex-direction: row;
+}
+
+.menu-lateral{
+    height: 100vh;
+    width: 24vw;
+}
+
+.menu-icones{
+    width: 24vw;
+    height: 8vh;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: var(--azul-caneta);
+}
+
+.div-icones{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-icones-agora{
+    width: 24vw;
+    height: 8vh;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    background-color: #EAF0FF;
+    color: var(--rosa-pink);
+}
+
+.logo{
+    background-color: blue;
+    height: 15vh;
+    width: 100%;
+}
+
+.divprincipal{
+    height: 100vh;
+    width: 98.75vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--branco-azul);
+}
+
+.titulo{
+    margin-top: 0px;
+    width: 65vw;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.texto-titulo{
+    margin-top: 5px;
+    font-size: 28px;
+    line-height: 49px;
+    font-weight: 800;
+    color: var(--rosa-pink);
+}
+
+.botoes-selecao{
+    width: 100%;
+    display: flex;
+    border-bottom: 3px solid var(--rosa-claro);
+}
+
+.botao-selecao-agora{
+    width: 85px;
+    height: 35px;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--rosa-pink);
+    background-color: var(--rosa-claro);
+    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.botao-selecao{
+    width: 85px;
+    height: 35px;
+    margin-right: 35px;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.formulario{
+    width: 65vw;
+    height: 70vh;   
+}
+
+.formulario-titulo{
+    background-color: var(--rosa-claro);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 22px;
+    width: 100%;
+    height: 5vh;
+    line-height: 22px;
+    color: var(--rosa-pink);
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.spam-titulo-formulario{
+    margin-left: 20px;
+}
+
+.formulario-inputs{
+    width: 100%;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.div-formulario-input{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs-titulos{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.div-formulario-input input{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 320px;
+    height: 35px;
+}
+
+.formulario-botao{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.formulario-botao button{
+    width: 50px;
+    height: 43px;
+    color: var(--rosa-pink);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    border: solid 2px var(--rosa-pink);
+}
+
+.formulario-pesquisar{
+    width: 100%;
+    height: 8%;
+    margin-top: 18px;
+}
+
+.formulario-pesquisar button{
+    height: 100%;
+    width: 5%;
+}
+
+.formulario-pesquisar input{
+    height: 100%;
+    width: 90%;
+}
+
+.botao-selecionado{
+    background-color: var(--rosa-claro);
+}
+
+.formulario-tabela{
+    width: 100%;
+    height: 85%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+table {
+    margin: 0px 0 40px;
+    width: 100%;
+}
+
+thead {
+    color: black;
+    font-weight: bold;
+}
+
+th {
+    border: 1px solid black;
+    padding: 10px 8px;
+}
+
+td{
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.tabela-icones{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    
+}
+
+td i{
+    width: 25px;
+    height: 25px;
+}
