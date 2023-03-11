@@ -4,6 +4,18 @@
 
 /* Reset CSS */
 
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -88,7 +100,7 @@ body {
 
 .img-atrativa {
     width: 40%;
-    height: 63vh;
+    height: 46vh; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -106,15 +118,19 @@ body {
 
 .sombra {
     width: 50%;
+    padding: 30px;
     height: 60vh;
+    padding: 30px;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(140.37deg, #3182BF -5.96%, #A864FF 111.92%);
+    flex-direction: column;
 }
 
 .formulario {
+    padding: 30px;
     width: 95%;
     height: 61vh;
     margin-block-end: 10%;
@@ -124,6 +140,37 @@ body {
     justify-content: space-around;
     align-items: center;
     background-color: #88B6FB;
+    animation: myAnim 1s ease 0s 1 normal forwards;
+    opacity: 0;
+
+}
+
+.ri-arrow-left-line{
+    color: white;
+    font-size: 24px;
+    transition: .3s;
+}
+
+.ri-arrow-left-line:hover{
+    transform: translateX(-10px);
+}
+
+.louquinha{
+    display: flex; 
+    flex-direction: row;
+    justify-content: flex-start;
+    justify-self: flex-start;
+}
+
+.formulario-back{
+    width: 95%;
+    height: 61vh;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    animation-duration: 2s;
 }
 
 .titulo-branco-azul {
@@ -134,7 +181,7 @@ body {
 }
 
 input {
-    width: 250px;
+    width: 100%;
     height: 6vh;
     border-radius: 4px;
     border-style: none;
@@ -145,12 +192,10 @@ input {
 .sbold-16 {
     font-weight: 600;
     font-size: 13px;
-    color: #2569CE;
 }
 
 .sbold-16 a {
     text-decoration-line: underline;
-    color: #2569CE;
 }
 
 .btn-login {
@@ -162,9 +207,14 @@ input {
     font-size: 13px;
     color: #2569CE;
     border-color: #2569CE;
-    background-color: #88B6FB;
+    transition: .5s;
     align-items: center;
     cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #88B6FB;
+    color: var(--branco-azul);
 }
 
 /* RESPONSIVIDADE */
@@ -293,7 +343,7 @@ input {
     }
     
     input {
-        width: 76%;
+        width: 100%;
         height: 7vh;
         border-radius: 4px;
         border-style: none;
@@ -325,4 +375,35 @@ input {
         align-items: center;
         cursor: pointer;
     }
+}
+
+@media only screen and (max-width: 1048px) {
+    .img-atrativa{
+        display: none;
+    }
+
+    .caixa-menor {
+        padding: 0;
+        justify-content: center;
+    }
+
+    .caixa-maior {
+        justify-content: center;
+        align-items: center;
+    }
+
+    #input-email, #input-senha, #input-confirmacao {
+        font-size: 14px;
+    }
+
+    .sombra {
+        width: 100%;
+    }
+
+
+    
+}
+
+#arrowLeft {
+    cursor: pointer;
 }
