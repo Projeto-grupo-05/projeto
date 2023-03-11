@@ -5,34 +5,74 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROVISÓRIO</title>
-    <link rel="stylesheet" href="./css/login.css">
+    <title>Login | SollicitUS</title>
+    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../index/header-resp.css">
+
+    <link rel="shortcut icon" href="../../assets/icons/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container2">
-        <div class="header bold-24 bg-lilas-claro">
-            <div class="container2">
-                <div class="item">
-                    <li class="item-branco-azul">
-                        <a href="">MENU</a>
-                    </li>
-                    <li class="item-branco-azul">
-                        <a href="">MENU</a>
-                    </li>
+        <header>
+            <div class="pos-f-t">
+                <div class="collapse" id="navbarToggleExternalContent">
+                    <div class="bg-azul-claro p-4">
+                        <h5 class="text-white h4 d-flex jc-center"><img src="../../assets/logo/logo-name.svg" width="20%"
+                                alt=""></h5>
+                        <div class="item-menu-collapse d-flex w-100 jc-between">
+                            <a href="../index/index.html" class="color-white">HOME</a>
+                            <a href="#solucao" class="color-white">SOLUÇÃO</a>
+                            <a href="" class="color-white">SOBRE</a>
+                            <a href="../login/login.html" class="color-white">CADASTRAR-SE</a>
+                        </div>
+                    </div>
                 </div>
-
-                <img src="../public/assets/logo.png" alt="logo" width="160px" height="38px">
-                <div class="item">
-                    <li class="item-branco-azul">
-                        <a href="">MENU</a>
-                    </li>
-                    <li class="item-branco-azul">
-                        <a href="">MENU</a>
-                    </li>
+                <nav class="navbar navbar-dark bg-azul-claro" style="height: 13vh;">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                        aria-expanded="false" aria-label="Alterna navegação">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+            </div>
+    
+            <div class="header bold-24 bg-azul-claro">
+                <div class="container2 header-bg">
+                    <div class="item">
+                        <li class="item-branco-azul">
+                            <a href="../index/index.html">HOME</a>
+                        </li>
+                        <li class="item-branco-azul">
+                            <a href="#solucao">SOLUÇÃO</a>
+                        </li>
+                    </div>
+    
+                    <img src="../../assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
+                    <div class="item">
+                        <li class="item-branco-azul">
+                            <a href="">SOBRE</a>
+                        </li>
+                        <li class="item-branco-azul">
+                            <a href="../cadastro/cadastroFunc.html">CADASTRAR-SE</a>
+                        </li>
+                    </div>
                 </div>
             </div>
-        </div>
+        </header>
 
         <div class="caixa-maior">
             <div class="corpo">
@@ -46,7 +86,7 @@
                         <h3>Sentimos sua falta.</h3>
                     </div>
 
-                    <img src="./assets/images/porta.svg" alt="cara passando pela porta" width="100%">
+                    <img src="../../assets/images/porta.svg" alt="cara passando pela porta" width="100%">
                 </div>
 
                 <div class="sombra">
@@ -58,7 +98,7 @@
                         <input type="text" id="input-token" class="sbold-24" placeholder="Token">
 
                         <label class="sbold-16"> Não tem conta?
-                            <a href="">Cadastre-se já!</a>
+                            <a href="../cadastro/cadastroFunc.html">Cadastre-se já!</a>
                         </label>
 
                         <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->

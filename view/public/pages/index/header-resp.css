@@ -1,0 +1,13 @@
+.pos-f-t {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .header {
+        display: none;
+    }
+
+    .pos-f-t {
+        display: block;
+    }
+}
