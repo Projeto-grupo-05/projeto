@@ -30,6 +30,7 @@ body {
         --azul-ceu: #B2DAFF;
         --azul-bebe: #84B8E8;
         --azul: #00649D;
+        --azul-claro: #3680C2;
         --azul-caneta: #000A41;
 
         /* Roxo */
@@ -40,11 +41,11 @@ body {
         --rosa-pink: #C23B65;
 
     /* PESO DA FONTE  */
-    --regular: font-weight: 400;
-    --medium: font-weight: 500;
-    --semibold: font-weight: 600;
-    --bold: font-weight: 700;
-    --extrabold: font-weight: 800;
+    --regular: 400;
+    --medium: 500;
+    --semibold: 600;
+    --bold: 700;
+    --extrabold: 800;
 }
 
 /* ESTILO DE FONTE  */
@@ -90,3 +91,47 @@ body {
         font-weight: var(--extrabold);
         font-size: 16px;
     }
+
+    .text-align-center {
+        text-align: center;
+    }
+
+/* BACKGROUND COLORS */
+.bg-azul-claro{
+    background-color: var(--azul-claro);
+}
+
+.bg-azul-bebe {
+    background-color: var(--azul-bebe);
+}
+
+.bg-azul {
+    background-color: var(--azul);
+}
+
+/* COLORS */
+.color-white {
+    color: var(--branco-azul);
+}
+
+/* FLEX  */
+.d-flex {
+    display: flex;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+.jc-between {
+    justify-content: space-between;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+/* MACETES  */
+.vis-hidden {
+    visibility: hidden;
+}
