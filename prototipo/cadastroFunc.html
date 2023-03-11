@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROVISÓRIO</title>
-    <link rel="stylesheet" href="./css/cadastroFunc.css">
+    <link rel="stylesheet" href="cadastroFunc.css">
+    <link rel="stylesheet" href="../view/style/global.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"> 
 
 </head>
@@ -38,28 +39,32 @@
 
         <div class="caixa-maior">
             <div class="corpo">
-                <div class="bolinha esquerda">
+                <!-- <div class="bolinha esquerda">
                     <img src="./assets/ladoEs.png" alt="bolinha" width="280px">
-                </div>
+                </div> -->
             </div>
 
             <div class="caixa-menor">
                 <div class="img-atrativa">
                     <div class="frase">
-                        <h2>BEM VINDO DE VOLTA!</h2>
-                        <h3>Sentimos sua falta.</h3>
+                        <p class="xbold-36">JUNTE-SE A NÓS!</p>
+                        <h3>É um prazer recebê-lo.</h3>
                     </div>
 
-                    <img src="./assets/porta.png" alt="cara passando pela porta" width="230px">
+                    <img src="../view/public/assets/images/ilustra-cadastro.svg" alt="cara passando pela porta" width="100%" style="margin-top: 30px;">
                 </div>
 
                 <div class="sombra">
                     <div id="formulario-back"class="formulario-back">
 
-                        <h2 class="titulo-branco-azul">Insira suas credênciais</h2>
+                        <h2 class="titulo-branco-azul">CADASTRE-SE</h2>
                         <input type="text" id="input-email" class="sbold-24" placeholder="Insira seu e-mail">
                         <input type="text" id="input-senha" class="sbold-24" placeholder="Insira sua senha">
                         <input type="text" id="input-confirmacao" class="sbold-24" placeholder="Repita a senha">
+
+                        <label class="sbold-16 color-white"> Não tem conta?
+                            <a href="" class="color-white">Cadastre-se já!</a>
+                        </label>
                         <button id="butao" class="btn-login">Continuar</button>
                     </div>
                     
@@ -74,9 +79,7 @@
                         
                         <input type="text" id="input-nome" class="sbold-24" placeholder="Joana Batatinha">
 
-                        <label class="sbold-16"> Não tem conta?
-                            <a href="">Cadastre-se já!</a>
-                        </label>
+                        
 
                         <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
                         <button onclick="" class="btn-login">Cadastrar</button>
@@ -85,12 +88,12 @@
             </div>
 
             <div class="corpo">
-                <div class="bolinha direita">
+                <!-- <div class="bolinha direita">
                     <img src="./assets/ladoDi.png" alt="bolinha" width="280px">
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </body>
-<script src="js/continuacao.js"></script>
+<script src="continuacao.js"></script>
 </html>
