@@ -1,8 +1,4 @@
 /*Css geral*/
-html {
-    background-color: var(--branco-azul);
-}
-
 .container2{
     display: flex;
     flex-direction: row;
@@ -821,6 +817,10 @@ html {
         height: 100vh;
         width: 51vw;
     }
+
+    .formulario-inputs{
+        height: 90vh;
+    }
     
     .div-icones{
         height: 100%;
@@ -1048,6 +1048,14 @@ html {
 
     .formulario-inputs-esquerda {
         height: fit-content;
+    }
+
+    .formulario-inputs-direita{
+        height: fit-content;
+    }
+
+    .divprincipal{
+        height: 109vh;
     }
 
     .inputs-titulos {
