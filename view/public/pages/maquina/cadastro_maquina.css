@@ -1064,3 +1064,10 @@ html {
     }
 }
 
+.sair {
+    transition: 0.5s;
+}
+
+.sair:hover {
+    scale: 1.09;
+}
