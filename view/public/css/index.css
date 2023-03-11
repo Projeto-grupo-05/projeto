@@ -288,3 +288,12 @@ footer {
         flex-direction: column;
     }
 }
+
+.footer-centro {
+    background-image: url(../assets/logo-name.svg);
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
