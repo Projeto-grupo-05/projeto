@@ -3,7 +3,7 @@ html {
     background-color: var(--branco-azul);
 }
 
-.container2{
+.container22{
     display: flex;
     flex-direction: row;
 }
@@ -212,7 +212,7 @@ html {
 }
 
 @media only screen and (min-width: 1200px){
-    .container2{
+    .container22{
         display: flex;
         flex-direction: row;
     }
@@ -412,7 +412,7 @@ html {
 }
 
 @media only screen and (max-width: 992px){
-.container2{
+.container22{
     display: flex;
     flex-direction: row;
 }
@@ -611,7 +611,7 @@ html {
 }
 
 @media only screen and (max-width: 768px){
-    .container2{
+    .container22{
         display: flex;
         flex-direction: row;
     }
@@ -812,7 +812,7 @@ html {
 }
 
 @media only screen and (max-width: 600px){
-    .container2{
+    .container22{
         display: flex;
         flex-direction: row;
     }
