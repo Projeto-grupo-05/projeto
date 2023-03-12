@@ -676,7 +676,7 @@
     
     .texto-titulo{
         margin-top: 5px;
-        font-size: 25px;
+        font-size: 24px;
         line-height: 49px;
         font-weight: 800;
         color: #00649D;
@@ -1068,7 +1068,7 @@
 
 @media only screen and (max-width: 499px){
     .texto-titulo {
-        font-size: 19px;
+        font-size: 16px;
     }
 }
 
