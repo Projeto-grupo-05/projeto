@@ -225,6 +225,12 @@ td{
 
 .pesquisa input{
     width: 61vw;
+    border: none;
+}
+
+.pesquisa button{
+    border: none;
+    background-color: white;
 }
 
 @media only screen and (min-width: 1200px){
