@@ -83,8 +83,8 @@
 
 <script>
     var teste = false;
+    var menu = document.getElementById("menuLateral");
     function sideBar() {
-        var menu = document.getElementById("menuLateral");
         if(!teste) {
             menu.style.display = "block";  
             teste = true;         
@@ -94,7 +94,15 @@
         }
     }
 
-    if (window.matchMedia("(max-width: 1999px)").matches) {
-        menu.style.display = "block"; 
-    }
+    function myFunction(x) {
+            if (x.matches) {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+
+        var x = window.matchMedia("(max-width: 630px)")
+        myFunction(x)
+        x.addListener(myFunction)
 </script>
