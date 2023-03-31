@@ -1,3 +1,12 @@
+<h1 align=center> Repositório SollicitUS -  Grupo 05 </h1>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110927737/224516842-ceace87d-5dbc-4540-8030-4df8adf99d65.svg"/>
+</p>
+
+<h6 align=center> Somos uma empresa de NOC focada em oferecer soluções de suporte técnico para instituições de ensino superior. Recém ingressada no mercado, a SollicitUS conta com uma equipe jovem de profissionais altamente qualificados e capacitados para fornecer soluções personalizadas que permitam nossos clientes se concentrem apenas em suas atividades acadêmicas, com a segurança se que seus sistemas de TI estão em boas mãos. </h6>
+
+
 # Dicionário do gitinho
 
 Clonar projeto ```git clone [link do repo]``` <br>
