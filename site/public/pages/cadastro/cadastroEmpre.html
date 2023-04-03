@@ -80,22 +80,20 @@
                 <div class="sombra">
 
                         <h2 class="titulo-branco-azul">CADASTRO DE EMPRESA</h2>
-                        <input type="text" id="input-nome-empresa" class="sbold-16" placeholder="Insira nome da empresa">
-                        <input type="text" id="input-cnpj" class="sbold-16" placeholder="CNPJ">
-                        <input type="text" id="input-cep" class="sbold-16" placeholder="cep">
-                        <input type="text" id="input-logradouro" class="sbold-16" placeholder="logradouro">
-                        <input type="text" id="input-telefone" class="sbold-16" placeholder="11999900000">
-                        <input type="text" id="input-token" class="sbold-16" placeholder="Token">
-                        <select name="filial" id="combo-filial" class="sbold-16">
+                        <input type="text" id="input_nome_empresa" class="sbold-16" placeholder="Insira nome da empresa">
+                        <input type="text" id="input_cnpj" class="sbold-16" placeholder="CNPJ">
+                        <input type="text" id="input_cep" class="sbold-16" placeholder="cep">
+                        <input type="text" id="input_logradouro" class="sbold-16" placeholder="logradouro">
+                        <input type="text" id="input_telefone" class="sbold-16" placeholder="11999900000">
+                        <input type="text" id="input_token" class="sbold-16" placeholder="Token">
+                        <select name="filial" id="combo_filial" class="sbold-16">
                             <option value="">Esta empresa é uma filial?</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
                         </select>
 
-                        
-                       <a href="../index/index.html">
                         <button id="butao" onclick="cadastrarEmpresa()" class="btn-login">Continuar</button>
-                        </a> 
+                        
                     </div>
 
                 </div>
@@ -108,15 +106,16 @@
 
     function cadastrarEmpresa(){
 
-        var nomeEmpresaVar = input-nome-empresa;
-        var cnpjVar = input-cnpj;
-        var cepVar = input-cep;
-        var logradrouroVar = input-logradouro;
-        var telefoneVar = input-telefone;
-        var tokenVar = input-token;
-        var comboFilialVar = combo-filial;
+        var nomeEmpresaVar = input_nome_empresa;
+        var cnpjVar = input_cnpj;
+        var cepVar = input_cep;
+        var logradrouroVar = input_logradouro;
+        var telefoneVar = input_telefone;
+        var tokenVar = input_token;
+        var comboFilialVar = combo_filial;
 
-        fetch("/usuarios/cadastrar", {
+        
+        fetch("/usuarios/cadastrarEmpre", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -137,9 +136,6 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
-
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
                 setTimeout(() => {
                     window.location = "login.html";
@@ -159,4 +155,3 @@
     }
 
 </script>
-

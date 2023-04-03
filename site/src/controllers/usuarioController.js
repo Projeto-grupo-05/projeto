@@ -94,9 +94,56 @@ function cadastrar(req, res) {
     }
 }
 
+function cadastrarEmpre(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nomeEmpresa = nomeEmpresaServer;
+    var cnpj = cnpjServer;
+    var cep = cepServer;
+    var logradouro = logradouroServer;
+    var telefone = telefoneServer;
+    var token = tokenServer;
+    var comboFilian = comboFilialServer;
+
+    // Faça as validações dos valores
+    if (nomeEmpresa == undefined) {
+        res.status(400).send("Seu nome empresa está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else if (cep == undefined) {
+        res.status(400).send("Sua cep está undefined!");
+    } else if (logradouro == undefined) {
+        res.status(400).send("Sua logradouro está undefined!");
+    } else if (telefone == undefined) {
+        res.status(400).send("Sua telefone está undefined!");
+    } else if (token == undefined) {
+        res.status(400).send("Sua token está undefined!");
+    } else if (comboFilian == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    }  else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrar(nomeEmpresa, cnpj, cep, logradouro, telefone, token, comboFilian)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     entrar,
     cadastrar,
+    cadastrarEmpre,
     listar,
     testar
 }
