@@ -94,7 +94,7 @@
 
                         
                        <a href="../index/index.html">
-                        <button id="butao" class="btn-login">Continuar</button>
+                        <button id="butao" onclick="cadastrarEmpresa()" class="btn-login">Continuar</button>
                         </a> 
                     </div>
 
@@ -104,3 +104,59 @@
 </body>
 
 </html>
+<script>
+
+    function cadastrarEmpresa(){
+
+        var nomeEmpresaVar = input-nome-empresa;
+        var cnpjVar = input-cnpj;
+        var cepVar = input-cep;
+        var logradrouroVar = input-logradouro;
+        var telefoneVar = input-telefone;
+        var tokenVar = input-token;
+        var comboFilialVar = combo-filial;
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeEmpresaServer: nomeEmpresaVar,
+                cnpjServer: cnpjVar,
+                cepServer: cepVar,
+                logradouroServer: logradrouroVar,
+                telefoneServer: telefoneVar,
+                tokenServer: tokenVar,
+                comboFilialServer: comboFilialVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+</script>
+
