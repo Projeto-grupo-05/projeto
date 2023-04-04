@@ -64,14 +64,22 @@
                 <div class="formulario-titulo"><span class="spam-titulo-formulario">Cadastro de Máquinas</span></div>
                 <div class="formulario-inputs">
                     <div class="formulario-inputs-esquerda">
-                        <div class="div-formulario-input"><span class="inputs-titulos">Hostname</span><input type="text"></div>
+                        <div><span class="inputs-titulos">Informações</span></div>
                         <div class="div-formulario-input"><span class="inputs-titulos">Fabricante</span><input type="text"></div>
                         <div class="div-formulario-input"><span class="inputs-titulos">Modelo</span><input type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Cor</span><input type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Ano de fabricação</span><input type="text"></div>
                     </div>
                     <div class="formulario-inputs-direita">
-                        <div class="div-formulario-input"><span class="inputs-titulos">Cor</span><input type="text"></div>
-                        <div class="div-formulario-input"><span class="inputs-titulos">Componentes</span><input type="text"></div>
-                        <div class="div-formulario-input"><span class="inputs-titulos">Ano de fabricação</span><input type="text"></div>
+                        <div><span class="inputs-titulos">Componentes</span></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">CPU</span><input type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">RAM</span><input type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">SO</span><input type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Número de máquinas</span>
+                            <select name="Maquinas" id="qtdMaquina">
+                                <option value="1">1</option>
+                            </select>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -105,4 +113,13 @@
         var x = window.matchMedia("(max-width: 630px)")
         myFunction(x)
         x.addListener(myFunction)
+
+    var selectAge = document.getElementById("qtdMaquina");
+    var contents;
+
+    for (let i = 1; i <= 100; i++) {
+        contents += "<option>" + i + "</option>";
+    }   
+
+    selectAge.innerHTML = contents;     
 </script>
