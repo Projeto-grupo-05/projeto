@@ -33,7 +33,7 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
+
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
@@ -74,7 +74,7 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha)
             .then(
@@ -103,6 +103,11 @@ function cadastrarEmpre(req, res) {
     var telefone = telefoneServer;
     var token = tokenServer;
     var comboFilian = comboFilialServer;
+    var email = emailServer;
+    var numero = numeroServer;
+    var complemento = complementoServer;
+    var cidade = cidadeServer;
+    var estado = estadoServer;
 
     // Faça as validações dos valores
     if (nomeEmpresa == undefined) {
@@ -119,8 +124,18 @@ function cadastrarEmpre(req, res) {
         res.status(400).send("Sua token está undefined!");
     } else if (comboFilian == undefined) {
         res.status(400).send("Sua filial está undefined!");
-    }  else {
-        
+    } else if (email == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    } else if (numero == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    } else if (complemento == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    } else if (cidade == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    } else if (estado == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    } else {
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nomeEmpresa, cnpj, cep, logradouro, telefone, token, comboFilian)
             .then(
