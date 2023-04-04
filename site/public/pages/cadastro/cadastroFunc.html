@@ -109,7 +109,7 @@
 
 
                         <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
-                        <a href="../login/login.html"><button onclick="" class="btn-login">Cadastrar</button></a>
+                        <button onclick="autenticarT()" class="btn-login">Cadastrar</button>
                     </div>
                 </div>
                 <div class="img-atrativa">
@@ -133,7 +133,8 @@
 </html>
 
 <script>
-    function cadastrar() {
+
+function cadastrar() {
         aguardar();
 
         //Recupere o valor da nova input pelo nome do id
@@ -141,10 +142,9 @@
         var nomeVar = inputNome.value;
         var emailVar = inputEmail.value;
         var senhaVar = inputSenha.value;
-        var tokenVar = inputToken.value;
         var confirmacaoSenhaVar = inputConfirmaSenha.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || tokenVar == "") {
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
@@ -199,4 +199,53 @@
         cardErro.style.display = "none"
     }
 
+
+    
+    function autenticarT() {
+
+        var tokenVar = inputToken.value;
+
+
+        fetch("../../../src/routes/usuarios/autenticarT", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                tokenServer: tokenVar,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO autenticar T()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+                console.log("--------------------------------")
+                cadastrar();
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    setTimeout(function () {
+                        window.location = "../login/login.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
 </script>

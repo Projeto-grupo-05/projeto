@@ -97,9 +97,34 @@ function cadastrar(req, res) {
     }
 }
 
+function autenticarToken(req, res) {
+    console.log('oie auetenticart token')
+    var token = req.params.token;
+
+    usuarioModel.pesquisarToken(token)
+        .then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                    cadastrar();
+                    console.log(resultado + "AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
+    autenticarToken,
     testar
 }
