@@ -148,7 +148,7 @@ html {
 }
 
 .bg-quem-somos {
-    background-image: url(../../assets/images/bg-quem-somos.svg);
+    background-image: url(../assets/images/bg-quem-somos.svg);
     width: 70%;
     background-repeat: no-repeat;
     height: 600px;
@@ -343,7 +343,7 @@ footer {
 }
 
 .footer-centro {
-    background-image: url(../../assets/logo/logo-name.svg);
+    background-image: url(../assets/logo/logo-name.svg);
     background-size: contain;
     width: 200px;
     height: 200px;
