@@ -94,24 +94,28 @@ function cadastrar(req, res) {
 
 function autenticarToken(req, res) {
     console.log('oie auetenticart token')
-    var token = req.params.token;
+    var token = req.body.tokenServer;
 
-    usuarioModel.pesquisarToken()
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                cadastrar()
-                console.log('aaaaaaaaaaaa')
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
-        }).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+    if (token == undefined) {
+        res.status(400).send("Seu token está undefined!");
+    } else {
+
+        usuarioModel.pesquisarToken(token)
+            .then(function (resultado) {
+                if (resultado.length == 1) {
+                    console.log(resultado);
+                    res.json(resultado[0]);
+                } else {
+                    res.status(403).send("TOKEN INVÁLIDO/NÃO EXISTE");
+                }
+            }).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }   
 }
 
 

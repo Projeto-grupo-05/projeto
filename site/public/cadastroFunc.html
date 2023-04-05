@@ -196,32 +196,45 @@ function cadastrar() {
 
 
     function autenticarT() {
-        console.log("entrei na func autenticar t")
         var tokenVar = inputToken.value;
-        console.log("o valor do token é "+tokenVar)
-
-        fetch("/usuarios/autenticarT").then(function (resposta) {
-            console.log("entrou no fetch autenticart")
+        
+        fetch("/usuarios/autenticarT", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                tokenServer: tokenVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO autenticarT()!")
+            console.log(resposta[0] + '<--- resposta')
             if (resposta.ok) {
-                console.log(resposta)
-                //AQUI A GENTE EFETUA CADASTRO CASO A RESPOSTA DER CERTO
-                cadastrar()
-                if (resposta.status == 204) {
-                    console.log('entrei no autenticar t e deu erro, não achou o registro')
-                    throw "Nenhum resultado encontrado!!";
-                }
+                console.log(resposta);
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
 
                     
+
                 });
+
             } else {
-                throw ('Houve um erro na API!');
+
+                console.log("Houve um erro ao tentar realizar a autenticação do token!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
             }
-        }).catch(function (resposta) {
-            console.error(resposta);
-        });
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        // return false;
     }
+    
     
 </script>

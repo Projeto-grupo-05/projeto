@@ -45,9 +45,9 @@ function cadastrar(nome, email, senha, token) {
 //OLHA O ERRO TA AQUI, O SELECT RETORNA UNDEFINED
 
 function pesquisarToken(texto) {
-  console.log("ACESSEI O PESQUISAR TOKEN MODEL");
+  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", texto)
   var instrucao = `
-        SELECT Codigo, idEmpresa FROM Empresa WHERE Codigo LIKE '${texto}';
+        SELECT idEmpresa FROM Empresa WHERE Codigo LIKE '${texto}'
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

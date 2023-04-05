@@ -16,12 +16,12 @@ router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
 
-router.post("/autenticar", function (req, res) {
+router.post("/autenticar:", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
-router.get("/autenticarT", function (req, res) {
-    console.log('Entrei no router autenticar T!')
+router.post("/autenticarT", function (req, res) {
+    console.log('routes autenticar T')
     usuarioController.autenticarToken(req, res);
 })
 
