@@ -21,6 +21,7 @@ router.post("/autenticar", function (req, res) {
 });
 
 router.get("/autenticarT", function (req, res) {
+    console.log('Entrei no router autenticar T!')
     usuarioController.autenticarToken(req, res);
 })
 

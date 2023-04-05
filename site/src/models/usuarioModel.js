@@ -42,6 +42,8 @@ function cadastrar(nome, email, senha, token) {
   return database.executar(instrucao);
 }
 
+//OLHA O ERRO TA AQUI, O SELECT RETORNA UNDEFINED
+
 function pesquisarToken(texto) {
   console.log("ACESSEI O PESQUISAR TOKEN MODEL");
   var instrucao = `

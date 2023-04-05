@@ -96,21 +96,19 @@ function autenticarToken(req, res) {
     console.log('oie auetenticart token')
     var token = req.params.token;
 
-    usuarioModel.pesquisarToken(token)
-        .then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    res.status(200).json(resultado);
-                    cadastrar();
-                    console.log(resultado + "AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-                } else {
-                    res.status(204).send("Nenhum resultado encontrado!");
-                }
+    usuarioModel.pesquisarToken()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                cadastrar()
+                console.log('aaaaaaaaaaaa')
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
             }
-        ).catch(
+        }).catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );

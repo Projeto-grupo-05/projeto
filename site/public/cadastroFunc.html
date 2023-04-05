@@ -129,9 +129,7 @@
     </div>
 </body>
 <script src="js/continuacao.js"></script>
-</html>
 
-<script src="verificaCamposCadastrais.js"></script>
 </html>
 
 <script>
@@ -180,12 +178,6 @@ function cadastrar() {
 
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
-
-                limparFormulario();
-                finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
@@ -204,50 +196,32 @@ function cadastrar() {
 
 
     function autenticarT() {
-
+        console.log("entrei na func autenticar t")
         var tokenVar = inputToken.value;
+        console.log("o valor do token é "+tokenVar)
 
-
-        fetch("../../../src/routes/usuarios/autenticarT", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                tokenServer: tokenVar,
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO autenticar T()!")
-
+        fetch("/usuarios/autenticarT").then(function (resposta) {
+            console.log("entrou no fetch autenticart")
             if (resposta.ok) {
-                console.log(resposta);
-                console.log("--------------------------------")
-                cadastrar();
+                console.log(resposta)
+                //AQUI A GENTE EFETUA CADASTRO CASO A RESPOSTA DER CERTO
+                cadastrar()
+                if (resposta.status == 204) {
+                    console.log('entrei no autenticar t e deu erro, não achou o registro')
+                    throw "Nenhum resultado encontrado!!";
+                }
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    setTimeout(function () {
-                        window.location = "../login/login.html";
-                    }, 1000); // apenas para exibir o loading
-
+                    
                 });
-
             } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                throw ('Houve um erro na API!');
             }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
     }
+    
 </script>
