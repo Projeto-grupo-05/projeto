@@ -21,7 +21,7 @@ router.post("/autenticar:", function (req, res) {
 });
 
 router.post("/autenticarT", function (req, res) {
-    console.log('routes autenticar T')
+    console.log('routes autenticar T');
     usuarioController.autenticarToken(req, res);
 })
 
