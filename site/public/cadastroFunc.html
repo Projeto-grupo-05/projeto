@@ -24,6 +24,10 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
 </head>
 
 <body>
@@ -135,7 +139,6 @@
 <script>
 
 function cadastrar() {
-        aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -143,20 +146,22 @@ function cadastrar() {
         var emailVar = inputEmail.value;
         var senhaVar = inputSenha.value;
         var confirmacaoSenhaVar = inputConfirmaSenha.value;
+        var idEmpresaVar = sessionStorage.ID_EMPRESA;
+        
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
-            finalizarAguardar();
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            console.log("Era pra sumir a mensagem")
         }
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
+            
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -166,34 +171,29 @@ function cadastrar() {
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 emailServer: emailVar,
-                tokenServer: tokenVar,
-                senhaServer: senhaVar
+                senhaServer: senhaVar,
+                idEmpresaServer: idEmpresaVar
             })
+            
         }).then(function (resposta) {
-
+            console.log("");
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
 
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                window.location = 'http://localhost:8080/login.html'
 
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+
         });
 
         return false;
     }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
-
 
     function autenticarT() {
         var tokenVar = inputToken.value;
@@ -216,12 +216,19 @@ function cadastrar() {
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-                    
+                    sessionStorage.ID_EMPRESA = json.idEmpresa;
+                    console.log(sessionStorage.ID_EMPRESA)
+
+                    cadastrar()
 
                 });
 
             } else {
-
+                Swal.fire(
+                'Token inválido',
+                'Digite o token fornecido por sua empresa!',
+                'error'
+                )
                 console.log("Houve um erro ao tentar realizar a autenticação do token!");
 
                 resposta.text().then(texto => {
