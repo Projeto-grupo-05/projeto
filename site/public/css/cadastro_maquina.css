@@ -7,7 +7,7 @@
 .menu-lateral{
     height: 100vh;
     width: 24vw;
-    display: block;
+    /* display: block; */
 }
 
 .menu-icones{
@@ -38,14 +38,14 @@
     display: flex;
     align-items: center;
     background-color: #EAF0FF;
-    color: #C23B65;
+    color: #00649D;
 }
 
 .logo{
     /* background-color: blue; */
     height: 15vh;
     width: 100%;
-    background-image: url(logo-dark.svg);
+    background-image: url(../assets/logo/logo-dark.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -75,13 +75,13 @@
     font-size: 28px;
     line-height: 49px;
     font-weight: 800;
-    color: #C23B65;
+    color: #00649D;
 }
 
 .botoes-selecao{
     width: 100%;
     display: flex;
-    border-bottom: 3px solid #FFB7CD;
+    border-bottom: 3px solid #B2DAFF;
 }
 
 .botao-selecao-agora{
@@ -90,8 +90,8 @@
     font-weight: 800;
     font-size: 16px;
     line-height: 22px;
-    color: #C23B65;
-    background-color: #FFB7CD;
+    color: #00649D;
+    background-color: #B2DAFF;
     margin-right: 40px;
     display: flex;
     justify-content: center;
@@ -120,7 +120,7 @@
 }
 
 .formulario-titulo{
-    background-color: #FFB7CD;
+    background-color: var(--azul-ceu);
     margin-top: 10px;
     display: flex;
     align-items: center;
@@ -130,7 +130,7 @@
     width: 100%;
     height: 5vh;
     line-height: 22px;
-    color: #C23B65;
+    color: #00649D;
     border-bottom-right-radius: 20px;
     border-top-left-radius: 20px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -142,7 +142,7 @@
 
 .formulario-inputs{
     width: 100%;
-    height: fit-content;
+    height: 45vh;
     display: flex;
 }
 
@@ -183,58 +183,32 @@
 }
 
 .formulario-botao{
+    margin-top: 0px;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .formulario-botao button{
-    width: 60px;
-    height: 35px;
+    width: 244px;
+    height: 43px;
     background-color: white;
-    color: #C23B65;
+    color: #2569CE;
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
-    border: solid 2px #C23B65;
+    border: solid 2px #2569CE;
+    transition: 0.5s;
 }
 
 .formulario-botao button:hover {
-    background-color: #C23B65;
+    background-color: var(--azul);
     color: var(--branco-azul);
     border-radius: 5px;
 }
 
-table{
-    margin-top: 5px;
-    font-size: 16px;
-    width: 100%;
-    text-align: center;
-}
-
-td{
-    height: 10px;
-    border-radius: solid 2px black;
-}
-
-.pesquisa{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.pesquisa input{
-    width: 61vw;
-    border: none;
-}
-
-.pesquisa button{
-    border: none;
-    background-color: white;
-}
-
 @media only screen and (min-width: 1200px){
-    .container2{
+    .container22{
         display: flex;
         flex-direction: row;
     }
@@ -242,7 +216,7 @@ td{
     .menu-lateral{
         height: 100vh;
         width: 24vw;
-        display: block;
+        /* display: block; */
     }
     
     .menu-icones{
@@ -264,8 +238,20 @@ td{
         justify-content: center;
     }
     
+    .menu-icones-agora{
+        width: 24vw;
+        height: 8vh;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        background-color: #EAF0FF;
+        color: #00649D;
+    }
+    
     .logo{
-        background-image: url(logo-dark.svg);
+        background-image: url(../assets/logo/logo-dark.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -295,12 +281,13 @@ td{
         font-size: 28px;
         line-height: 49px;
         font-weight: 800;
-        color: #C23B65;
+        color: #00649D;
     }
     
     .botoes-selecao{
         width: 100%;
         display: flex;
+        border-bottom: 3px solid #B2DAFF;
     }
     
     .botao-selecao-agora{
@@ -309,7 +296,8 @@ td{
         font-weight: 800;
         font-size: 16px;
         line-height: 22px;
-        color: #C23B65;
+        color: #00649D;
+        background-color: #B2DAFF;
         margin-right: 40px;
         display: flex;
         justify-content: center;
@@ -338,6 +326,7 @@ td{
     }
     
     .formulario-titulo{
+        background-color: var(--azul-ceu);
         margin-top: 10px;
         display: flex;
         align-items: center;
@@ -347,6 +336,7 @@ td{
         width: 100%;
         height: 5vh;
         line-height: 22px;
+        color: #00649D;
         border-bottom-right-radius: 20px;
         border-top-left-radius: 20px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -358,7 +348,7 @@ td{
     
     .formulario-inputs{
         width: 100%;
-        height: fit-content;
+        height: 45vh;
         display: flex;
     }
     
@@ -399,15 +389,26 @@ td{
     }
     
     .formulario-botao{
-        margin-top: 10px;
+        margin-top: 0px;
         display: flex;
         justify-content: center;
         width: 100%;
     }
+    
+    .formulario-botao button{
+        width: 244px;
+        height: 43px;
+        background-color: white;
+        color: #2569CE;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+        border: solid 2px #2569CE;
+    }
 }
 
 @media only screen and (max-width: 992px){
-.container2{
+.container22{
     display: flex;
     flex-direction: row;
 }
@@ -415,7 +416,7 @@ td{
 .menu-lateral{
     height: 100vh;
     width: 24vw;
-    display: block;
+    /* display: block; */
 }
 
 .menu-icones{
@@ -426,6 +427,7 @@ td{
     line-height: 22px;
     display: flex;
     align-items: center;
+    color: var(--azul-caneta);
 }
 
 .div-icones{
@@ -444,10 +446,12 @@ td{
     line-height: 22px;
     display: flex;
     align-items: center;
+    background-color: #EAF0FF;
+    color: #00649D;
 }
 
 .logo{
-    background-image: url(logo-dark.svg);
+    background-image: url(../assets/logo/logo-dark.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -476,11 +480,13 @@ td{
     font-size: 28px;
     line-height: 49px;
     font-weight: 800;
+    color: #00649D;
 }
 
 .botoes-selecao{
     width: 100%;
     display: flex;
+    border-bottom: 3px solid #B2DAFF;
 }
 
 .botao-selecao-agora{
@@ -489,6 +495,8 @@ td{
     font-weight: 800;
     font-size: 16px;
     line-height: 22px;
+    color: #00649D;
+    background-color: #B2DAFF;
     margin-right: 40px;
     display: flex;
     justify-content: center;
@@ -517,6 +525,7 @@ td{
 }
 
 .formulario-titulo{
+    background-color: var(--azul-ceu);
     margin-top: 10px;
     display: flex;
     align-items: center;
@@ -526,6 +535,7 @@ td{
     width: 100%;
     height: 5vh;
     line-height: 22px;
+    color: #00649D;
     border-bottom-right-radius: 20px;
     border-top-left-radius: 20px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -537,7 +547,7 @@ td{
 
 .formulario-inputs{
     width: 100%;
-    height: fit-content;
+    height: 45vh;
     display: flex;
 }
 
@@ -578,15 +588,26 @@ td{
 }
 
 .formulario-botao{
-    margin-top: 10px;
+    margin-top: 0px;
     display: flex;
     justify-content: center;
     width: 100%;
 }
+
+.formulario-botao button{
+    width: 244px;
+    height: 43px;
+    background-color: white;
+    color: #2569CE;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    border: solid 2px #2569CE;
+}
 }
 
 @media only screen and (max-width: 768px){
-    .container2{
+    .container22{
         display: flex;
         flex-direction: row;
     }
@@ -624,10 +645,11 @@ td{
         display: flex;
         align-items: center;
         background-color: #EAF0FF;
+        color: #00649D;
     }
     
     .logo{
-        background-image: url(logo-dark.svg);
+        background-image: url(../assets/logo/logo-dark.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -657,6 +679,7 @@ td{
         font-size: 24px;
         line-height: 49px;
         font-weight: 800;
+        color: #00649D;
         display: flex;
         text-align: center;
         align-items: center;
@@ -665,6 +688,7 @@ td{
     .botoes-selecao{
         width: 100%;
         display: flex;
+        border-bottom: 3px solid #B2DAFF;
     }
     
     .botao-selecao-agora{
@@ -673,6 +697,8 @@ td{
         font-weight: 800;
         font-size: 16px;
         line-height: 22px;
+        color: #00649D;
+        background-color: #B2DAFF;
         margin-right: 40px;
         display: flex;
         justify-content: center;
@@ -701,6 +727,7 @@ td{
     }
     
     .formulario-titulo{
+        background-color: var(--azul-ceu);
         margin-top: 25px;
         display: flex;
         align-items: center;
@@ -710,6 +737,7 @@ td{
         width: 100%;
         height: 5vh;
         line-height: 22px;
+        color: #00649D;
         border-bottom-right-radius: 20px;
         border-top-left-radius: 20px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -721,7 +749,6 @@ td{
     
     .formulario-inputs{
         width: 100%;
-        height: fit-content;
         display: flex;
     }
     
@@ -762,19 +789,26 @@ td{
     }
     
     .formulario-botao{
-        margin-top: 10px;
+        margin-top: 40px;
         display: flex;
         justify-content: center;
         width: 100%;
     }
-
-    table{
-        font-size: 12px;
+    
+    .formulario-botao button{
+        width: 244px;
+        height: 43px;
+        background-color: white;
+        color: #2569CE;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+        border: solid 2px #2569CE;
     }
 }
 
 @media only screen and (max-width: 600px){
-    .container2{
+    .container22{
         display: flex;
         flex-direction: row;
     }
@@ -785,9 +819,7 @@ td{
     }
 
     .formulario-inputs{
-        width: 100%;
-        height: fit-content;
-        display: flex;
+        height: 90vh;
     }
     
     .div-icones{
@@ -807,6 +839,7 @@ td{
         line-height: 22px;
         display: flex;
         align-items: center;
+        color: var(--azul-caneta);
     }
 
     .menu-icones-agora{
@@ -818,10 +851,11 @@ td{
         display: flex;
         align-items: center;
         background-color: #EAF0FF;
+        color: #00649D;
     }
     
     .logo{
-        background-image: url(logo-dark.svg);
+        background-image: url(../assets/logo/logo-dark.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -851,11 +885,13 @@ td{
         font-size: 20px;
         line-height: 49px;
         font-weight: 800;
+        color: #00649D;
     }
     
     .botoes-selecao{
         width: 100%;
         display: flex;
+        border-bottom: 3px solid #B2DAFF;
     }
     
     .botao-selecao-agora{
@@ -864,6 +900,8 @@ td{
         font-weight: 800;
         font-size: 16px;
         line-height: 22px;
+        color: #00649D;
+        background-color: #B2DAFF;
         margin-right: 40px;
         display: flex;
         justify-content: center;
@@ -892,6 +930,7 @@ td{
     }
     
     .formulario-titulo{
+        background-color: var(--azul-ceu);
         display: flex;
         align-items: center;
         font-size: 16px;
@@ -900,6 +939,7 @@ td{
         width: 100%;
         height: 5vh;
         line-height: 22px;
+        color: #00649D;
         border-bottom-right-radius: 20px;
         border-top-left-radius: 20px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -912,7 +952,7 @@ td{
     
     .formulario-inputs{
         width: 100%;
-        height: fit-content;
+        height: 45vh;
         display: flex;
     }
     
@@ -953,12 +993,22 @@ td{
     }
     
     .formulario-botao{
-        margin-top: 10px;
+        margin-top: 40px;
         display: flex;
         justify-content: center;
         width: 100%;
     }
     
+    .formulario-botao button{
+        width: 200px;
+        height: 43px;
+        background-color: white;
+        color: #2569CE;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+        border: solid 2px #2569CE;
+    }
 }
 
 @media only screen and (max-width: 430px){
@@ -973,9 +1023,9 @@ td{
     display: none;
 }
 @media only screen and (max-width: 630px){
-    .menu-lateral {
+    /* .menu-lateral {
         display: none;
-    }
+    } */
 
     .menu-lateral-hamburguer {
         background-color: var(--branco-azul);
@@ -996,16 +1046,20 @@ td{
         width: 100%;
     }
 
+    .formulario-inputs-esquerda {
+        height: fit-content;
+    }
+
+    .formulario-inputs-direita{
+        height: fit-content;
+    }
+
     .divprincipal{
         height: 109vh;
     }
 
     .inputs-titulos {
         font-size: 20px;
-    }
-
-    table th{
-        font-size: 10px;
     }
 }
 
@@ -1016,8 +1070,12 @@ td{
     .texto-titulo {
         font-size: 16px;
     }
+}
 
-    table{
-        font-size: 14px;
-    }
+.sair {
+    transition: 0.5s;
+}
+
+.sair:hover {
+    scale: 1.09;
 }
