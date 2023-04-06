@@ -94,9 +94,55 @@ function cadastrar(req, res) {
     }
 }
 
+function cadastrarMaquina(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fabricante = req.body.fabricanteServer;
+    var modelo = req.body.modeloServer;
+    var cor = req.body.corServer;
+    var fabricacao = req.body.dtFabricacaoServer;
+    var ucp = req.body.ucpServer;
+    var ram = req.body.ramServer;
+    var so = req.body.soServer;
+    var qtdMaquina = req.body.qtdMaquinaServer;
+
+    // Faça as validações dos valores
+    if (fabricante == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (modelo == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (cor == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else if (fabricacao == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else if (fabricacao == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else if (fabricacao == undefined) {
+        res.status(400).send("Sua senha está undefined!");       
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarMaquina(fabricante, modelo, cor, fabricacao, ucp, ram, so, qtdMaquina)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     entrar,
     cadastrar,
+    cadastrarMaquina,
     listar,
     testar
 }
