@@ -10,10 +10,10 @@ idMaquinas.innerHTML = addMaquinas;
 function cadastrarMaquina() {
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var fabricante = inputFabricante.value;
+    var fabricante = novoinputFabricante.value;
     var modelo = inputModelo.value;
     var cor = inputCor.value;
-    var dtFabricacao = inputDtFabricacao.value;
+    var dtFabricacao = novoinputDtFabricacao.value;
     var ucp = inputUcp.value;
     var ram = inputRam.value;
     var so = inputSo.value;
