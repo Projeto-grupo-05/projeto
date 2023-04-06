@@ -1,4 +1,4 @@
-var idMaquinas = document.getElementById("qtdMaquina");
+var idMaquinas = document.getElementById("novoinputQtdMaquina");
 var addMaquinas;
 
 for (let i = 1; i <= 100; i++) {
@@ -17,9 +17,9 @@ function cadastrarMaquina() {
     var ucp = inputUcp.value;
     var ram = inputRam.value;
     var so = inputSo.value;
-    var qtdMaquina = inputQtdMaquina.value;
+    var qtdMaquina = novoinputQtdMaquina.value;
 
-    if (fabricante == "" || modelo == "" || cor == "" || dtFabricacao == "" || ucp == "" || ram == "") {
+    if (fabricante == "" || modelo == "" || cor == "" || ucp == "" || ram == "") {
         alert('Preencha todos os campos!');
     }
 
@@ -46,10 +46,10 @@ function cadastrarMaquina() {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-            mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            alert('Cadastro realizado com sucesso! Redirecionando para tela de Listagem...');
 
             setTimeout(() => {
-                window.location = "../login.html";
+                window.location = "../listagem_maquina.html";
             }, "500")
 
         } else {
@@ -57,7 +57,6 @@ function cadastrarMaquina() {
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
     });
 
     return false;

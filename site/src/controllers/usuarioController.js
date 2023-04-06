@@ -107,21 +107,23 @@ function cadastrarMaquina(req, res) {
 
     // Faça as validações dos valores
     if (fabricante == undefined) {
-        res.status(400).send("Seu nome está undefined!");
+        res.status(400).send("Seu fabricante está undefined!");
     } else if (modelo == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu modelo está undefined!");
     } else if (cor == undefined) {
-        res.status(400).send("Sua senha está undefined!");
+        res.status(400).send("Sua cor está undefined!");
     } else if (fabricacao == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if (fabricacao == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if (fabricacao == undefined) {
-        res.status(400).send("Sua senha está undefined!");       
+        res.status(400).send("Sua fabricacao está undefined!");
+    } else if (ucp == undefined) {
+        res.status(400).send("Sua ucp está undefined!");
+    } else if (ram == undefined) {
+        res.status(400).send("Sua ram está undefined!");       
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarMaquina(fabricante, modelo, cor, fabricacao, ucp, ram, so, qtdMaquina)
+        usuarioModel.cadastrarMaquina(fabricante, modelo, cor, fabricacao) 
+            //ucp, ram, so, qtdMaquina
+            
             .then(
                 function (resultado) {
                     res.json(resultado);
