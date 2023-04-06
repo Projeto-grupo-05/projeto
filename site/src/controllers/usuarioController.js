@@ -102,43 +102,6 @@ function cadastrarEmpre(req, res) {
     var cnpj = req.body.cnpjServer;
     var telefone = req.body.telefoneServer;
     var email = req.body.emailServer;
-    
-    // Faça as validações dos valores
-    if (nomeEmpresaSocial == undefined) {
-        res.status(400).send("Seu nome empresa está undefined!");
-    } else if (nomeEmpresaFantasia == undefined) {
-        res.status(400).send("Seu cnpj está undefined!");
-    } else if (cnpj == undefined) {
-        res.status(400).send("Seu cnpj está undefined!");
-    } else if (telefone == undefined) {
-        res.status(400).send("Sua telefone está undefined!");
-    } else if (codigo == undefined) {
-        res.status(400).send("Sua token está undefined!");
-    }  else if (email == undefined) {
-        res.status(400).send("Sua filial está undefined!");
-    } else {
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-}
-
-function cadastrarEndereco(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var logradouro = req.body.logradouroServer;
     var numero = req.body.numeroServer;
     var complemento = req.body.complementoServer;
@@ -147,8 +110,22 @@ function cadastrarEndereco(req, res) {
     var estado = req.body.estadoServer;
 
     // Faça as validações dos valores
-    if (logradouro == undefined) {
+    if (nomeEmpresaSocial == undefined) {
+        res.status(400).send("Seu nome empresa está undefined!");
+    } else if (nomeEmpresaFantasia == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else if (cep == undefined) {
+        res.status(400).send("Sua cep está undefined!");
+    } else if (logradouro == undefined) {
         res.status(400).send("Sua logradouro está undefined!");
+    } else if (telefone == undefined) {
+        res.status(400).send("Sua telefone está undefined!");
+    } else if (codigo == undefined) {
+        res.status(400).send("Sua token está undefined!");
+    }  else if (email == undefined) {
+        res.status(400).send("Sua filial está undefined!");
     } else if (numero == undefined) {
         res.status(400).send("Sua filial está undefined!");
     } else if (complemento == undefined) {
@@ -157,12 +134,11 @@ function cadastrarEndereco(req, res) {
         res.status(400).send("Sua filial está undefined!");
     } else if (estado == undefined) {
         res.status(400).send("Sua filial está undefined!");
-    } else if (cep == undefined) {
-        res.status(400).send("Sua filial está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarEndereco(logradouro, numero, complemento, cidade, cep, estado)
+        usuarioModel.cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, 
+                            logradouro, numero, complemento, cidade, cep, estado)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -186,5 +162,4 @@ module.exports = {
     listar,
     testar,
     cadastrarEmpre,
-    cadastrarEndereco,
 }
