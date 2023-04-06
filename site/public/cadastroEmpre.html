@@ -148,6 +148,33 @@
                 cnpjServer: cnpjVar,
                 telefoneServer: telefoneVar,
                 emailServer: emailVar,
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+
+                msgErro.innerHTML = "Cadastro Realizado"
+                setTimeout(() => {
+                    window.location = "index.html";
+                }, "2000")
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            //finalizarAguardar();
+        });
+        
+//--------------------------------------------------------------------------------------------
+
+        fetch("/usuarios/cadastrarEndereco", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
                 logradouroServer: logradrouroVar,
                 numeroServer: numeroVar,
                 complementoServer: complementoVar,

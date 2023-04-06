@@ -31,28 +31,34 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucao);
 }
 
-function cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, 
-                        logradouro, numero, complemento, cidade, cep, estado) {
+function cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email) {
 
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():",
-    codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, 
-    logradouro, numero, complemento, cidade, cep, estado);
+    codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email);
     
     //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     var instrucao = `
        INSERT INTO Empresa (Codigo, Nome_fantasia, Razao_social, CNPJ, Telefone, Email) VALUES ('${codigo}', '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', '${cnpj}', '${telefone}', '${email}');                                                               
    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
-   var instrucao = `
+function cadastrarEndereco(logradouro, numero, complemento, cidade, cep, estado){
+
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEndereco():",
+    logradouro, numero, complemento, cidade, cep, estado);
+    var instrucao = `
        INSERT INTO Endereco (Logradouro, Numero, Complemento, Cidade, CEP, Estado) VALUES ('${logradouro}', '${numero}', '${complemento}', '${cidade}', '${cep}', '${estado}');                                                               
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
-}
+   }
                         
 module.exports = {
     entrar,
     cadastrar,
     listar,
     cadastrarEmpre,
+    cadastrarEndereco,
 };
