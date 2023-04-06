@@ -121,9 +121,9 @@ function cadastrarMaquina(req, res) {
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarMaquina(fabricante, modelo, cor, fabricacao) 
-            //ucp, ram, so, qtdMaquina
-            
+        usuarioModel.cadastrarMaquina(fabricante, modelo, cor, fabricacao
+            ,ucp, ram, so, qtdMaquina
+        )
             .then(
                 function (resultado) {
                     res.json(resultado);
