@@ -8,8 +8,7 @@ for (let i = 1; i <= 100; i++) {
 idMaquinas.innerHTML = addMaquinas;
 
 function cadastrarMaquina() {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
+    //aplicar variável do session storage 
     var fabricante = novoinputFabricante.value;
     var modelo = inputModelo.value;
     var cor = inputCor.value;
@@ -18,9 +17,12 @@ function cadastrarMaquina() {
     var ram = inputRam.value;
     var so = inputSo.value;
     var qtdMaquina = novoinputQtdMaquina.value;
+    var qtdEspaco = inputArmazenamento.value;
 
-    if (fabricante == "" || modelo == "" || cor == "" || ucp == "" || ram == "") {
+    if (fabricante == "" || modelo == "" || cor == "" || ucp == "" || ram == "" || qtdEspaco == "") {
         alert('Preencha todos os campos!');
+
+        return false;
     }
 
     // Enviando o valor da nova input
@@ -39,7 +41,8 @@ function cadastrarMaquina() {
             ucpServer: ucp,
             ramServer: ram,
             soServer: so,
-            qtdMaquinaServer: qtdMaquina
+            qtdMaquinaServer: qtdMaquina,
+            qtdEspacoServer: qtdEspaco
         })
     }).then(function (resposta) {
 
@@ -60,8 +63,4 @@ function cadastrarMaquina() {
     });
 
     return false;
-}
-
-function sumirMensagem() {
-    cardErro.style.display = "none"
 }
