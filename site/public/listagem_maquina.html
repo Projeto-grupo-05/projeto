@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,39 +10,39 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
-    <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
-    rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
     <title>Gerenciamento de Máquinas</title>
 </head>
-<body>
+
+<body onload="listar()">
     <div class="container2">
         <div class="menu-lateral" id="menuLateral">
             <div>
                 <img src="assets/logo/logo-dark.svg" class="logo">
             </div>
             <div class="div-menu-icones">
-                <div class="menu-icones"><div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard</div>
-                <div class="menu-icones-agora"><div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas</div>
-                <div class="menu-icones"><div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes</div>
-                <div class="menu-icones"><div class="div-icones"><i class="ri-tools-line"></i></div> Histórico de manutenções</div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                </div>
+                <div class="menu-icones-agora">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                </div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-tools-line"></i></div> Histórico de manutenções
+                </div>
             </div>
         </div>
-        
+
         <div class="divprincipal">
-            
+
             <div class="titulo">
                 <span class="texto-titulo">
                     <div class="menu-lateral-hamburguer">
@@ -49,77 +50,23 @@
                             <img src="assets/icons/hamb-icon.svg" class="icon-hamb" onclick="sideBar()">
                         </div>
                     </div>
-                    Gerenciamento de Máquinas</span>
+                    Gerenciamento de Máquinas
+                </span>
                 <div class="botoes-selecao">
-                    <a href="listagem_maquina.html"><div class="botao-selecao-agora">Listagem</div></a>
-                <a href="cadastro_maquina.html"><div class="botao-selecao">Cadastro</div></a>
+                    <a href="listagem_maquina.html">
+                        <div class="botao-selecao-agora">Listagem</div>
+                    </a>
+                    <a href="cadastro_maquina.html">
+                        <div class="botao-selecao">Cadastro</div>
+                    </a>
                 </div>
             </div>
             <div class="formulario">
                 <div class="formulario-titulo"><span class="spam-titulo-formulario">Listagem de Máquinas</span></div>
-                <div class="pesquisa"><button><i class="ri-search-line"></i></button><input type="text"><button><i class="ri-filter-2-fill"></i></button></div>
+                <div class="pesquisa"><button><i class="ri-search-line"></i></button><input type="text"><button><i
+                            class="ri-filter-2-fill"></i></button></div>
                 <div class="formulario-inputs">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>HOSTNAME</th>
-                                <th>FABRICANTE</th>
-                                <th>MODELO</th>
-                                <th>COR</th>
-                                <th>STATUS</th>
-                            </tr>
-                        <tbody>
-                            </thead>
-                            <tr>
-                                <td>XXX001S2</td>
-                                <td>Dell</td>
-                                <td>Inspiron</td>
-                                <td>Prata</td>
-                                <td class="tabela-icones"><i class="ri-check-line checkicons"></td>
-                            </tr>
-                            <tr>
-                                <td>XXX001S2</td>
-                                <td>Dell</td>
-                                <td>Inspiron</td>
-                                <td>Prata</td>
-                                <td class="tabela-icones"><i class="ri-check-line checkicons"></td>
-                            </tr>
-                            <tr>
-                                <td>XXX001S2</td>
-                                <td>Dell</td>
-                                <td>Inspiron</td>
-                                <td>Prata</td>
-                                <td class="tabela-icones"><i class="ri-check-line checkicons"></td>
-                            </tr>
-                            <tr>
-                                <td>XXX001S2</td>
-                                <td>Dell</td>
-                                <td>Inspiron</td>
-                                <td>Prata</td>
-                                <td class="tabela-icones"><i class="ri-check-line checkicons"></td>
-                            </tr>
-                            <tr>
-                                <td>XXX001S2</td>
-                                <td>Dell</td>
-                                <td>Inspiron</td>
-                                <td>Prata</td>
-                                <td class="tabela-icones"><i class="ri-check-line checkicons"></td>
-                            </tr>
-                            <tr>
-                                <td>XXX001S2</td>
-                                <td>Dell</td>
-                                <td>Inspiron</td>
-                                <td>Prata</td>
-                                <td class="tabela-icones"><i class="ri-check-line checkicons"></td>
-                            </tr>
-                            <tr>
-                                <td>XXX001S2</td>
-                                <td>Dell</td>
-                                <td>Inspiron</td>
-                                <td>Prata</td>
-                                <td class="tabela-icones"><i class="ri-check-line checkicons"></td>
-                            </tr>
-                        </tbody>                
+                    <table id="listagem">
                     </table>
                 </div>
                 <div class="formulario-botao"><button>1</button><button>2</button></div>
@@ -127,22 +74,101 @@
         </div>
     </div>
 </body>
+
 </html>
 
 <script>
     var teste = false;
+    var menu = document.getElementById("menuLateral");
     function sideBar() {
-        var menu = document.getElementById("menuLateral");
-        if(!teste) {
-            menu.style.display = "block";  
-            teste = true;         
-        }else{
+        if (!teste) {
+            menu.style.display = "block";
+            teste = true;
+        } else {
             menu.style.display = "none";
             teste = false;
         }
     }
 
     if (window.matchMedia("(max-width: 1999px)").matches) {
-        menu.style.display = "block"; 
+        menu.style.display = "block";
+    }
+
+    var teste = false;
+    function sideBar() {
+        var menu = document.getElementById("menuLateral");
+        if (!teste) {
+            menu.style.display = "block";
+            teste = true;
+        } else {
+            menu.style.display = "none";
+            teste = false;
+        }
+    }
+
+    if (window.matchMedia("(max-width: 1999px)").matches) {
+        menu.style.display = "block";
+    }
+
+    let hostname = "XXX001S2";
+
+    function listar() {
+
+        // var fkEmpresaVar = sessionStorage.ID_EMPRESA;
+        var fkEmpresaVar = 4;
+
+
+        if (fkEmpresaVar == "") {
+            console.log('Sem empresa!');
+        }
+
+        fetch(`/maquinas/listar/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    listagem.innerHTML = `<thead>
+                            <tr>
+                                <th>HOSTNAME</th>
+                                <th>FABRICANTE</th>
+                                <th>MODELO</th>
+                                <th>COR</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        `;
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        listagem.innerHTML += `<tr>
+                                    <td>${hostname}</td>
+                                    <td>${resposta[i].Fabricante}</td>
+                                    <td>${resposta[i].Modelo}</td>
+                                    <td>${resposta[i].Cor}</td>
+                                    <td>-</td>
+                                    <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].idMaquina}, hostname, '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
+                                    <td><i class="ri-delete-bin-line pointer" onclick="excluirMaquina(${resposta[i].idMaquina}, '${hostname}', '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
+                                    </tr>`;
+                    }
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function editarMaquina(idMaquina, hostname, fabricante, cor, modelo) {
+        sessionStorage.ID_MAQUINA = idMaquina;
+        sessionStorage.HOSTNAME = hostname;
+        sessionStorage.FABRICANTE = fabricante;
+        sessionStorage.COR = cor;
+        sessionStorage.MODELO = modelo;
+        console.log("cliquei em editar - " + idMaquina);
+        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idMaquina);
+        window.location = "edicaoMaquina.html";
     }
 </script>

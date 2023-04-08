@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edicao Maquinas</title>
+</head>
+
+<body onload="">
+    HOSTNAME: <input type="text" id="iptHostname"><br>
+    FABRICANTE: <input type="text" id="iptFabricante"><br>
+    MODELO: <input type="text" id="iptModelo"><br>
+    COR: <input type="text" id="iptCor"><br>
+    <button onclick="editar()">EDITAR</button>
+
+</body>
+
+</html>
+
+<script>
+
+    iptHostname.value = sessionStorage.HOSTNAME;
+    iptFabricante.value = sessionStorage.FABRICANTE;
+    iptModelo.value = sessionStorage.MODELO;
+    iptCor.value = sessionStorage.COR;
+
+
+    function editar() {
+        fetch(`/maquinas/editar/${sessionStorage.ID_MAQUINA}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                hostname: iptHostname.value,
+                fabricante: iptHostname.value,
+                modelo: iptModelo.value,
+                cor: iptCor.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Máquina atualizada com sucesso!");
+                window.location = "listagem_maquina.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+</script>
