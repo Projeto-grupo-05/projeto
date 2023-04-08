@@ -108,12 +108,16 @@ function cadastrarEmpre(req, res) {
     var cidade = req.body.cidadeServer;
     var cep = req.body.cepServer;
     var estado = req.body.estadoServer;
-
+    var componente = req.body.componenteServer;
+    var alto = req.body.altoServer;
+    var medio = req.body.medioServer;
+    var baixo = req.body.baixoServer;
+    
     // Faça as validações dos valores
     if (nomeEmpresaSocial == undefined) {
-        res.status(400).send("Seu nome empresa está undefined!");
+        res.status(400).send("Seu nome empresa social está undefined!");
     } else if (nomeEmpresaFantasia == undefined) {
-        res.status(400).send("Seu cnpj está undefined!");
+        res.status(400).send("Seu nome mepresa fantasia está undefined!");
     } else if (cnpj == undefined) {
         res.status(400).send("Seu cnpj está undefined!");
     } else if (cep == undefined) {
@@ -123,22 +127,30 @@ function cadastrarEmpre(req, res) {
     } else if (telefone == undefined) {
         res.status(400).send("Sua telefone está undefined!");
     } else if (codigo == undefined) {
-        res.status(400).send("Sua token está undefined!");
-    }  else if (email == undefined) {
-        res.status(400).send("Sua filial está undefined!");
+        res.status(400).send("Sua codigo está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Sua email está undefined!");
     } else if (numero == undefined) {
-        res.status(400).send("Sua filial está undefined!");
+        res.status(400).send("Sua numero está undefined!");
     } else if (complemento == undefined) {
-        res.status(400).send("Sua filial está undefined!");
+        res.status(400).send("Sua complemento está undefined!");
     } else if (cidade == undefined) {
-        res.status(400).send("Sua filial está undefined!");
+        res.status(400).send("Sua cidade está undefined!");
     } else if (estado == undefined) {
-        res.status(400).send("Sua filial está undefined!");
+        res.status(400).send("Sua estado está undefined!");
+    } else if (componente == undefined) {
+        res.status(400).send("Seu componente está undefined!");
+    } else if (alto == undefined) {
+        res.status(400).send("Seu alto nivel está undefined!");
+    } else if (medio == undefined) {
+        res.status(400).send("Sua medio nivel está undefined!");
+    } else if (baixo == undefined) {
+        res.status(400).send("Seu baixo nivel está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, 
-                            logradouro, numero, complemento, cidade, cep, estado)
+        usuarioModel.cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email,
+            logradouro, numero, complemento, cidade, cep, estado, componente, alto, medio, baixo)
             .then(
                 function (resultado) {
                     res.json(resultado);
