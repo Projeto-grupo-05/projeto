@@ -11,4 +11,8 @@ router.put("/editar/:idMaquina", function (req, res) {
     maquinasController.editar(req, res);
 });
 
+router.delete("/excluirMaquina/:idMaquina", function (req, res) {
+    maquinasController.excluirMaquina(req, res);
+});
+
 module.exports = router;
