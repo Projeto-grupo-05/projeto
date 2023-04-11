@@ -1,4 +1,4 @@
-var idMaquinas = document.getElementById("novoinputQtdMaquina");
+/*var idMaquinas = document.getElementById("novoinputQtdMaquina");
 var addMaquinas;
 
 for (let i = 1; i <= 100; i++) {
@@ -6,7 +6,7 @@ for (let i = 1; i <= 100; i++) {
 }
 
 idMaquinas.innerHTML = addMaquinas;
-
+*/
 function cadastrarMaquina() {
     //aplicar variável do session storage 
     var fabricante = novoinputFabricante.value;
@@ -16,7 +16,7 @@ function cadastrarMaquina() {
     var ucp = inputUcp.value;
     var ram = inputRam.value;
     var so = inputSo.value;
-    var qtdMaquina = novoinputQtdMaquina.value;
+    var hostName = inputHost.value;
     var qtdEspaco = inputArmazenamento.value;
 
     if (fabricante == "" || modelo == "" || cor == "" || ucp == "" || ram == "" || qtdEspaco == "") {
@@ -41,7 +41,7 @@ function cadastrarMaquina() {
             ucpServer: ucp,
             ramServer: ram,
             soServer: so,
-            qtdMaquinaServer: qtdMaquina,
+            hostNameServer: hostName,
             qtdEspacoServer: qtdEspaco
         })
     }).then(function (resposta) {

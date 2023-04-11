@@ -103,7 +103,7 @@ function cadastrarMaquina(req, res) {
     var ucp = req.body.ucpServer;
     var ram = req.body.ramServer;
     var so = req.body.soServer;
-    var qtdMaquina = req.body.qtdMaquinaServer;
+    var hostName = req.body.hostNameServer;
     var qtdEspaco = req.body.qtdEspacoServer;
 
     // Faça as validações dos valores
@@ -123,7 +123,7 @@ function cadastrarMaquina(req, res) {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrarMaquina(fabricante, modelo, cor, fabricacao
-            ,ucp, ram, so, qtdMaquina, qtdEspaco)
+            ,ucp, ram, so, hostName, qtdEspaco)
             .then(
                 function (resultado) {
                     res.json(resultado);
