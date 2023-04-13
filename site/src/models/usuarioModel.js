@@ -31,45 +31,70 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucao);
 }
 
-function cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, logradouro, numero, complemento, cidade, cep, estado, componente, alto, medio, baixo) {
+function cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email,
+    logradouro, numero, complemento, cidade, cep, estado) {
 
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, logradouro, numero, complemento, cidade, cep, estado, componente, alto, medio, baixo);
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, logradouro, numero, complemento, cidade, cep, estado);
 
     //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-        endereco(logradouro, numero, complemento, cidade, cep, estado);
-        empresa(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, cep, numero, complemento);
-        cadastrarUrge(componente, alto, medio, baixo);
+    endereco(logradouro, numero, complemento, cidade, cep, estado);
+    empresa(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, cep, numero, complemento);
+    
 }
 
-function endereco(logradouro, numero, complemento, cidade, cep, estado){
+function endereco(logradouro, numero, complemento, cidade, cep, estado) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", logradouro, numero, complemento, cidade, cep, estado);
 
     //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     var instrucao = `
-    INSERT INTO Endereco (Logradouro, Numero, Complemento, Cidade, CEP, Estado) VALUES ('${logradouro}', '${numero}', '${complemento}', '${cidade}', '${cep}', '${estado}');
+    INSERT INTO Endereco (logradouro, numero, complemento, cidade, CEP, estado) VALUES ('${logradouro}', ${numero}, '${complemento}', '${cidade}', ${cep}, '${estado}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function empresa(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, cep, numero, complemento){
+function empresa(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, cep, numero, complemento) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, cep, numero, complemento);
-    
+
     //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     var instrucao = `
-    INSERT INTO Empresa (Codigo, Nome_fantasia, Razao_social, CNPJ, Telefone, Email, fkEndereco) VALUES ('${codigo}', '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', '${cnpj}', '${telefone}', '${email}', (select idEndereco from Endereco where CEP = '${cep}' and Numero = '${numero}' and Complemento = '${complemento}'));                                                               
+    INSERT INTO Empresa (codigo, nomeFantasia, razaoSocial, CNPJ, telefone, email, fkEndereco) VALUES (${codigo}, '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', ${cnpj}, '${telefone}', '${email}', (SELECT idEndereco FROM Endereco WHERE CEP = ${cep} AND numero = ${numero} AND complemento = '${complemento}'));                                                               
    `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function cadastrarUrge(componente, alto, medio, baixo) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmore():", componente, alto, medio, baixo);
+function cpuUrgencia(cpuAlto, cpuMedio, cpuBaixo, codigo) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", cpuAlto, cpuMedio, cpuBaixo, codigo);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO NiveisUrgencia (componente, alto, medio, baixo) VALUES ('${componente}', '${alto}', '${medio}', '${baixo}');
+    INSERT INTO NiveisUrgencia (alta, media, baixa, componente, fkEmpresa) VALUES ('${cpuAlto}', '${cpuMedio}', '${cpuBaixo}', 'CPU', (SELECT idEmpresa FROM Empresa WHERE codigo = ${codigo}));
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function ramUrgencia(ramAlto, ramMedio, ramBaixo, nomeEmpresaSocial) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", ramAlto, ramMedio, ramBaixo, nomeEmpresaSocial);
+
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO NiveisUrgencia (alta, media, baixa, componente, fkEmpresa) VALUES ('${ramAlto}', '${ramMedio}', '${ramBaixo}', 'RAM', (SELECT idEmpresa FROM Empresa WHERE razaoSocial = '${nomeEmpresaSocial}'));
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function discoUrgencia(discoAlto, discoMedio, discoBaixo, nomeEmpresaFantasia) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", discoAlto, discoMedio, discoBaixo, nomeEmpresaFantasia);
+
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+    INSERT INTO NiveisUrgencia (alta, media, baixa, componente, fkEmpresa) VALUES ('${discoAlto}', '${discoMedio}', '${discoBaixo}', 'DISCO', (SELECT idEmpresa FROM Empresa WHERE nomeFantasia = '${nomeEmpresaFantasia}'));
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

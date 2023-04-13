@@ -108,11 +108,7 @@ function cadastrarEmpre(req, res) {
     var cidade = req.body.cidadeServer;
     var cep = req.body.cepServer;
     var estado = req.body.estadoServer;
-    var componente = req.body.componenteServer;
-    var alto = req.body.altoServer;
-    var medio = req.body.medioServer;
-    var baixo = req.body.baixoServer;
-    
+
     // Faça as validações dos valores
     if (nomeEmpresaSocial == undefined) {
         res.status(400).send("Seu nome empresa social está undefined!");
@@ -138,19 +134,11 @@ function cadastrarEmpre(req, res) {
         res.status(400).send("Sua cidade está undefined!");
     } else if (estado == undefined) {
         res.status(400).send("Sua estado está undefined!");
-    } else if (componente == undefined) {
-        res.status(400).send("Seu componente está undefined!");
-    } else if (alto == undefined) {
-        res.status(400).send("Seu alto nivel está undefined!");
-    } else if (medio == undefined) {
-        res.status(400).send("Sua medio nivel está undefined!");
-    } else if (baixo == undefined) {
-        res.status(400).send("Seu baixo nivel está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email,
-            logradouro, numero, complemento, cidade, cep, estado, componente, alto, medio, baixo)
+            logradouro, numero, complemento, cidade, cep, estado)
             .then(
                 function (resultado) {
                     res.json(resultado);
