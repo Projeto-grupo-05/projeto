@@ -64,42 +64,6 @@ function empresa(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone,
     return database.executar(instrucao);
 }
 
-function cpuUrgencia(cpuAlto, cpuMedio, cpuBaixo, codigo) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", cpuAlto, cpuMedio, cpuBaixo, codigo);
-
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucao = `
-    INSERT INTO NiveisUrgencia (alta, media, baixa, componente, fkEmpresa) VALUES ('${cpuAlto}', '${cpuMedio}', '${cpuBaixo}', 'CPU', (SELECT idEmpresa FROM Empresa WHERE codigo = ${codigo}));
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function ramUrgencia(ramAlto, ramMedio, ramBaixo, nomeEmpresaSocial) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", ramAlto, ramMedio, ramBaixo, nomeEmpresaSocial);
-
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucao = `
-        INSERT INTO NiveisUrgencia (alta, media, baixa, componente, fkEmpresa) VALUES ('${ramAlto}', '${ramMedio}', '${ramBaixo}', 'RAM', (SELECT idEmpresa FROM Empresa WHERE razaoSocial = '${nomeEmpresaSocial}'));
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function discoUrgencia(discoAlto, discoMedio, discoBaixo, nomeEmpresaFantasia) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", discoAlto, discoMedio, discoBaixo, nomeEmpresaFantasia);
-
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucao = `
-    INSERT INTO NiveisUrgencia (alta, media, baixa, componente, fkEmpresa) VALUES ('${discoAlto}', '${discoMedio}', '${discoBaixo}', 'DISCO', (SELECT idEmpresa FROM Empresa WHERE nomeFantasia = '${nomeEmpresaFantasia}'));
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
 module.exports = {
     entrar,
     cadastrar,
