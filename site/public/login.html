@@ -93,16 +93,16 @@
                     <div class="formulario">
                         <h2 class="titulo-branco-azul">ENTRE EM SUA CONTA</h2>
 
-                        <input type="text" id="input-email" class="sbold-24" placeholder="E-mail">
-                        <input type="text" id="input-senha" class="sbold-24" placeholder="Senha">
-                        <input type="text" id="input-token" class="sbold-24" placeholder="Token">
+                        <input type="text" id="input_email" class="sbold-24" placeholder="E-mail">
+                        <input type="text" id="input_senha" class="sbold-24" placeholder="Senha">
+                        <input type="text" id="input_token" class="sbold-24" placeholder="Token">
 
                         <label class="sbold-16"> Não tem conta?
                             <a href="cadastroFunc.html">Cadastre-se já!</a>
                         </label>
 
                         <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
-                        <a href="cadastro_maquina.html"><button onclick="" class="btn-login">Entrar</button></a>
+                        <a ><button onclick="entrar()" class="btn-login">Entrar</button></a>
                     </div>
                 </div>
             </div>
@@ -113,5 +113,74 @@
         </div>
     </div>
 </body>
-
 </html>
+
+
+<script>
+
+
+    function entrar() {
+
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+        var tokenVar = input_token.value;
+
+        if (emailVar == "" || senhaVar == "" || tokenVar=="") {
+            console.log("Validação não passou");
+            
+            return false;
+        }
+        else {
+            console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+        console.log("FORM TOKEN: ", tokenVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                toeknServer: tokenVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.Email;
+                    sessionStorage.NOME_USUARIO = json.Nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.ID_EMPRESA = json.idEmpresa;
+
+
+                    setTimeout(function () {
+                        window.location = "./cadastro_maquina.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+                alert('Houve um erro ao tentar realizar o login!');
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+        }
+    }
+</script>
