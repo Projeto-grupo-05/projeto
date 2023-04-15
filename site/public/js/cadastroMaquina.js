@@ -7,8 +7,11 @@ for (let i = 1; i <= 100; i++) {
 
 idMaquinas.innerHTML = addMaquinas;
 */
+
 function cadastrarMaquina() {
-    //aplicar variável do session storage 
+    //aplicar variável do session storage
+    
+    var idEmpresa = sessionStorage.ID_Empresa;
     var fabricante = novoinputFabricante.value;
     var modelo = inputModelo.value;
     var cor = inputCor.value;
@@ -42,7 +45,8 @@ function cadastrarMaquina() {
             ramServer: ram,
             soServer: so,
             hostNameServer: hostName,
-            qtdEspacoServer: qtdEspaco
+            qtdEspacoServer: qtdEspaco,
+            idEmpresaServer: idEmpresa
         })
     }).then(function (resposta) {
 
