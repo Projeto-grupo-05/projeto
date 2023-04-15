@@ -11,7 +11,7 @@ idMaquinas.innerHTML = addMaquinas;
 function cadastrarMaquina() {
     //aplicar variável do session storage
     
-    var idEmpresa = sessionStorage.ID_Empresa;
+    var idEmpresa = sessionStorage.ID_EMPRESA;
     var fabricante = novoinputFabricante.value;
     var modelo = inputModelo.value;
     var cor = inputCor.value;
