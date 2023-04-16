@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,38 +10,38 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
-    <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
-    rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
     <title>Gerenciamento de Máquinas | SollicitUS</title>
 </head>
+
 <body>
     <div class="container22">
         <div class="menu-lateral" id="menuLateral">
             <div class="logo">
             </div>
             <div class="div-menu-icones">
-                <div class="menu-icones"><div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard</div>
-                <div class="menu-icones-agora"><div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas</div>
-                <div class="menu-icones"><div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes</div>
-                <div class="menu-icones"><div class="div-icones"><i class="ri-tools-line"></i></div> Histórico de manutenções</div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                </div>
+                <div class="menu-icones-agora">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                </div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-tools-line"></i></div> Histórico de manutenções
+                </div>
             </div>
         </div>
-        
+
         <div class="divprincipal">
-            
+
             <div class="titulo">
                 <span class="texto-titulo">
                     <div class="menu-lateral-hamburguer">
@@ -56,53 +57,72 @@
                     </span>
                 </span>
                 <div class="botoes-selecao">
-                    <a href="listagem_maquina.html"><div class="botao-selecao">Listagem</div></a>
-                <a href="cadastro_maquina.html"><div class="botao-selecao-agora">Cadastro</div></a>
+                    <a href="listagem_maquina.html">
+                        <div class="botao-selecao">Listagem</div>
+                    </a>
+                    <a href="cadastro_maquina.html">
+                        <div class="botao-selecao-agora">Cadastro</div>
+                    </a>
                 </div>
             </div>
             <div class="formulario">
                 <div class="formulario-titulo"><span class="spam-titulo-formulario">Cadastro de Máquinas</span></div>
                 <div class="formulario-inputs">
                     <div class="formulario-inputs-esquerda">
-                        <div class="div-formulario-input"><span class="inputs-titulos">Hostname</span><input type="text"></div>
-                        <div class="div-formulario-input"><span class="inputs-titulos">Fabricante</span><input type="text"></div>
-                        <div class="div-formulario-input"><span class="inputs-titulos">Modelo</span><input type="text"></div>
+                        <div><span class="inputs-titulos">Informações</span></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Fabricante</span><input
+                                id="novoinputFabricante" type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Modelo</span><input
+                                id="inputModelo" type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Cor</span><input id="inputCor"
+                                type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Armazenamento</span><input
+                                id="inputArmazenamento" type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Ano de fabricação</span><input
+                                type="text" id="novoinputDtFabricacao" onfocus="(this.type='date')"
+                                onblur="if (!this.value) this.type='text'"></div>
                     </div>
                     <div class="formulario-inputs-direita">
-                        <div class="div-formulario-input"><span class="inputs-titulos">Cor</span><input type="text"></div>
-                        <div class="div-formulario-input"><span class="inputs-titulos">Componentes</span><input type="text"></div>
-                        <div class="div-formulario-input"><span class="inputs-titulos">Ano de fabricação</span><input type="text"></div>
+                        <div><span class="inputs-titulos">Informações Técnicas</span></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">CPU</span><input id="inputUcp"
+                                type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">RAM</span><input id="inputRam"
+                                type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">SO</span><input id="inputSo"
+                                type="text"></div>
+                        <div class="div-formulario-input"><span class="inputs-titulos">Nome da máquina
+                                (Hostname)</span><input id="inputHost" type="text"></div>   
+                        <div class="formulario-botao"><button onclick="cadastrarMaquina()">Cadastrar</button></div>
                     </div>
                 </div>
             </div>
-            <div class="formulario-botao"><button>Cadastrar</button></div>
         </div>
-    </div>
 </body>
-</html>
 
+</html>
+<script src="js/cadastroMaquina.js"></script>
 <script>
     var teste = false;
     var menu = document.getElementById("menuLateral");
     function sideBar() {
-        if(!teste) {
-            menu.style.display = "block";  
-            teste = true;         
-        }else{
+        if (!teste) {
+            menu.style.display = "block";
+            teste = true;
+        } else {
             menu.style.display = "none";
             teste = false;
         }
     }
 
     function myFunction(x) {
-            if (x.matches) {
-                menu.style.display = "none";
-            } else {
-                menu.style.display = "block";
-            }
+        if (x.matches) {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "block";
         }
+    }
 
-        var x = window.matchMedia("(max-width: 630px)")
-        myFunction(x)
-        x.addListener(myFunction)
+    var x = window.matchMedia("(max-width: 630px)")
+    myFunction(x)
+    x.addListener(myFunction)
 </script>
