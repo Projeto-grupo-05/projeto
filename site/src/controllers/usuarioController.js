@@ -36,8 +36,10 @@ function entrar(req, res) {
     } if (token == undefined) {
         res.status(400).send("Seu toekn está indefinida!");
     } else {
+
         
         usuarioModel.entrar(email, senha, token)
+
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -77,7 +79,7 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha, idEmpresa)
             .then(
@@ -172,11 +174,76 @@ function cadastrarMaquina(req, res) {
     }
 }
 
+function cadastrarEmpre(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var codigo = req.body.codigoServer;
+    var nomeEmpresaSocial = req.body.nomeSocialServer;
+    var nomeEmpresaFantasia = req.body.nomeFantasiaServer;
+    var cnpj = req.body.cnpjServer;
+    var telefone = req.body.telefoneServer;
+    var email = req.body.emailServer;
+    var logradouro = req.body.logradouroServer;
+    var numero = req.body.numeroServer;
+    var complemento = req.body.complementoServer;
+    var cidade = req.body.cidadeServer;
+    var cep = req.body.cepServer;
+    var estado = req.body.estadoServer;
+
+    // Faça as validações dos valores
+    if (nomeEmpresaSocial == undefined) {
+        res.status(400).send("Seu nome empresa social está undefined!");
+    } else if (nomeEmpresaFantasia == undefined) {
+        res.status(400).send("Seu nome mepresa fantasia está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else if (cep == undefined) {
+        res.status(400).send("Sua cep está undefined!");
+    } else if (logradouro == undefined) {
+        res.status(400).send("Sua logradouro está undefined!");
+    } else if (telefone == undefined) {
+        res.status(400).send("Sua telefone está undefined!");
+    } else if (codigo == undefined) {
+        res.status(400).send("Sua codigo está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Sua email está undefined!");
+    } else if (numero == undefined) {
+        res.status(400).send("Sua numero está undefined!");
+    } else if (complemento == undefined) {
+        res.status(400).send("Sua complemento está undefined!");
+    } else if (cidade == undefined) {
+        res.status(400).send("Sua cidade está undefined!");
+    } else if (estado == undefined) {
+        res.status(400).send("Sua estado está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email,
+            logradouro, numero, complemento, cidade, cep, estado)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    console.log("MANO TA INDO");
+                }
+            ).catch(
+                function (erro) {
+                    console.log("MANO TA INDO NAO VEI, AJUDA!!");
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     entrar,
     cadastrar,
     cadastrarMaquina,
     listar,
+    cadastrarEmpre,
     autenticarToken,
     testar
 }

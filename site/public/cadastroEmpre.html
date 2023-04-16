@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Empresa | SollicitUS</title>
-    <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/cadastroEmpre.css">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header-resp.css">
+    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/cadastroEmpre.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/header-resp.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -34,10 +34,10 @@
                     <h5 class="text-white h4 d-flex jc-center"><img src="../../assets/logo/logo-name.svg" width="20%"
                             alt=""></h5>
                     <div class="item-menu-collapse d-flex w-100 jc-between">
-                        <a href="index.html" class="color-white">HOME</a>
+                        <a href="./index.html" class="color-white">HOME</a>
                         <a href="#solucao" class="color-white"></a>
                         <a href="" class="color-white"></a>
-                        <a href="login.html" class="color-white">ENTRAR</a>
+                        <a href="./login.html" class="color-white">ENTRAR</a>
                     </div>
                 </div>
             </div>
@@ -54,53 +54,116 @@
             <div class="container2 header-bg">
                 <div class="item">
                     <li class="item-branco-azul">
-                        <a href="index.html">HOME</a>
+                        <a href="./index.html">HOME</a>
                     </li>
                     <li class="item-branco-azul">
                         <a href="#solucao"></a>
                     </li>
                 </div>
 
-                <img src="assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
+                <img src="./assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
                 <div class="item">
                     <li class="item-branco-azul">
                         <a href=""></a>
                     </li>
                     <li class="item-branco-azul">
-                        <a href="login.html">ENTRAR</a>
+                        <a href="./login.html">ENTRAR</a>
                     </li>
                 </div>
             </div>
         </div>
     </header>
 
-        <div class="caixa-maior">
-
-
-                <div class="sombra">
-
-                        <h2 class="titulo-branco-azul">CADASTRO DE EMPRESA</h2>
-                        <input type="text" id="input-nome-empresa" class="sbold-16" placeholder="Insira nome da empresa">
-                        <input type="text" id="input-cnpj" class="sbold-16" placeholder="CNPJ">
-                        <input type="text" id="input-cep" class="sbold-16" placeholder="cep">
-                        <input type="text" id="input-logradouro" class="sbold-16" placeholder="logradouro">
-                        <input type="text" id="input-telefone" class="sbold-16" placeholder="11999900000">
-                        <input type="text" id="input-token" class="sbold-16" placeholder="Token">
-                        <select name="filial" id="combo-filial" class="sbold-16">
-                            <option value="">Esta empresa é uma filial?</option>
-                            <option value="1">Sim</option>
-                            <option value="0">Não</option>
-                        </select>
-
-                        
-                       <a href="index.html">
-                        <button id="butao" class="btn-login">Continuar</button>
-                        </a> 
-                    </div>
-
+    <div class="caixa-maior">
+        <div class="sombra">
+            <h2 class="titulo-branco-azul">CADASTRO DE EMPRESA</h2>
+            <div class="caixa-menor">
+                <div class="lado esquerda">
+                    <input type="text" id="input_codigo" class="sbold-16" placeholder="Código">
+                    <input type="text" id="input_nome_empresa_social" class="sbold-16" placeholder="Insira nome SOCIAL">
+                    <input type="text" id="input_nome_empresa_fantasia" class="sbold-16"
+                        placeholder="Insira nome FANTASIA">
+                    <input type="text" id="input_cnpj" class="sbold-16" placeholder="CNPJ">
+                    <input type="text" id="input_telefone" class="sbold-16" placeholder="11999900000">
+                    <input type="text" id="input_email" class="sbold-16" placeholder="Email">
                 </div>
+                <div class="lado esquerda">
+                    <input type="text" id="input_logradouro" class="sbold-16" placeholder="Logradouro">
+                    <input type="text" id="input_numero" class="sbold-16" placeholder="0000">
+                    <input type="text" id="input_complemento" class="sbold-16" placeholder="Complemento">
+                    <input type="text" id="input_cidade" class="sbold-16" placeholder="Cidade">
+                    <input type="text" id="input_cep" class="sbold-16" placeholder="CEP">
+                    <input type="text" id="input_estado" class="sbold-16" placeholder="Estado">
+                </div>
+            </div>
+                <button id="butao" onclick="cadastrarEmpresa()" class="btn-login">Continuar</button>
         </div>
     </div>
 </body>
 
 </html>
+<script>
+
+    function cadastrarEmpresa() {
+
+        var codigoVar = input_codigo.value;
+        var nomeSocialVar = input_nome_empresa_social.value;
+        var nomeFantasiaVar = input_nome_empresa_fantasia.value;
+        var cnpjVar = input_cnpj.value;
+        var telefoneVar = input_telefone.value;
+        var emailVar = input_email.value;
+        var logradrouroVar = input_logradouro.value;
+        var numeroVar = input_numero.value;
+        var complementoVar = input_complemento.value;
+        var cidadeVar = input_cidade.value;
+        var cepVar = input_cep.value;
+        var estadoVar = input_estado.value;
+
+        if (codigoVar == "" || nomeSocialVar == "" || nomeFantasiaVar == "" || cnpjVar == "" ||
+            telefoneVar == "" || emailVar == "" || logradrouroVar == "" || numeroVar == "" ||
+            cidadeVar == "" || cepVar == "" || estadoVar == "") {
+            msgErro.innerHTML = "Existem campos vazios"
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrarEmpre", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                codigoServer: codigoVar,
+                nomeSocialServer: nomeSocialVar,
+                nomeFantasiaServer: nomeFantasiaVar,
+                cnpjServer: cnpjVar,
+                telefoneServer: telefoneVar,
+                emailServer: emailVar,
+                logradouroServer: logradrouroVar,
+                numeroServer: numeroVar,
+                complementoServer: complementoVar,
+                cidadeServer: cidadeVar,
+                cepServer: cepVar,
+                estadoServer: estadoVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                console.log("Cadastro Realizado");
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            //finalizarAguardar();
+        });
+
+        return false;
+    }
+
+</script>
