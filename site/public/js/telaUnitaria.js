@@ -9,7 +9,7 @@ function verificarMaquina() {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
-                
+                // comentário
                 buscarSO.innerHTML =  resposta[0].SO;
                 buscarRAM.innerHTML = resposta[0].RAM;
                 buscarArmazenamento.innerHTML = resposta[0].armazenamento;
