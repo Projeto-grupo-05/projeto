@@ -155,10 +155,11 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-                    sessionStorage.EMAIL_USUARIO = json.Email;
-                    sessionStorage.NOME_USUARIO = json.Nome;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.ID_EMPRESA = json.idEmpresa;
+                    sessionStorage.FK_GERENTE = json.fkGerente;
 
 
                     setTimeout(function () {

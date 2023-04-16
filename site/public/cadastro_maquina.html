@@ -21,6 +21,31 @@
 
 <body>
     <div class="container22">
+        <div class="menu-lateral" id="menuLateralG">
+            <div class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                </div>
+                <div class="menu-icones-agora">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div>Gerenciamento de máquinas
+                </div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-tools-line"></i></div>Histórico de manutenções
+                </div>
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                </div>
+            </div>
+        </div>
+
+
+
+
         <div class="menu-lateral" id="menuLateral">
             <div class="logo">
             </div>
@@ -53,7 +78,7 @@
                         <p>
                             Gerenciamento de Máquinas
                         </p>
-                        <a href="login.html" class="sair"><i class="ri-door-open-fill" style="color: #990000;"></i></a>
+                        <a href="login.html" class="sair"><i class="ri-door-open-fill" style="color: #990000;" onclick="sair()"></i></a>
                     </span>
                 </span>
                 <div class="botoes-selecao">
@@ -101,6 +126,8 @@
 
 </html>
 <script src="js/cadastroMaquina.js"></script>
+<script src="js/sair.js"></script>
+
 <script>
     var teste = false;
     var menu = document.getElementById("menuLateral");
@@ -125,4 +152,8 @@
     var x = window.matchMedia("(max-width: 630px)")
     myFunction(x)
     x.addListener(myFunction)
+
+    
 </script>
+
+<script src="js/autenticacaoUsuario.js"></script>
