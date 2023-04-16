@@ -72,24 +72,37 @@ function cadastrarMaquina(fabricante, modelo, cor, fabricacao, ucp, ram, so, hos
     console.log("Executando a instrução SQL: \n" + instrucao);
 }
 
-/*function cadastrarMaquina(ucp, ram, so, qtdMaquina) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
+function cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email,
+    logradouro, numero, complemento, cidade, cep, estado) {
+
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, logradouro, numero, complemento, cidade, cep, estado);
+
+    endereco(logradouro, numero, complemento, cidade, cep, estado);
     
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    for(i = 0; i <= qtdMaquina; i++){
-        var instrucao = `
-            INSERT INTO Componentes (UCP, RAM, SO) VALUES ('${ucp}', '${ram}', '${so}');
-        `;
-        console.log("Executando a instrução SQL: \n" + instrucao);
-        return database.executar(instrucao);
-    }
-}*/
+    //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    var instrucao = `
+    INSERT INTO Empresa (codigo, nomeFantasia, razaoSocial, CNPJ, telefone, email, fkEndereco) VALUES ('${codigo}', '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', ${cnpj}, '${telefone}', '${email}', (SELECT TOP 1 idEndereco FROM Endereco ORDER BY idEndereco DESC));                                                               
+   `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function endereco(logradouro, numero, complemento, cidade, cep, estado) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", logradouro, numero, complemento, cidade, cep, estado);
+
+    //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    var instrucao = `
+    INSERT INTO Endereco (logradouro, numero, complemento, cidade, CEP, estado) VALUES ('${logradouro}', '${numero}', '${complemento}', '${cidade}', ${cep}, '${estado}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 module.exports = {
-  entrar,
-  cadastrar,
-  listar,
-  pesquisarToken,
-  cadastrarMaquina
+    entrar,
+    cadastrar,
+    listar,
+    cadastrarEmpre,
+    pesquisarToken,
+    cadastrarMaquina
 };
