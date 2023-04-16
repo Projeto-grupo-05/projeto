@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro_maquina.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
+    <title>Máquina hostname</title>
+</head>
+
+<body onload="verificarMaquina()">
+    <div id="specsMaquina">
+        <div id="campoNomeStatus">
+            <div id="nomeMqn">Nome da máquina: <span id="mqnID"></span></div>
+            <div id="statusMqn">Status <span id="cor"><i class="ri-checkbox-blank-circle-fill"></i></span></div>
+        </div>
+        <div id="grafico" class="teste">
+            <canvas id="graficoIncidente"></canvas>
+        </div>
+        <div id="infoMaquina" class="formulario">
+            <span class="inputs-titulos"> Informações da Máquina</span>
+            <div class="formulario-inputs">
+                <div class="formulario-inputs-esquerda">
+                    <div class="div-formulario-input"><span class="inputs-titulos">SO</span>
+                        <span id="buscarSO"></span>
+                    </div>
+                    <div class="div-formulario-input"><span class="inputs-titulos">RAM</span>
+                        <span id="buscarRAM"></span>
+                    </div>
+                    <div class="div-formulario-input"><span class="inputs-titulos">Armazenamento</span>
+                        <span id="buscarArmazenamento"></span>
+                    </div>
+                </div>
+                <div class="formulario-inputs-direita">
+                    <div class="div-formulario-input"><span class="inputs-titulos">CPU</span>
+                        <span id="buscarUCP"></span>
+                    </div>
+                    <div class="div-formulario-input"><span class="inputs-titulos">Modelo</span>
+                        <span id="buscarModelo"></span>
+                    </div>
+                    <div class="div-formulario-input"><span class="inputs-titulos">Cor</span>
+                        <span id="buscarCor"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/telaUnitaria.js"></script>

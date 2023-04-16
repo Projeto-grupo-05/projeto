@@ -11,6 +11,10 @@ router.put("/editar/:idMaquina", function (req, res) {
     maquinasController.editar(req, res);
 });
 
+router.get("/verificarMaquina/:idMaquina", function (req, res) {
+    maquinasController.verificarMaquina(req, res);
+});
+
 router.delete("/excluirMaquina/:idMaquina", function (req, res) {
     maquinasController.excluirMaquina(req, res);
 

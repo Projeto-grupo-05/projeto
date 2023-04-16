@@ -1,3 +1,14 @@
+.teste{
+    width: 40%;   
+}
+.teste2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: fit-content;
+
+}
 /*Css geral*/
 .container2{
     display: flex;

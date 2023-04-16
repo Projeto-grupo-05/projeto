@@ -7,6 +7,15 @@ function listar(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function verificarMaquina(idMaquina){
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarMaquina(): ", idMaquina);
+    var instrucao = `
+        SELECT hostname, modelo, cor, RAM, UCP, SO, armazenamento from dbo.Maquina WHERE idMaquina = ${idMaquina};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao)
+    return database.executar(instrucao);
+}
+
 function editar(idMaquina, hostname, fabricante, modelo, cor) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idMaquina, fabricante, modelo, cor, hostname);
 
@@ -29,5 +38,6 @@ function excluirMaquina(idMaquina) {
 module.exports = {
     listar,
     editar,
-    excluirMaquina
+    excluirMaquina,
+    verificarMaquina
 };
