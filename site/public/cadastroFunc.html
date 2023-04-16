@@ -147,11 +147,11 @@ function cadastrar() {
         var senhaVar = inputSenha.value;
         var confirmacaoSenhaVar = inputConfirmaSenha.value;
         var idEmpresaVar = sessionStorage.ID_EMPRESA;
-        
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
 
             return false;
         }
@@ -161,7 +161,6 @@ function cadastrar() {
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
-            
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -189,7 +188,6 @@ function cadastrar() {
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-
         });
 
         return false;

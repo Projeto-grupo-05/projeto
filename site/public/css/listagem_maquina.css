@@ -1021,3 +1021,7 @@ td{
         font-size: 14px;
     }
 }
+
+.pointer:hover {
+    cursor: pointer;
+}
