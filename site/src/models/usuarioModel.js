@@ -77,10 +77,14 @@ function cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, te
 
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, logradouro, numero, complemento, cidade, cep, estado);
 
-    //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     endereco(logradouro, numero, complemento, cidade, cep, estado);
-    empresa(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, cep, numero, complemento);
     
+    //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    var instrucao = `
+    INSERT INTO Empresa (codigo, nomeFantasia, razaoSocial, CNPJ, telefone, email, fkEndereco) VALUES ('${codigo}', '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', ${cnpj}, '${telefone}', '${email}', (SELECT TOP 1 idEndereco FROM Endereco ORDER BY idEndereco DESC));                                                               
+   `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
 }
 
 function endereco(logradouro, numero, complemento, cidade, cep, estado) {
@@ -90,17 +94,6 @@ function endereco(logradouro, numero, complemento, cidade, cep, estado) {
     var instrucao = `
     INSERT INTO Endereco (logradouro, numero, complemento, cidade, CEP, estado) VALUES ('${logradouro}', ${numero}, '${complemento}', '${cidade}', ${cep}, '${estado}');
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function empresa(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, cep, numero, complemento) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpre():", codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email, cep, numero, complemento);
-
-    //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    var instrucao = `
-    INSERT INTO Empresa (codigo, nomeFantasia, razaoSocial, CNPJ, telefone, email, fkEndereco) VALUES ('${codigo}', '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', ${cnpj}, '${telefone}', '${email}', (SELECT idEndereco FROM Endereco WHERE CEP = ${cep} AND numero = ${numero} AND complemento = '${complemento}'));                                                               
-   `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }

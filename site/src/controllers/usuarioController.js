@@ -222,9 +222,11 @@ function cadastrarEmpre(req, res) {
             .then(
                 function (resultado) {
                     res.json(resultado);
+                    console.log("MANO TA INDO");
                 }
             ).catch(
                 function (erro) {
+                    console.log("MANO TA INDO NAO VEI, AJUDA!!");
                     console.log(erro);
                     console.log(
                         "\nHouve um erro ao realizar o cadastro! Erro: ",
