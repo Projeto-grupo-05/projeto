@@ -31,53 +31,6 @@
 </head>
 
 <body>
-    <header>
-        <div class="pos-f-t">
-            <div class="collapse" id="navbarToggleExternalContent">
-                <div class="bg-azul-claro p-4">
-                    <h5 class="text-white h4 d-flex jc-center"><img src="../../assets/logo/logo-name.svg" width="20%"
-                            alt=""></h5>
-                    <div class="item-menu-collapse d-flex w-100 jc-between">
-                        <a href="index.html" class="color-white">HOME</a>
-                        <a href="#solucao" class="color-white">SOLUÇÃO</a>
-                        <a href="" class="color-white">SOBRE</a>
-                        <a href="login.html" class="color-white">ENTRAR</a>
-                    </div>
-                </div>
-            </div>
-            <nav class="navbar navbar-dark bg-azul-claro" style="height: 13vh;">
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                    aria-expanded="false" aria-label="Alterna navegação">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </nav>
-        </div>
-
-        <div class="header bold-24 bg-azul-claro">
-            <div class="container2 header-bg">
-                <div class="item">
-                    <li class="item-branco-azul">
-                        <a href="index.html">HOME</a>
-                    </li>
-                    <li class="item-branco-azul">
-                        <a href="#solucao">SOLUÇÃO</a>
-                    </li>
-                </div>
-
-                <img src="assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
-                <div class="item">
-                    <li class="item-branco-azul">
-                        <a href="">SOBRE</a>
-                    </li>
-                    <li class="item-branco-azul">
-                        <a href="login.html">ENTRAR</a>
-                    </li>
-                </div>
-            </div>
-        </div>
-    </header>
-
         <div class="caixa-maior">
             <div class="corpo">
             </div>
@@ -88,14 +41,11 @@
                 <div class="sombra">
                     <div id="formulario-back" class="formulario-back">
 
-                        <h2 class="titulo-branco-azul">CADASTRE-SE</h2>
+                        <h2 class="titulo-branco-azul">CADASTRE</h2>
                         <input type="text" id="inputEmail" class="sbold-24" placeholder="Insira seu e-mail">
                         <input type="text" id="inputSenha" class="sbold-24" placeholder="Insira sua senha">
                         <input type="text" id="inputConfirmaSenha" class="sbold-24" placeholder="Repita a senha">
 
-                        <label class="sbold-16 color-white">Já possui uma conta?
-                            <a href="login.html" class="color-white">Entre aqui!</a>
-                        </label>
                         <button id="butao" class="btn-login">Continuar</button>
                     </div>
 
@@ -104,21 +54,16 @@
                             <i id="arrowLeft" style="color: white;" class="ri-arrow-left-line"></i>
 
                         </div>
-                        <h2 class="titulo-branco-azul">ENTRE EM SUA CONTA</h2>
+                        <h2 class="titulo-branco-azul">FINALIZE O CADASTRO</h2>
 
-                        <input type="text" id="inputToken" class="sbold-24" placeholder="Token">
+                        <input type="text" id="inputNome" class="sbold-24" placeholder="Nome">
 
-                        <input type="text" id="inputNome" class="sbold-24" placeholder="Joana Batatinha">
-
-
-
-                        <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
-                        <button onclick="autenticarT()" class="btn-login">Cadastrar</button>
+                        <button onclick="cadastrar()" class="btn-login">Cadastrar</button>
                     </div>
                 </div>
                 <div class="img-atrativa">
                     <div class="frase">
-                        <p class="xbold-36">JUNTE-SE A NÓS!</p>
+                        <p class="xbold-36">CADASTRE UM FUNCIONÁRO!</p>
                         <h3>É um prazer recebê-lo.</h3>
                     </div>
 
@@ -147,6 +92,7 @@ function cadastrar() {
         var senhaVar = inputSenha.value;
         var confirmacaoSenhaVar = inputConfirmaSenha.value;
         var idEmpresaVar = sessionStorage.ID_EMPRESA;
+        var idGerenteVar = sessionStorage.ID_USUARIO;
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
@@ -160,7 +106,7 @@ function cadastrar() {
         }
 
         // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
+        fetch("/usuarios/cadastrarInterno", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -171,7 +117,8 @@ function cadastrar() {
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
-                idEmpresaServer: idEmpresaVar
+                idEmpresaServer: idEmpresaVar,
+                idGerenteServer: idGerenteVar
             })
             
         }).then(function (resposta) {
@@ -181,7 +128,6 @@ function cadastrar() {
             if (resposta.ok) {
 
                 console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
-                window.location = 'http://localhost:8080/login.html'
 
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
@@ -192,54 +138,5 @@ function cadastrar() {
 
         return false;
     }
-
-    function autenticarT() {
-        var tokenVar = inputToken.value;
-        
-        fetch("/usuarios/autenticarT", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                tokenServer: tokenVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO autenticarT()!")
-            console.log(resposta[0] + '<--- resposta')
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.ID_EMPRESA = json.idEmpresa;
-                    console.log(sessionStorage.ID_EMPRESA)
-
-                    cadastrar()
-
-                });
-
-            } else {
-                Swal.fire(
-                'Token inválido',
-                'Digite o token fornecido por sua empresa!',
-                'error'
-                )
-                console.log("Houve um erro ao tentar realizar a autenticação do token!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        // return false;
-    }
-    
-    
 </script>
+

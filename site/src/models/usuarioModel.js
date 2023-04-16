@@ -44,6 +44,23 @@ function cadastrar(nome, email, senha, idEmpresa) {
   return database.executar(instrucao);
 }
 
+function cadastrarInterno(nome, email, senha, idEmpresa, idGerente) {
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
+    nome,
+    email,
+    senha
+  );
+
+  // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+  //  e na ordem de inserção dos dados.
+  var instrucao = `
+    INSERT INTO Usuario (Nome, Email, Senha, fkEmpresa, fkGerente) VALUES ('${nome}', '${email}', '${senha}', ${idEmpresa}, ${idGerente});
+    `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
 //OLHA O ERRO TA AQUI, O SELECT RETORNA UNDEFINED
 
 function pesquisarToken(texto) {
@@ -103,6 +120,7 @@ module.exports = {
     cadastrar,
     listar,
     cadastrarEmpre,
+    cadastrarInterno,
     pesquisarToken,
     cadastrarMaquina
 };

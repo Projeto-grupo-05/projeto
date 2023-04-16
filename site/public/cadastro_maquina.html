@@ -37,9 +37,11 @@
                 <div class="menu-icones">
                     <div class="div-icones"><i class="ri-tools-line"></i></div>Histórico de manutenções
                 </div>
-                <div class="menu-icones">
-                    <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
-                </div>
+                <a href="cadastroInterno.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -78,7 +80,8 @@
                         <p>
                             Gerenciamento de Máquinas
                         </p>
-                        <a href="login.html" class="sair"><i class="ri-door-open-fill" style="color: #990000;" onclick="sair()"></i></a>
+                        <a href="login.html" class="sair"><i class="ri-door-open-fill" style="color: #990000;"
+                                onclick="sair()"></i></a>
                     </span>
                 </span>
                 <div class="botoes-selecao">
@@ -116,7 +119,7 @@
                         <div class="div-formulario-input"><span class="inputs-titulos">SO</span><input id="inputSo"
                                 type="text"></div>
                         <div class="div-formulario-input"><span class="inputs-titulos">Nome da máquina
-                                (Hostname)</span><input id="inputHost" type="text"></div>   
+                                (Hostname)</span><input id="inputHost" type="text"></div>
                         <div class="formulario-botao"><button onclick="cadastrarMaquina()">Cadastrar</button></div>
                     </div>
                 </div>
@@ -153,7 +156,7 @@
     myFunction(x)
     x.addListener(myFunction)
 
-    
+
 </script>
 
 <script src="js/autenticacaoUsuario.js"></script>
