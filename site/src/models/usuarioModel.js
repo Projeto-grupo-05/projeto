@@ -92,7 +92,7 @@ function endereco(logradouro, numero, complemento, cidade, cep, estado) {
 
     //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     var instrucao = `
-    INSERT INTO Endereco (logradouro, numero, complemento, cidade, CEP, estado) VALUES ('${logradouro}', ${numero}, '${complemento}', '${cidade}', ${cep}, '${estado}');
+    INSERT INTO Endereco (logradouro, numero, complemento, cidade, CEP, estado) VALUES ('${logradouro}', '${numero}', '${complemento}', '${cidade}', ${cep}, '${estado}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
