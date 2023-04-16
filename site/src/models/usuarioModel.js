@@ -58,7 +58,7 @@ function empresa(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone,
 
     //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     var instrucao = `
-    INSERT INTO Empresa (codigo, nomeFantasia, razaoSocial, CNPJ, telefone, email, fkEndereco) VALUES (${codigo}, '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', ${cnpj}, '${telefone}', '${email}', (SELECT idEndereco FROM Endereco WHERE CEP = ${cep} AND numero = ${numero} AND complemento = '${complemento}'));                                                               
+    INSERT INTO Empresa (codigo, nomeFantasia, razaoSocial, CNPJ, telefone, email, fkEndereco) VALUES ('${codigo}', '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', ${cnpj}, '${telefone}', '${email}', (SELECT idEndereco FROM Endereco WHERE CEP = ${cep} AND numero = ${numero} AND complemento = '${complemento}'));                                                               
    `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
