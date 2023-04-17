@@ -128,7 +128,7 @@ function cadastrar() {
 
             if (resposta.ok) {
 
-                window.location.reload();
+                // window.location.reload();
 
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
@@ -149,20 +149,19 @@ function cadastrar() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: emailVar,
+                emailServer: emailVar
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
                 console.log(resposta);
-                cadastrar();
+                
+          
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
+                    cadastrar();
 
-                });
+               
 
             } else {
                 console.log("Houve um erro ao tentar realizar o login!");
