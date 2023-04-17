@@ -20,6 +20,10 @@ router.post("/cadastrarInterno", function (req, res) {
     usuarioController.cadastrarInterno(req, res);
 });
 
+router.post("/verificarUsuario", function (req, res) {
+    usuarioController.verificarUsuario(req, res);
+});
+
 router.post("/cadastrarEmpre", function (req, res) {
     usuarioController.cadastrarEmpre(req, res);
 });

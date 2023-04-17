@@ -25,6 +25,14 @@ function entrar(email, senha, token) {
   return database.executar(instrucao);
 }
 
+function verificarUsuario(email) {
+  var instrucao = `
+  SELECT * FROM Usuario WHERE email LIKE '${email}'
+  `;
+console.log("Executando a instrução SQL: \n" + instrucao);
+return database.executar(instrucao);
+}
+
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 
 function cadastrar(nome, email, senha, idEmpresa) {
@@ -121,6 +129,7 @@ module.exports = {
     listar,
     cadastrarEmpre,
     cadastrarInterno,
+    verificarUsuario,
     pesquisarToken,
     cadastrarMaquina
 };

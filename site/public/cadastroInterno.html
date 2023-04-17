@@ -59,7 +59,7 @@
 
                         <input type="text" id="inputNome" class="sbold-24" placeholder="Nome">
 
-                        <button onclick="cadastrar()" class="btn-login">Cadastrar</button>
+                        <button onclick="verificarUsuario()" class="btn-login">Cadastrar</button>
                     </div>
                 </div>
                 <div class="img-atrativa">
@@ -128,7 +128,7 @@ function cadastrar() {
 
             if (resposta.ok) {
 
-                console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                window.location.reload();
 
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
@@ -139,5 +139,45 @@ function cadastrar() {
 
         return false;
     }
+
+    function verificarUsuario() {
+        var emailVar = inputEmail.value;
+
+        fetch("/usuarios/verificarUsuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+                cadastrar();
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                });
+
+            } else {
+                console.log("Houve um erro ao tentar realizar o login!");
+                alert('Mais de um usuário tentando se cadastrar');
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+        }
+    
 </script>
 

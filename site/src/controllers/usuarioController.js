@@ -120,6 +120,7 @@ function cadastrarInterno(req, res) {
             .then(
                 function (resultado) {
                     res.json(resultado);
+
                 }
             ).catch(
                 function (erro) {
@@ -133,6 +134,33 @@ function cadastrarInterno(req, res) {
             );
     }
 }
+
+function verificarUsuario(req, res) {
+    var email = req.body.emailServer;
+        
+        usuarioModel.verificarUsuario(email)
+
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length == 0) {
+                        console.log(resultado);
+                        res.json(resultado[0]);
+                    } else {
+                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nErro ao tentar realizar o cadastro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
 
 function autenticarToken(req, res) {
     console.log('oie auetenticart token')
@@ -280,5 +308,6 @@ module.exports = {
     cadastrarInterno,
     cadastrarEmpre,
     autenticarToken,
+    verificarUsuario,
     testar
 }
