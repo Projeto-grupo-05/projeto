@@ -4,12 +4,13 @@ function verificarMaquina() {
     //var idMaquina = 3;
     // Enviando o valor da nova input
 
-    fetch(`/maquinas/verificarMaquina/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/maquinas/verificarMaquina/${sessionStorage.ID_MAQUINA}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
                 // FALTA NOME DA MÁQUINA
+                nomeMaquina.innerHTML = resposta[0].hostname;
                 buscarSO.innerHTML = resposta[0].SO;
                 buscarRAM.innerHTML = resposta[0].RAM;
                 buscarArmazenamento.innerHTML = resposta[0].armazenamento;
