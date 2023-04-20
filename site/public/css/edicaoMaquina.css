@@ -1,0 +1,56 @@
+.container{
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(140.37deg, #3182BF -5.96%, #A864FF 111.92%);
+}
+
+.caixa{
+    width: 40%;
+    height: 75vh;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formulario {
+    width: 100%;
+    height: 65vh;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.campo{
+    width: 60%;
+    height: 6vh;
+    border-radius: 8px;
+    border-style: none;
+    padding: 10px;
+}
+
+li{
+    list-style: none;
+}
+
+.btn-atualizarMaquina{
+    width: 140px;
+    height: 5vh;
+    margin-top: 5px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #2569CE;
+    border-color: #2569CE;
+    transition: .5s;
+    align-items: center;
+    cursor: pointer;
+}
