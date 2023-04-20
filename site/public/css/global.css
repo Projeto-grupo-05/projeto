@@ -177,3 +177,14 @@ body {
     background-color: var();
 }
 
+/* HOVER  */
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.menu-hover:hover {
+    height: 9vh;
+    transition: .5s;
+    background-color: var(--azul-bebe);
+}

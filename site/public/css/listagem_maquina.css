@@ -41,6 +41,19 @@
     color: #C23B65;
 }
 
+
+.purple-agora {
+    width: 24vw;
+    height: 8vh;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    background-color: #EAF0FF;
+    color: #00649D;
+}
+
 .logo{
     /* background-color: blue; */
     height: 15vh;
