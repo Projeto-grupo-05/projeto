@@ -1,21 +1,26 @@
 function verificarMaquina() {
     //aplicar variável do session storage
-    //sessionStorage.ID_MAQUINA = idMaquina;
-    var idMaquina = 3;
+    sessionStorage.ID_MAQUINA = idMaquina;
+    //var idMaquina = 3;
     // Enviando o valor da nova input
-    
+
     fetch(`/maquinas/verificarMaquina/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
-                // comentário
-                buscarSO.innerHTML =  resposta[0].SO;
+                // FALTA NOME DA MÁQUINA
+                buscarSO.innerHTML = resposta[0].SO;
                 buscarRAM.innerHTML = resposta[0].RAM;
                 buscarArmazenamento.innerHTML = resposta[0].armazenamento;
                 buscarUCP.innerHTML = resposta[0].UCP;
                 buscarModelo.innerHTML = resposta[0].modelo;
                 buscarCor.innerHTML = resposta[0].cor;
+
+                //MUDANDO A COR DO STATUS, FALTA PARÂMETROS
+                //if (resposta[0].RAM == "gg") {
+                //    cor.innerHTML = `<i class="ri-checkbox-blank-circle-fill" style="color: red"></i>`;
+               // }
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -33,10 +38,18 @@ const ctx = document.getElementById('graficoIncidente');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['10:30', '10:35', '10:40', '10:45', '10:50', '10:55'],
         datasets: [{
-            label: '# of Votes',
+            label: '# CPU',
             data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1,
+        }, {
+            label: '# RAM',
+            data: [2, 4, 13, 10, 7, 12],
+            borderWidth: 1
+        }, {
+            label: '# HDD/SSD',
+            data: [10, 39, 26, 33, 27, 15],
             borderWidth: 1
         }]
     },
