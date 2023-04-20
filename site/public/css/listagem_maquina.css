@@ -1024,4 +1024,6 @@ td{
 
 .pointer:hover {
     cursor: pointer;
+    border: 0.4px solid #000 ;
+    border-radius: 5px;
 }

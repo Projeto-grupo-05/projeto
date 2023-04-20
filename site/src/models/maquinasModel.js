@@ -1,7 +1,7 @@
 var database = require("../database/config")
 
 function listar(fkEmpresa) {
-    instrucaoSql = `SELECT idMaquina, Hostname, Fabricante, Modelo, Cor, anoFabricacao FROM dbo.Maquina WHERE fkEmpresa = ${fkEmpresa};`;
+    instrucaoSql = `SELECT idMaquina, Hostname, Fabricante, Modelo, Cor, YEAR (anoFabricacao) as ano FROM dbo.Maquina WHERE fkEmpresa = ${fkEmpresa};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
