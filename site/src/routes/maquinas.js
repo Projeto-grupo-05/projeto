@@ -7,8 +7,16 @@ router.get("/listar/:fkEmpresa", function (req, res) {
     maquinasController.listar(req, res);
 });
 
+router.get("/listarAvisos/:fkEmpresa", function (req, res) {
+    maquinasController.listarAvisos(req, res);
+});
+
 router.put("/editar/:idMaquina", function (req, res) {
     maquinasController.editar(req, res);
+});
+
+router.get("/verificarMaquina/:idMaquina", function (req, res) {
+    maquinasController.verificarMaquina(req, res);
 });
 
 router.delete("/excluirMaquina/:idMaquina", function (req, res) {
