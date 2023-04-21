@@ -54,3 +54,8 @@ li{
     align-items: center;
     cursor: pointer;
 }
+
+.btn-atualizarMaquina:hover {
+    background-color: #88B6FB;
+    color: var(--branco-azul);
+}
