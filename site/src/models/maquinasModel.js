@@ -7,6 +7,16 @@ function listar(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function listarAvisos(fkEmpresa) {
+    instrucaoSql = `SELECT i.descricaoProblema, u.nome, i.descricaoSolucao, m.idMaquina FROM dbo.Incidente AS i JOIN 
+    dbo.Usuario AS u  ON (u.idUsuario = i.fkUsuario) JOIN dbo.Maquina AS m ON (u.idUsuario = m.idMaquina) WHERE m.fkEmpresa = ${fkEmpresa};
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql, instrucaoSql1);
+}
+
+
 function verificarMaquina(idMaquina){
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarMaquina(): ", idMaquina);
     var instrucao = `
@@ -39,5 +49,6 @@ module.exports = {
     listar,
     editar,
     excluirMaquina,
-    verificarMaquina
+    verificarMaquina,
+    listarAvisos
 };
