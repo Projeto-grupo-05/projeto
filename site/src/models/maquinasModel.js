@@ -8,8 +8,8 @@ function listar(fkEmpresa) {
 }
 
 function listarAvisos(fkEmpresa) {
-    instrucaoSql = `SELECT i.descricaoProblema, u.nome, i.descricaoSolucao, m.idMaquina FROM dbo.Incidente AS i JOIN 
-    dbo.Usuario AS u  ON (u.idUsuario = i.fkUsuario) JOIN dbo.Maquina AS m ON (u.idUsuario = m.idMaquina) WHERE m.fkEmpresa = ${fkEmpresa};
+    instrucaoSql = `SELECT i.descricaoProblema, u.nome, i.descricaoSolucao, m.idMaquina, i.dataHora FROM dbo.Incidente AS i JOIN 
+    dbo.Usuario AS u  ON (u.idUsuario = i.fkUsuario) JOIN dbo.Maquina AS m ON (u.idUsuario = m.idMaquina) WHERE m.fkEmpresa = 1;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

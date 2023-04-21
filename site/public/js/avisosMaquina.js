@@ -25,6 +25,7 @@ function listarAvisos() {
                         <td>Nome: ${resposta[i].nome}</td>
                         <td>Problema: ${resposta[i].descricaoProblema}</td>
                         <td>Solucao: ${resposta[i].descricaoSolucao}</td>
+                        <td>Solucao: ${resposta[i].dataHora}</td>
                         <td>-</td>
                         </tr>`;
                 }
