@@ -25,7 +25,7 @@ function listarAvisos(req, res) {
 
     var fkEmpresa = req.params.fkEmpresa;
 
-    maquinasModel.listar(fkEmpresa).then(function (resultado) {
+    maquinasModel.listarAvisos(fkEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

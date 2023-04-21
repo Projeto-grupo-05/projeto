@@ -1,65 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body onload="listarAvisos()">
     <div id="avisos"></div>
 </body>
+
 </html>
-<script>
-     function listarAvisos() {
-
-// sessionStorage.HOSTNAME = null;
-// sessionStorage.FABRICANTE = null;
-// sessionStorage.COR = null;
-// sessionStorage.MODELO = null;
-
-var fkEmpresaVar = sessionStorage.ID_EMPRESA;
-
-
-if (fkEmpresaVar == "") {
-    console.log('Sem empresa!');
-    return false;
-}
-
-fetch(`/maquinas/listarAvisos/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            resposta.reverse();
-
-            // listagem.innerHTML = `<thead>
-            //         <tr>
-            //             <th>HOSTNAME</th>
-            //             <th>FABRICANTE</th>
-            //             <th>MODELO</th>
-            //             <th>COR</th>
-            //             <th>STATUS</th>
-            //         </tr>
-            //     </thead>
-            //     `;
-
-            for (let i = 0; i < resposta.length; i++) {
-                avisos.innerHTML += `<tr>
-                            <td>Máquina: id${resposta[i].idMaquina}</td>
-                            <td>${resposta[i].nome}</td>
-                            <td>${resposta[i].descricaoProblema}</td>
-                            <td>${resposta[i].descricaoSolucao}</td>
-                            <td>-</td>
-                            </tr>`;
-            }
-
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-    }
-})
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-</script>
+<script src="js/avisosMaquina.js"></script>

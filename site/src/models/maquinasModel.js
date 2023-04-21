@@ -13,7 +13,7 @@ function listarAvisos(fkEmpresa) {
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql, instrucaoSql1);
+    return database.executar(instrucaoSql);
 }
 
 
