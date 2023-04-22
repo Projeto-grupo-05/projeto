@@ -18,10 +18,17 @@
     <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
 
     <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 
     <title>Gerenciamento de Máquinas</title>
 </head>
@@ -80,27 +87,36 @@
             </div>
         </div>
     </div>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+
+    <!-- Modal -->
+    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
+        aria-labelledby="TituloModalCentralizado" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModalCentralizado">Relatório de Solução</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div> Nome do Responsável: <input type="text" id="iptResponsavel"></div>
+                    <div> Problema: <textarea class="textareaModal" type="text" id="descProblema"></textarea></div>
+                    <div> Solução: <textarea class="textareaModal" type="text" id="descSolucao"></textarea></div>
+                    <div>Componente: <select name="componente" id="componente">
+                            <option value="RAM">RAM</option>
+                            <option value="CPU">CPU</option>
+                            <option value="CPU">Disco</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                </div>
             </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Salvar mudanças</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 </body>
 
 </html>
@@ -158,7 +174,7 @@
                     for (let i = 0; i < resposta.length; i++) {
                         listagem.innerHTML += `<tr class="pointer" onclick="telaMaquina(${resposta[i].idMaquina})">
                                     <td><button type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
-                                            <i class="ri-error-warning-line pointer"></i>
+                                            <i class="ri-error-warning-line"></i>
                                         </button>
                                     </td>
                                     <td>${resposta[i].Hostname}</td>
@@ -215,8 +231,8 @@
         });
     }
 
-    function telaMaquina(idMaquina){
+    function telaMaquina(idMaquina) {
         sessionStorage.ID_MAQUINA = idMaquina;
-        // window.location = "listagem_maquina.html";
+        window.location = "listagem_maquina.html";
     }
 </script>

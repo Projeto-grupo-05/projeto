@@ -1027,3 +1027,13 @@ td{
     border: 0.4px solid #000 ;
     border-radius: 5px;
 }
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.textareaModal {
+    height: 150px;
+    width: 450px;
+}
