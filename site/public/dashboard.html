@@ -52,12 +52,35 @@
         </div>
 
         <div class="dados">
-            <div class="kpi">23</div>
-            <div class="kpi">23</div>
-            <div class="kpi">23</div>
+            <div class="alerta">
+                <div class="kpi red">
+                    <li class="bold-20">Em Alerta</li>
+                    <div class="info">
+                        <img class="macbook" src="./assets/icons/macbookRED.png" alt="macbook">
+                        <span class="xbold-36" style="color: black;" id="numAlerta">0</span>
+                    </div>
+                    <i class="ri-information-fill"></i>
+                </div>
+                <div class="kpi blue">
+                    <li class="bold-20">Em Concerto</li>
+                    <div class="info">
+                        <img class="macbook" src="./assets/icons/macbookBLUE.png" alt="macbook">
+                        <span class="xbold-36" style="color: black;" id="numConcerto">0</span>
+                    </div>
+                    <i class="ri-settings-4-fill"></i>
+                </div>
+                <div class="kpi green">
+                    <li class="bold-20">Em Operação</li>
+                    <div class="info">
+                        <img class="macbook" src="./assets/icons/macbookGREEN.png" alt="macbook">
+                        <span class="xbold-36" style="color: black;" id="numOperacao">0</span>
+                    </div>  
+                    <i class="ri-checkbox-circle-fill"></i>
+                </div>
+            </div>
 
-            <h3>Performace da Equipe</h3>
-            <div id="grafico" class="grafico" style="width: 55%">
+            <div id="grafico" class="grafico" style="width: 70%">
+                <h4 style="color: black;">Performace da Equipe</h4>
                 <canvas id="dashboard"></canvas>
             </div>
         </div>
