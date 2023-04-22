@@ -20,14 +20,20 @@ function listarAvisos() {
                 resposta.reverse();
 
                 for (let i = 0; i < resposta.length; i++) {
-                    avisos.innerHTML += `<tr>
-                        <td>Máquina: id${resposta[i].idMaquina}</td>
-                        <td>Nome: ${resposta[i].nome}</td>
-                        <td>Problema: ${resposta[i].descricaoProblema}</td>
-                        <td>Solucao: ${resposta[i].descricaoSolucao}</td>
-                        <td>Solucao: ${resposta[i].dataHora}</td>
-                        <td>-</td>
-                        </tr>`;
+                    avisos.innerHTML += `
+                    <div class="box-maquina">
+                        <div class="box-title">
+                            <span class="bold-24">Máquina: ${resposta[i].idMaquina}</span>
+                        </div>
+                        <div class="box-content sbold-16">
+                            <div><span class="xbold-16">Responsável: </span><span>${resposta[i].nome}</span></div>
+                            <div class="mt-10"><span class="xbold-16">Problema: </span><span>${resposta[i].descricaoProblema}</span></div>
+                            <div class="mt-10"><span class="xbold-16">Solucao: </span><span>${resposta[i].descricaoSolucao}</span></div>
+                            <div class="mt-10"><span class="xbold-16">Data e hora: </span><span>${resposta[i].dataHora}</span></div>
+                            <div class="mt-10"><span class="xbold-16">Componente: </span><span></span></div>
+                        </div>
+                    </div>
+                        `
                 }
 
             });
