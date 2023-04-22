@@ -7,12 +7,20 @@ router.get("/listar/:fkEmpresa", function (req, res) {
     maquinasController.listar(req, res);
 });
 
+router.get("/listaFunc/:fkEmpresa", function (req, res) {
+    maquinasController.listaFunc(req, res);
+});
+
 router.get("/listarAvisos/:fkEmpresa", function (req, res) {
     maquinasController.listarAvisos(req, res);
 });
 
 router.put("/editar/:idMaquina", function (req, res) {
     maquinasController.editar(req, res);
+});
+
+router.put("/solucao/:idMaquina", function (req, res) {
+    maquinasController.solucao(req, res);
 });
 
 router.get("/verificarMaquina/:idMaquina", function (req, res) {

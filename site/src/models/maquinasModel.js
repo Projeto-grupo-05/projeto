@@ -1,7 +1,14 @@
 var database = require("../database/config")
 
 function listar(fkEmpresa) {
-    instrucaoSql = `SELECT idMaquina, Hostname, Fabricante, Modelo, Cor, anoFabricacao FROM dbo.Maquina WHERE fkEmpresa = ${fkEmpresa};`;
+    instrucaoSql = `SELECT idMaquina, Hostname, Fabricante, Modelo, Cor, YEAR (anoFabricacao) as ano FROM dbo.Maquina WHERE fkEmpresa = ${fkEmpresa};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listaFunc(fkEmpresa) {
+    instrucaoSql = `SELECT idUsuario, nome FROM dbo.Usuario WHERE fkEmpresa = ${fkEmpresa};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -17,7 +24,7 @@ function listarAvisos(fkEmpresa) {
 }
 
 
-function verificarMaquina(idMaquina){
+function verificarMaquina(idMaquina) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarMaquina(): ", idMaquina);
     var instrucao = `
         SELECT hostname, modelo, cor, RAM, UCP, SO, armazenamento from dbo.Maquina WHERE idMaquina = ${idMaquina};
@@ -31,6 +38,16 @@ function editar(idMaquina, hostname, fabricante, modelo, cor) {
 
     var instrucao = `
         UPDATE Maquina SET hostname = '${hostname}', fabricante = '${fabricante}', modelo = '${modelo}', cor = '${cor}' WHERE idMaquina = ${idMaquina};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function solucao(idMaquina, descProblema, descSolucao) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idMaquina, descProblema, descSolucao);
+
+    var instrucao = `
+        UPDATE Incidente SET descricaoProblema = '${descProblema}', descricaoSolucao = '${descSolucao}' WHERE descricaoSolucao = '' AND fkLogDesempenho = (SELECT TOP 1 idLogDesempenho FROM logDesempenho WHERE fkMaquina = ${idMaquina} ORDER BY 1 DESC);
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -50,5 +67,7 @@ module.exports = {
     editar,
     excluirMaquina,
     verificarMaquina,
-    listarAvisos
+    listarAvisos,
+    solucao,
+    listaFunc
 };

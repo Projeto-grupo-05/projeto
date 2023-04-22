@@ -1025,3 +1025,13 @@ td{
 .pointer:hover {
     cursor: pointer;
 }
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.textareaModal {
+    height: 150px;
+    width: 450px;
+}

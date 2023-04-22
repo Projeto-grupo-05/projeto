@@ -19,6 +19,25 @@ function listar(req, res) {
     });
 }
 
+function listaFunc(req, res) {
+
+    // const limite_linhas = 7;
+
+    var fkEmpresa = req.params.fkEmpresa;
+
+    maquinasModel.listaFunc(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function listarAvisos(req, res) {
 
     // const limite_linhas = 7;
@@ -47,6 +66,27 @@ function editar(req, res) {
 
 
     maquinasModel.editar(idMaquina, hostname, fabricante, modelo, cor)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function solucao(req, res) {
+    var idMaquina = req.params.idMaquina;
+    var descProblema = req.body.descProblema;
+    var descSolucao = req.body.descSolucao;
+
+
+    maquinasModel.solucao(idMaquina, descProblema, descSolucao)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -102,5 +142,7 @@ module.exports = {
     editar,
     excluirMaquina,
     verificarMaquina,
-    listarAvisos
+    listarAvisos,
+    solucao,
+    listaFunc
 }
