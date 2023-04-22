@@ -1,0 +1,112 @@
+.container2 {
+    margin: 2%;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.menu {
+    width: 25%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.img {
+    width: 70%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.painel {
+    margin-top: 20%;
+    width: auto;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.icones {
+    width: 77%;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;   
+    padding-left: 2%;
+}
+
+.color-azul-caneta {
+    color: #000A41;
+}
+
+.icones:hover {
+    background-color: #88B6FB;
+    color: var(--branco-azul);
+}
+
+.grafico{
+    margin-top: 20px;
+}
+
+.dados {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.alerta{
+    width: 80%;
+    height: 27vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.kpi{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    align-items: center;
+    border: 3px;
+    border-style:solid;
+    border-radius: 15%;
+}
+
+.red{
+    color: #DE2A25;
+}
+
+.blue{
+    color: #3680C2;
+}
+
+.green{
+    color: #1D8E4A;
+}
+
+.info{
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.macbook{
+    width: 40%;
+}
+
+
