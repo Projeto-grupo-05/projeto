@@ -10,7 +10,7 @@ new Chart(ctx, {
             backgroundColor: [`rgb(222, 42, 37)`],
             borderWidth: 3
         }, {
-            label: 'Concerto',
+            label: 'Progresso',
             data: [10, 20, 21, 17, 15],
             backgroundColor:[ `rgb(54, 128, 194)`],
             borderWidth: 3
