@@ -1,0 +1,64 @@
+.container2 {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.menu {
+    margin: 2%;
+    width: 35%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.img {
+    width: 62%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.painel {
+    margin-top: 20%;
+    width: auto;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.icones {
+    width: 77%;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;   
+    padding-left: 2%;
+}
+
+.color-azul-caneta {
+    color: #000A41;
+}
+
+.icones:hover {
+    background-color: #88B6FB;
+    color: var(--branco-azul);
+}
+
+.grafico{
+    margin-top: 20px;
+}
+
+.dados {
+    width: 70%;
+    display: flex;
+}
