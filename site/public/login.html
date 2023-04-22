@@ -49,7 +49,7 @@
                     </button>
                 </nav>
             </div>
-    
+
             <div class="header bold-24 bg-azul-claro">
                 <div class="container2 header-bg">
                     <div class="item">
@@ -60,7 +60,7 @@
                             <a href="#solucao">SOLUÇÃO</a>
                         </li>
                     </div>
-    
+
                     <img src="assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
                     <div class="item">
                         <li class="item-branco-azul">
@@ -93,16 +93,16 @@
                     <div class="formulario">
                         <h2 class="titulo-branco-azul">ENTRE EM SUA CONTA</h2>
 
-                        <input type="text" id="input_email" class="sbold-24" placeholder="E-mail">
-                        <input type="text" id="input_senha" class="sbold-24" placeholder="Senha">
-                        <input type="text" id="input_token" class="sbold-24" placeholder="Token">
+                        <input type="text" id="inputEmail" class="sbold-24" placeholder="E-mail">
+                        <input type="password" id="inputSenha" class="sbold-24" placeholder="Senha">
+                        <input type="text" id="inputToken" class="sbold-24" placeholder="Token">
 
                         <label class="sbold-16"> Não tem conta?
                             <a href="cadastroFunc.html">Cadastre-se já!</a>
                         </label>
 
                         <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
-                        <a ><button onclick="entrar()" class="btn-login">Entrar</button></a>
+                        <a><button onclick="entrar()" class="btn-login">Entrar</button></a>
                     </div>
                 </div>
             </div>
@@ -113,6 +113,7 @@
         </div>
     </div>
 </body>
+
 </html>
 
 
@@ -121,19 +122,21 @@
 
     function entrar() {
 
-        var emailVar = input_email.value;
-        var senhaVar = input_senha.value;
-        var tokenVar = input_token.value;
+        var emailVar = inputEmail.value;
+        var senhaVar = inputSenha.value;
+        var tokenVar = inputToken.value;
 
-        if (emailVar == "" || senhaVar == "" || tokenVar=="") {
+        const regexEmail = /\S+@\S+.\S+/;
+        const verificaEmail = regexEmail.test(emailVar);
+
+        if (emailVar == "" || senhaVar == "" || tokenVar == "") {
             console.log("Validação não passou");
-            
+            alert('Preencha todos os campos!');
+            return false;
+        } else if (!verificaEmail) {
+            alert('O email precisa ser válido!')
             return false;
         }
-        else {
-            console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-        console.log("FORM TOKEN: ", tokenVar);
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -182,6 +185,6 @@
         })
 
         return false;
-        }
     }
+    
 </script>
