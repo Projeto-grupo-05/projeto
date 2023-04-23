@@ -36,7 +36,6 @@
                         <div class="item-menu-collapse d-flex w-100 jc-between">
                             <a href="index.html" class="color-white">HOME</a>
                             <a href="#solucao" class="color-white">SOLUÇÃO</a>
-                            <a href="" class="color-white">SOBRE</a>
                             <a href="login.html" class="color-white">CADASTRAR-SE</a>
                         </div>
                     </div>
@@ -54,20 +53,20 @@
                 <div class="container2 header-bg">
                     <div class="item">
                         <li class="item-branco-azul">
-                            <a href="index.html">HOME</a>
+                            <a href="index.html">Home</a>
                         </li>
                         <li class="item-branco-azul">
-                            <a href="#solucao">SOLUÇÃO</a>
+                            <a href="#solucao">Solução</a>
                         </li>
                     </div>
     
                     <img src="assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
                     <div class="item">
                         <li class="item-branco-azul">
-                            <a href="">SOBRE</a>
+                            <a href="login.html">Entrar</a>
                         </li>
                         <li class="item-branco-azul">
-                            <a href="cadastroFunc.html">CADASTRAR-SE</a>
+                            <a href="cadastroFunc.html">Cadastrar-se</a>
                         </li>
                     </div>
                 </div>
@@ -93,16 +92,14 @@
                     <div class="formulario">
                         <h2 class="titulo-branco-azul">ENTRE EM SUA CONTA</h2>
 
-                        <input type="text" id="input_email" class="sbold-24" placeholder="E-mail">
-                        <input type="text" id="input_senha" class="sbold-24" placeholder="Senha">
-                        <input type="text" id="input_token" class="sbold-24" placeholder="Token">
-
-                        <label class="sbold-16"> Não tem conta?
-                            <a href="cadastroFunc.html">Cadastre-se já!</a>
-                        </label>
-
+                        <input type="text" id="input_email" class="bold-20 input-login" placeholder="E-mail">
+                        <input type="text" id="input_senha" class="bold-20 input-login" placeholder="Senha">
+                        <input type="text" id="input_token" class="bold-20 input-login" placeholder="Token">
+                        <a href="cadastroFunc.html" class="sbold-16 opcao-cadastral">
+                             Não tem conta? Cadastre-se já!
+                        </a>
                         <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
-                        <a ><button onclick="entrar()" class="btn-login">Entrar</button></a>
+                        <a><button onclick="entrar()" class="btn-login">Entrar</button></a>
                     </div>
                 </div>
             </div>
@@ -155,7 +152,7 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.EMAIL_USUARIO = emailVar;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.ID_EMPRESA = json.idEmpresa;

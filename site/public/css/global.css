@@ -10,7 +10,28 @@
     box-sizing: border-box;
     text-decoration: none; 
     font-family: 'Manrope', sans-serif; 
+    transition: .5s;
 }
+
+a:link {
+    text-decoration: none!important;
+}
+
+a:visited {
+    text-decoration: none!important;
+}
+
+a:hover {
+    text-decoration: none!important;
+    color: inherit!important;
+}
+
+a:active {
+    text-decoration: none!important;
+    color: inherit;
+}
+
+
   
 body {
      font-size: 100%;
@@ -170,11 +191,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--azul);
+    background-color: var(--azul-bebe);
 }
 
 ::-webkit-scrollbar {
-    background-color: var();
+    background-color: var(--branco-azul);
 }
 
 .mt-10 {
