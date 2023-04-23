@@ -58,6 +58,29 @@ function excluirMaquina(idMaquina) {
     var instrucao = `
         DELETE FROM dbo.Maquina WHERE idMaquina = ${idMaquina};
     `;
+
+    excluirIncidente(idMaquina);
+    excluirLog(idMaquina);
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function excluirIncidente(idMaquina) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idMaquina);
+    var instrucao = `
+        DELETE Incidente FROM Incidente JOIN dbo.LogDesempenho ON idLogDesempenho = fkLogDesempenho JOIN dbo.Maquina ON idMaquina = fkMaquina WHERE idMaquina = ${idMaquina};
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function excluirLog(idMaquina) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idMaquina);
+    var instrucao = `
+        DELETE LogDesempenho FROM LogDesempenho JOIN dbo.Maquina ON idMaquina = fkMaquina WHERE idMaquina = ${idMaquina};
+    `;
+    
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
