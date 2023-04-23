@@ -86,26 +86,27 @@
                     <div id="formulario-back" class="formulario-back">
 
                         <h2 class="titulo-branco-azul">Passo 1/2</h2>
-                    <div class="input-group" style="display: flex;">
-                        <div class="box-input" style="width: 100%;">
-                            <label for="input_email" class="bold-20 color-white">E-mail</label>
-                            <input type="email" id="inputEmail" class="bold-20 input-login"
-                                placeholder="exemplo@email.com">
+                        <div class="input-group" style="display: flex;">
+                            <div class="box-input" style="width: 100%;">
+                                <label for="input_email" class="bold-20 color-white">E-mail</label>
+                                <input type="email" id="inputEmail" class="bold-20 input-login"
+                                    placeholder="exemplo@email.com">
+                            </div>
+                            <div class="box-input" style="width: 100%;">
+                                <label for="input_email" class="bold-20 color-white">Senha</label>
+                                <input type="password" id="inputSenha" class="bold-20 input-login"
+                                    placeholder="*********">
+                            </div>
+                            <div class="box-input" style="width: 100%;">
+                                <label for="input_email" class="bold-20 color-white">Repita a senha</label>
+                                <input type="password" id="inputConfirmaSenha" class="bold-20 input-login"
+                                    placeholder="*********">
+                            </div>
                         </div>
-                        <div class="box-input" style="width: 100%;">
-                            <label for="input_email" class="bold-20 color-white">Senha</label>
-                            <input type="password" id="inputSenha" class="bold-20 input-login" placeholder="*********">
-                        </div>
-                        <div class="box-input" style="width: 100%;">
-                            <label for="input_email" class="bold-20 color-white">Repita a senha</label>
-                            <input type="password" id="inputConfirmaSenha" class="bold-20 input-login"
-                                placeholder="*********">
-                        </div>
-                    </div>
-                    <button id="butao" class="btn-login" onclick="verificarEmail()">Continuar</button>
+                        <button id="butao" class="btn-login" onclick="verificarEmail()">Continuar</button>
                     </div>
 
-                    
+
 
                     <div id="formulario" style="display: none" class="formulario">
                         <div style="width: 80%; display: flex;" class="louquinha">
@@ -117,7 +118,6 @@
                             <label for="input_email" class="bold-20 color-white">Nome completo</label>
                             <input type="text" id="inputNome" class="bold-20 input-login" placeholder="Nome completo">
                         </div>
-
                         <button onclick="verificarUsuario()" class="btn-login">Cadastrar</button>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 </body>
 <script src="js/continuacao.js"></script>
 <script src="js/autenticacaoUsuario.js"></script>
@@ -136,7 +136,7 @@
 
 <script>
 
-function cadastrar() {
+    function cadastrar() {
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -173,7 +173,7 @@ function cadastrar() {
                 idEmpresaServer: idEmpresaVar,
                 idGerenteServer: idGerenteVar
             })
-            
+
         }).then(function (resposta) {
             console.log("");
             console.log("resposta: ", resposta);
@@ -208,12 +208,12 @@ function cadastrar() {
 
             if (resposta.ok) {
                 console.log(resposta);
-                
-          
 
-                    cadastrar();
 
-               
+
+                cadastrar();
+
+
 
             } else {
                 console.log("Houve um erro ao tentar realizar o login!");
@@ -228,7 +228,6 @@ function cadastrar() {
         })
 
         return false;
-        }
-    
-</script>
+    }
 
+</script>
