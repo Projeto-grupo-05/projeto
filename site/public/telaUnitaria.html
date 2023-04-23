@@ -16,116 +16,133 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/menuLateral.css">
     <title>Informações da Máquina</title>
 </head>
 
-<body onload="verificarMaquina()">
+<body onload="verificarMaquina()" style="overflow-x: hidden;">
+    <div class="menu-lateral" id="menuLateral">
+        <div>
+            <img src="assets/logo/logo-light.svg" class="logo">
+        </div>
+        <div class="div-menu-icones">
+            <a href="cadastro_maquina.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                </div>
+            </a>
+            <a href="avisosDeMaquinas.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="menu-lateral" id="menuLateralG">
+        <div>
+            <img src="assets/logo/logo-light.svg" class="logo">
+        </div>
+        <div class="div-menu-icones">
+            <a href="dashboard.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                </div>
+            </a>
+            <a href="cadastro_maquina.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                </div>
+            </a>
+            <a href="avisosDeMaquinas.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+            </a>
+            <a href="cadastroInterno.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                </div>
+            </a>
+        </div>
+    </div>
 
 
-    <div class="container2">
-        <div class="menu">
-            <div class="img">
-                <img src="assets/logo/logo-dark.svg" style="width: 80%;">
+    <div class="mainContent">
+
+        <div class="nomeStatus">
+            <div class="nome bold-20">
+                <li class="color-azul-caneta">
+                    Nome da máquina:
+                    <span id="nomeMaquina"></span>
+                </li>
             </div>
 
-            <div class="painel">
-                <a class="agora">
-                    <div class="icones sbold-16">
-                        <i class="ri-home-4-line"></i>
-                        <li> Dashboard </li>
-                    </div>
-                </a>
+            <div id="statusMqn" class="status bold-20">
+                <li class="color-azul-caneta">
+                    Status
+                </li>
 
-                <div class="icones sbold-16 color-azul-caneta">
-                    <i class="ri-macbook-line"></i>
-                    <li> Gerenciamento de máquinas </li>
-                </div>
-                <div class="icones sbold-16 color-azul-caneta">
-                    <i class="ri-file-text-fill"></i>
-                    <li> Histórico de incidentes </li>
-                </div>
-                <div class="icones sbold-16 color-azul-caneta">
-                    <i class="ri-tools-line"></i>
-                    <li> Histórico de manutenções </li>
-                </div>
+                <span id="cor">
+                    <i class="ri-checkbox-blank-circle-fill"></i>
+                </span>
             </div>
         </div>
 
-        <div class="dadosMaquina">
+        <div id="grafico" class="grafico" style="width: 55%">
+            <canvas id="graficoIncidente"></canvas>
+        </div>
 
-            <div class="nomeStatus">
-                <div class="nome bold-20">
-                    <li class="color-azul-caneta">
-                        Nome da máquina: 
-                        <span id="nomeMaquina"></span>
-                    </li>
-                </div>
+        <div id="infoMaquina" class="formulario" style="display: block;">
+            <span class="color-azul-caneta bold-24"> Informações da Máquina</span>
 
-                <div id="statusMqn" class="status bold-20">
-                    <li class="color-azul-caneta">
-                        Status
-                    </li>
-
-                    <span id="cor">
-                        <i class="ri-checkbox-blank-circle-fill"></i>
-                    </span>
-                </div>
-            </div>
-
-            <div id="grafico" class="grafico" style="width: 55%">
-                <canvas id="graficoIncidente"></canvas>
-            </div>
-
-            <div id="infoMaquina" class="formulario">
-                <span class="color-azul-caneta bold-24"> Informações da Máquina</span>
-
-                <div class="dados">
-                    <div class="formularioEsquerda">
-                        <div class="campos">
-                            <div class="campo">
-                                <span class="color-azul sbold-24">CPU</span>
-                                <span id="buscarUCP">--</span>
-                            </div>
-                        </div>
-                        <div class="campos">
-                            <div class="campo">
-                                <span class="color-azul sbold-24">RAM</span>
-                                <span id="buscarRAM">--</span>
-                            </div>
-                        </div>
-                        <div class="campos">
-                            <div class="campo">
-                                <span class="color-azul sbold-24">HDD/SSD</span>
-                                <span id="buscarArmazenamento">--</span>
-                            </div>
+            <div class="dados">
+                <div class="formularioEsquerda">
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">CPU</span>
+                            <span id="buscarUCP">--</span>
                         </div>
                     </div>
-
-                    <div class="formularioDireita">
-                        <div class="campos">
-                            <div class="campo">
-                                <span class="color-azul sbold-24">SO</span>
-                                <span id="buscarSO">--</span>
-                            </div>
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">RAM</span>
+                            <span id="buscarRAM">--</span>
                         </div>
-                        <div class="campos">
-                            <div class="campo">
-                                <span class="color-azul sbold-24">Modelo</span>
-                                <span id="buscarModelo">--</span>
-                            </div>
-                        </div>
-                        <div class="campos">
-                            <div class="campo">
-                                <span class="color-azul sbold-24">Cor</span>
-                                <span id="buscarCor">--</span>
-                            </div>
+                    </div>
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">HDD/SSD</span>
+                            <span id="buscarArmazenamento">--</span>
                         </div>
                     </div>
                 </div>
 
+                <div class="formularioDireita">
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">SO</span>
+                            <span id="buscarSO">--</span>
+                        </div>
+                    </div>
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">Modelo</span>
+                            <span id="buscarModelo">--</span>
+                        </div>
+                    </div>
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">Cor</span>
+                            <span id="buscarCor">--</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
+
+    </div>
     </div>
 
 </body>
@@ -133,3 +150,4 @@
 </html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/telaUnitaria.js"></script>
+<script src="js/autenticacaoUsuario.js"></script>

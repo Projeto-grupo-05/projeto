@@ -26,12 +26,57 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+    <link rel="stylesheet" href="css/menuLateral.css">
 
 </head>
 
-<body>
-    <a href="javascript:history.back()">Voltar</a>
+<body style="overflow-x: hidden;">
+    <div class="menu-lateral" id="menuLateralG">
+        <div>
+            <img src="assets/logo/logo-light.svg" class="logo">
+        </div>
+        <div class="div-menu-icones">
+            <a href="dashboard.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                </div>
+            </a>
+            <a href="cadastro_maquina.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                </div>
+            </a>
+            <a href="avisosDeMaquinas.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+            </a>
+            <a href="cadastroInterno.html">
+                <div class="menu-icones-agora">
+                    <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="menu-lateral" id="menuLateral">
+        <div>
+            <img src="assets/logo/logo-light.svg" class="logo">
+        </div>
+        <div class="div-menu-icones">
+            <a href="cadastro_maquina.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                </div>
+            </a>
+            <a href="avisosDeMaquinas.html">
+                <div class="menu-icones-agora">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="mainContent">
         <div class="caixa-maior">
             <div class="corpo">
             </div>
@@ -42,34 +87,41 @@
                 <div class="sombra">
                     <div id="formulario-back" class="formulario-back">
 
-                        <h2 class="titulo-branco-azul">CADASTRE</h2>
-                        <input type="text" id="inputEmail" class="sbold-24" placeholder="Insira seu e-mail">
-                        <input type="text" id="inputSenha" class="sbold-24" placeholder="Insira sua senha">
-                        <input type="text" id="inputConfirmaSenha" class="sbold-24" placeholder="Repita a senha">
-
-                        <button id="butao" class="btn-login">Continuar</button>
+                        <h2 class="titulo-branco-azul">Passo 1/2</h2>
+                        <div class="input-group" style="display: flex;">
+                            <div class="box-input" style="width: 100%;">
+                                <label for="input_email" class="bold-20 color-white">E-mail</label>
+                                <input type="email" id="inputEmail" class="bold-20 input-login"
+                                    placeholder="exemplo@email.com">
+                            </div>
+                            <div class="box-input" style="width: 100%;">
+                                <label for="input_email" class="bold-20 color-white">Senha</label>
+                                <input type="password" id="inputSenha" class="bold-20 input-login"
+                                    placeholder="*********">
+                            </div>
+                            <div class="box-input" style="width: 100%;">
+                                <label for="input_email" class="bold-20 color-white">Repita a senha</label>
+                                <input type="password" id="inputConfirmaSenha" class="bold-20 input-login"
+                                    placeholder="*********">
+                            </div>
+                        </div>
+                        <button id="butao" class="btn-login" onclick="verificarEmail()">Continuar</button>
                     </div>
+
+
 
                     <div id="formulario" style="display: none" class="formulario">
                         <div style="width: 80%; display: flex;" class="louquinha">
                             <i id="arrowLeft" style="color: white;" class="ri-arrow-left-line"></i>
-
                         </div>
-                        <h2 class="titulo-branco-azul">FINALIZE O CADASTRO</h2>
+                        <h2 class="titulo-branco-azul">Passo 2/2</h2>
 
-                        <input type="text" id="inputNome" class="sbold-24" placeholder="Nome">
-
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Nome completo</label>
+                            <input type="text" id="inputNome" class="bold-20 input-login" placeholder="Nome completo">
+                        </div>
                         <button onclick="verificarUsuario()" class="btn-login">Cadastrar</button>
                     </div>
-                </div>
-                <div class="img-atrativa">
-                    <div class="frase">
-                        <p class="xbold-36">CADASTRE UM FUNCIONÁRO!</p>
-                        <h3>É um prazer recebê-lo.</h3>
-                    </div>
-
-                    <img src="assets/images/ilustra-cadastro.svg" alt="cara passando pela porta" width="100%"
-                        style="margin-top: 30px;">
                 </div>
             </div>
 
@@ -77,14 +129,16 @@
             </div>
         </div>
     </div>
+    </div>
 </body>
 <script src="js/continuacao.js"></script>
+<script src="js/autenticacaoUsuario.js"></script>
 
 </html>
 
 <script>
 
-function cadastrar() {
+    function cadastrar() {
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -121,15 +175,14 @@ function cadastrar() {
                 idEmpresaServer: idEmpresaVar,
                 idGerenteServer: idGerenteVar
             })
-            
+
         }).then(function (resposta) {
             console.log("");
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-
-                // window.location.reload();
-
+                swalCadastroRealizado()
+                window.location.reload();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
@@ -156,12 +209,12 @@ function cadastrar() {
 
             if (resposta.ok) {
                 console.log(resposta);
-                
-          
 
-                    cadastrar();
 
-               
+
+                cadastrar();
+
+
 
             } else {
                 console.log("Houve um erro ao tentar realizar o login!");
@@ -176,7 +229,12 @@ function cadastrar() {
         })
 
         return false;
-        }
-    
+    }
+
 </script>
 
+<script>
+    function swalCadastroRealizado() {
+        Swal.fire('Cadastro realizado com sucesso!')
+}
+</script>

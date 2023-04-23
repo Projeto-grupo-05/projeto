@@ -30,33 +30,60 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" href="css/menuLateral.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Gerenciamento de Máquinas</title>
 </head>
 
-<body onload="listar()">
+<body onload="listar()" style="overflow-x: hidden;">
     <div class="container2">
         <div class="menu-lateral" id="menuLateral">
             <div>
-                <img src="assets/logo/logo-dark.svg" class="logo">
+                <img src="assets/logo/logo-light.svg" class="logo">
             </div>
             <div class="div-menu-icones">
-                <div class="menu-icones">
-                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
-                </div>
-                <div class="menu-icones-agora">
-                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
-                </div>
-                <div class="menu-icones">
-                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
-                </div>
-                <div class="menu-icones">
-                    <div class="div-icones"><i class="ri-tools-line"></i></div> Histórico de manutenções
-                </div>
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="menu-lateral" id="menuLateralG">
+            <div>
+                <img src="assets/logo/logo-light.svg" class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="dashboard.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                    </div>
+                </a>
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+                <a href="cadastroInterno.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                    </div>
+                </a>
             </div>
         </div>
 
-        <div class="divprincipal">
-
+        <div class="mainContent">
             <div class="titulo">
                 <span class="texto-titulo">
                     <div class="menu-lateral-hamburguer">
@@ -64,21 +91,26 @@
                             <img src="assets/icons/hamb-icon.svg" class="icon-hamb" onclick="sideBar()">
                         </div>
                     </div>
-                    Gerenciamento de Máquinas
+                    <div style="display: flex; justify-content: space-between;">
+                        <span> Gerenciamento de Máquinas</span>
+                        <a href="login.html" class="sair"><i class="ri-door-open-fill" style="color: #990000;"
+                            onclick="sair()"></i>
+                        </a>
+                    </div>
                 </span>
                 <div class="botoes-selecao">
                     <a href="listagem_maquina.html">
                         <div class="botao-selecao-agora">Listagem</div>
                     </a>
                     <a href="cadastro_maquina.html">
-                        <div class="botao-selecao">Cadastro</div>
+                        <div class="botao-selecao" style="color: var(--azul);" >Cadastro</div>
                     </a>
                 </div>
             </div>
             <div class="formulario">
                 <div class="formulario-titulo"><span class="spam-titulo-formulario">Listagem de Máquinas</span></div>
                 <div class="formulario-inputs">
-                    <table id="listagem">
+                    <table id="listagem" style="margin-top: 40px;">
                     </table>
                 </div>
                 <!-- <div class="formulario-botao"><button>1</button><button>2</button></div> -->
@@ -119,6 +151,7 @@
 </body>
 
 </html>
+<script src="js/autenticacaoUsuario.js"></script>
 
 <script>
     var teste = false;
@@ -185,9 +218,9 @@
                                     <td>-</td>
                                     <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].idMaquina}, '${resposta[i].Hostname}', '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
                                     <td><i class="ri-delete-bin-line pointer" onclick="excluirMaquina(${resposta[i].idMaquina})"></i></td>
+                                    <td><i class="ri-dashboard-3-line pointer" onclick="telaMaquina(${resposta[i].idMaquina})"></i></td>
                                     </tr>`;
                     }
-
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -233,7 +266,7 @@
 
     function telaMaquina(idMaquina) {
         sessionStorage.ID_MAQUINA = idMaquina;
-        window.location = "listagem_maquina.html";
+        window.location = "telaUnitaria.html";
     }
 
     function configuraModal(idMaquina) {
@@ -277,9 +310,7 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Solução registrada!");
-                window.location = "listagem_maquina.html"
-
+                swalUpdateRealizado()
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -289,4 +320,16 @@
             console.log(`#ERRO: ${resposta}`);
         });
     }
+</script>
+
+<script>
+    function swalUpdateRealizado() {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Solução registrada com sucesso',
+            showConfirmButton: false,
+            timer: 1500
+            })
+}  
 </script>

@@ -24,10 +24,6 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-
 </head>
 
 <body>
@@ -38,10 +34,8 @@
                     <h5 class="text-white h4 d-flex jc-center"><img src="../../assets/logo/logo-name.svg" width="20%"
                             alt=""></h5>
                     <div class="item-menu-collapse d-flex w-100 jc-between">
-                        <a href="index.html" class="color-white">HOME</a>
-                        <a href="#solucao" class="color-white">SOLUÇÃO</a>
-                        <a href="" class="color-white">SOBRE</a>
-                        <a href="login.html" class="color-white">ENTRAR</a>
+                        <a href="index.html" class="color-white">Home</a>
+                        <a href="login.html" class="color-white">Entrar</a>
                     </div>
                 </div>
             </div>
@@ -58,78 +52,87 @@
             <div class="container2 header-bg">
                 <div class="item">
                     <li class="item-branco-azul">
-                        <a href="index.html">HOME</a>
-                    </li>
-                    <li class="item-branco-azul">
-                        <a href="#solucao">SOLUÇÃO</a>
+                        <a href="index.html">Home</a>
                     </li>
                 </div>
 
                 <img src="assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
-                <div class="item">
+                <div class="item" style=" justify-content: end;">
                     <li class="item-branco-azul">
-                        <a href="">SOBRE</a>
-                    </li>
-                    <li class="item-branco-azul">
-                        <a href="login.html">ENTRAR</a>
+                        <a href="login.html">Entrar</a>
                     </li>
                 </div>
             </div>
         </div>
     </header>
 
-        <div class="caixa-maior">
-            <div class="corpo">
-            </div>
+    <div class="caixa-maior">
+        <div class="corpo">
+        </div>
 
-            <div class="caixa-menor">
+        <div class="caixa-menor">
+            <div class="sombra">
+                <div id="formulario-back" class="formulario-back">
 
-
-                <div class="sombra">
-                    <div id="formulario-back" class="formulario-back">
-
-                        <h2 class="titulo-branco-azul">CADASTRE-SE</h2>
-                        <input type="text" id="inputEmail" class="sbold-24" placeholder="Insira seu e-mail">
-                        <input type="text" id="inputSenha" class="sbold-24" placeholder="Insira sua senha">
-                        <input type="text" id="inputConfirmaSenha" class="sbold-24" placeholder="Repita a senha">
-
-                        <label class="sbold-16 color-white">Já possui uma conta?
-                            <a href="login.html" class="color-white">Entre aqui!</a>
-                        </label>
-                        <button id="butao" class="btn-login" onclick="verificarEmail()">Continuar</button>
-                    </div>
-
-                    <div id="formulario" style="display: none" class="formulario">
-                        <div style="width: 80%; display: flex;" class="louquinha">
-                            <i id="arrowLeft" style="color: white;" class="ri-arrow-left-line"></i>
-
+                    <h2 class="titulo-branco-azul">Passo 1/2</h2>
+                    <div class="input-group" style="display: flex;">
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">E-mail</label>
+                            <input type="email" id="inputEmail" class="bold-20 input-login"
+                                placeholder="exemplo@email.com">
                         </div>
-                        <h2 class="titulo-branco-azul">ENTRE EM SUA CONTA</h2>
-
-                        <input type="text" id="inputToken" class="sbold-24" placeholder="Token">
-
-                        <input type="text" id="inputNome" class="sbold-24" placeholder="Joana Batatinha">
-
-
-
-                        <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
-                        <button onclick="autenticarT()" class="btn-login">Cadastrar</button>
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Senha</label>
+                            <input type="password" id="inputSenha" class="bold-20 input-login" placeholder="*********">
+                        </div>
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Repita sua senha</label>
+                            <input type="password" id="inputConfirmaSenha" class="bold-20 input-login"
+                                placeholder="*********">
+                        </div>
                     </div>
+                    <a href="login.html" class="sbold-16 color-white">
+                        Já possui uma conta? Entre aqui!
+                    </a>
+                    <button id="butao" class="btn-login" onclick="verificarEmail()">Continuar</button>
                 </div>
-                <div class="img-atrativa">
-                    <div class="frase">
-                        <p class="xbold-36">JUNTE-SE A NÓS!</p>
-                        <h3>É um prazer recebê-lo.</h3>
+
+                <div id="formulario" style="display: none" class="formulario">
+                    <div style="width: 80%; display: flex;" class="louquinha">
+                        <i id="arrowLeft" style="color: white;" class="ri-arrow-left-line"></i>
+
+                    </div>
+                    <h2 class="titulo-branco-azul">Passo 2/2</h2>
+                    <div class="input-group" style="display: flex;">
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Token</label>
+                            <input type="text" id="inputToken" class="bold-20 input-login" placeholder="Token">
+                        </div>
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Nome completo</label>
+                            <input type="text" id="inputNome" class="bold-20 input-login" placeholder="Nome completo">
+                        </div>
                     </div>
 
-                    <img src="assets/images/ilustra-cadastro.svg" alt="cara passando pela porta" width="100%"
-                        style="margin-top: 30px;">
+
+                    <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
+                    <button onclick="autenticarT()" class="btn-login">Cadastrar</button>
                 </div>
             </div>
+            <div class="img-atrativa">
+                <div class="frase">
+                    <p class="xbold-36">JUNTE-SE A NÓS!</p>
+                    <h3>É um prazer recebê-lo.</h3>
+                </div>
 
-            <div class="corpo">
+                <img src="assets/images/ilustra-cadastro.svg" alt="cara passando pela porta" width="100%"
+                    style="margin-top: 30px;">
             </div>
         </div>
+
+        <div class="corpo">
+        </div>
+    </div>
     </div>
 </body>
 <script src="js/continuacao.js"></script>
@@ -138,7 +141,7 @@
 
 <script>
 
-function cadastrar() {
+    function cadastrar() {
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -149,8 +152,7 @@ function cadastrar() {
         var idEmpresaVar = sessionStorage.ID_EMPRESA;
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            swalCadastroError()
 
 
             return false;
@@ -173,7 +175,7 @@ function cadastrar() {
                 senhaServer: senhaVar,
                 idEmpresaServer: idEmpresaVar
             })
-            
+
         }).then(function (resposta) {
             console.log("");
             console.log("resposta: ", resposta);
@@ -195,7 +197,7 @@ function cadastrar() {
 
     function autenticarT() {
         var tokenVar = inputToken.value;
-        
+
         fetch("/usuarios/autenticarT", {
             method: "POST",
             headers: {
@@ -223,9 +225,9 @@ function cadastrar() {
 
             } else {
                 Swal.fire(
-                'Token inválido',
-                'Digite o token fornecido por sua empresa!',
-                'error'
+                    'Token inválido',
+                    'Digite o token fornecido por sua empresa!',
+                    'error'
                 )
                 console.log("Houve um erro ao tentar realizar a autenticação do token!");
 
@@ -240,6 +242,27 @@ function cadastrar() {
 
         // return false;
     }
-    
-    
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function swalCadastroError() {
+        Swal.fire(
+            'Falha ao cadastrar!',
+            'Preencha todos os campos para prosseguir.',
+            'warning'
+        )
+    }
+
+    function swalLoginInexistente() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro ao entrar!',
+            text: 'Parece que não está cadastrado em nosso sistema!',
+            footer: '<a href="cadastroFunc.html">Deseja cadastrar-se? Clique aqui!</a>'
+        })
+    }
 </script>

@@ -26,6 +26,11 @@
 </head>
 
 <body>
+    <style>
+        body {
+            overflow-y: hidden;
+        }
+    </style>
     <div class="container2">
         <header>
             <div class="pos-f-t">
@@ -34,10 +39,9 @@
                         <h5 class="text-white h4 d-flex jc-center"><img src="assets/logo/logo-name.svg" width="20%"
                                 alt=""></h5>
                         <div class="item-menu-collapse d-flex w-100 jc-between">
-                            <a href="index.html" class="color-white">HOME</a>
-                            <a href="#solucao" class="color-white">SOLUÇÃO</a>
-                            <a href="" class="color-white">SOBRE</a>
-                            <a href="login.html" class="color-white">CADASTRAR-SE</a>
+                            <a href="index.html" class="color-white">Home</a>
+                            <a href="cadastroFunc.html" class="color-white">Cadastrar-se</a>
+                            <a href="cadastroFunc.html" class="color-white">Entrar</a>
                         </div>
                     </div>
                 </div>
@@ -54,20 +58,14 @@
                 <div class="container2 header-bg">
                     <div class="item">
                         <li class="item-branco-azul">
-                            <a href="index.html">HOME</a>
-                        </li>
-                        <li class="item-branco-azul">
-                            <a href="#solucao">SOLUÇÃO</a>
+                            <a href="index.html">Home</a>
                         </li>
                     </div>
 
                     <img src="assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
-                    <div class="item">
+                    <div class="item" style=" justify-content: end;">
                         <li class="item-branco-azul">
-                            <a href="">SOBRE</a>
-                        </li>
-                        <li class="item-branco-azul">
-                            <a href="cadastroFunc.html">CADASTRAR-SE</a>
+                            <a href="cadastroFunc.html">Cadastrar-se</a>
                         </li>
                     </div>
                 </div>
@@ -92,15 +90,17 @@
                 <div class="sombra">
                     <div class="formulario">
                         <h2 class="titulo-branco-azul">ENTRE EM SUA CONTA</h2>
-
-                        <input type="text" id="inputEmail" class="sbold-24" placeholder="E-mail">
-                        <input type="password" id="inputSenha" class="sbold-24" placeholder="Senha">
-                        <input type="text" id="inputToken" class="sbold-24" placeholder="Token">
-
-                        <label class="sbold-16"> Não tem conta?
-                            <a href="cadastroFunc.html">Cadastre-se já!</a>
-                        </label>
-
+                        <div class="box-input">
+                            <label for="input_email" class="bold-20 color-white">E-mail</label>
+                            <input type="email" id="input_email" class="bold-20 input-login" placeholder="exemplo@email.com">
+                        </div>
+                        <div class="box-input">
+                            <label for="input_email" class="bold-20 color-white">Senha</label>
+                            <input type="password" id="input_senha" class="bold-20 input-login" placeholder="*********">
+                        </div>
+                        <a href="cadastroFunc.html" class="sbold-16 opcao-cadastral">
+                            Não tem conta? Cadastre-se já!
+                        </a>
                         <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
                         <a><button onclick="entrar()" class="btn-login">Entrar</button></a>
                     </div>
@@ -113,78 +113,107 @@
         </div>
     </div>
 </body>
-
 </html>
+
+<!-- sweetalert  -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <script>
+    function swalLoginError() {
+        Swal.fire({
+            title: 'Falha ao entrar!',
+            text: 'Preencha todos os campos para prosseguir.',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+        })
+        
+    }
 
+    function swalEmailError() {
+        Swal.fire({
+            title: 'Opa!',
+            text: 'Digite um e-mail válido!',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        })
+    }
 
+    function swalLoginInexistente() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro ao entrar!',
+            text: 'Parece que não está cadastrado em nosso sistema!',
+            footer: '<a href="cadastroFunc.html">Deseja cadastrar-se? Clique aqui!</a>'
+        })
+    }
+    
+</script>
+
+<script>
     function entrar() {
-
-        var emailVar = inputEmail.value;
-        var senhaVar = inputSenha.value;
-        var tokenVar = inputToken.value;
-
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
         const regexEmail = /\S+@\S+.\S+/;
         const verificaEmail = regexEmail.test(emailVar);
 
-        if (emailVar == "" || senhaVar == "" || tokenVar == "") {
-            console.log("Validação não passou");
-            alert('Preencha todos os campos!');
+        if (emailVar == "" || senhaVar == "") {
+            swalLoginError()
+            
             return false;
-        } else if (!verificaEmail) {
-            alert('O email precisa ser válido!')
+        }else if(!verificaEmail){
+            swalEmailError()
+        }
+        else {
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
+
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        sessionStorage.EMAIL_USUARIO = emailVar;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.ID_EMPRESA = json.idEmpresa;
+                        sessionStorage.FK_GERENTE = json.fkGerente;
+
+
+                        setTimeout(function () {
+                            window.location = "http://localhost:8080/cadastro_maquina.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    swalLoginInexistente()
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
             return false;
         }
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar,
-                toeknServer: tokenVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.ID_EMPRESA = json.idEmpresa;
-                    sessionStorage.FK_GERENTE = json.fkGerente;
-
-
-                    setTimeout(function () {
-                        window.location = "http://localhost:8080/cadastro_maquina.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-                console.log("Houve um erro ao tentar realizar o login!");
-                alert('Houve um erro ao tentar realizar o login!');
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
     }
-    
 </script>

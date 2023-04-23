@@ -16,41 +16,57 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/menuLateral.css">
     <title>DASHBOARD</title>
 </head>
 
-<body>
-
-
-    <div class="container2">
-        <div class="menu">
-            <div class="img">
-                <img src="assets/logo/logo-dark.svg" style="width: 80%;">
+<body style="overflow-x: hidden;">
+        <div class="menu-lateral" id="menuLateral">
+            <div>
+                <img src="assets/logo/logo-light.svg" class="logo">
             </div>
-
-            <div class="painel">
-                <a class="agora">
-                    <div class="icones sbold-16">
-                        <i class="ri-home-4-line"></i>
-                        <li> Dashboard </li>
+            <div class="div-menu-icones">
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
                     </div>
                 </a>
-
-                <div class="icones sbold-16 color-azul-caneta">
-                    <i class="ri-macbook-line"></i>
-                    <li> Gerenciamento de máquinas </li>
-                </div>
-                <div class="icones sbold-16 color-azul-caneta">
-                    <i class="ri-file-text-fill"></i>
-                    <li> Histórico de incidentes </li>
-                </div>
-                <div class="icones sbold-16 color-azul-caneta">
-                    <i class="ri-user-add-fill"></i>
-                    <li> Adicionar Funcionário </li>
-                </div>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
             </div>
         </div>
-
+        <div class="menu-lateral" id="menuLateralG">
+            <div>
+                <img src="assets/logo/logo-light.svg" class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="dashboard.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                    </div>
+                </a>
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+                <a href="cadastroInterno.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                    </div>
+                </a>
+            </div>
+        </div>
+<div class="mainContent">
         <div class="dados">
             <div class="alerta">
                 <div class="kpi red">
@@ -91,8 +107,10 @@
         </div>
     </div>
 
+
 </body>
 
 </html>
+<script src="js/autenticacaoUsuario.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/dashboard.js"></script>

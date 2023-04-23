@@ -189,6 +189,33 @@ input {
     background-color: #ADC5F8;
 }
 
+.input-login:focus {
+    outline: none;
+    scale: 1.05;
+    background-color: rgb(123, 160, 240);
+    color: var(--branco-azul);
+    -webkit-box-shadow: 0px 10px 14px -7px rgba(93, 52, 160, 0.516);
+    -moz-box-shadow: 0px 10px 14px -7px rgba(93, 52, 160, 0.516);
+    box-shadow: 0px 10px 14px -7px rgba(93, 52, 160,  0.516);
+
+}
+
+.opcao-cadastral:hover {
+    text-decoration: underline!important;
+}
+
+.input-login:focus::placeholder {
+    color: rgb(207, 217, 255);
+}
+
+.input-login::placeholder {
+    color: #868891;
+}
+
+.input-login {
+    color: var(--azul-caneta);
+}
+
 .sbold-16 {
     font-weight: 600;
     font-size: 13px;
@@ -213,7 +240,7 @@ input {
 }
 
 .btn-login:hover {
-    background-color: #88B6FB;
+    background-color: var(--azul);
     color: var(--branco-azul);
 }
 

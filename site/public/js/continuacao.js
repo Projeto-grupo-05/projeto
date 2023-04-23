@@ -1,9 +1,35 @@
+
+    function swalLoginError() {
+        Swal.fire(
+            'Falha ao entrar!',
+            'Preencha todos os campos para prosseguir.',
+            'warning'
+        )
+    }
+
+    function swalEmailError() {
+        Swal.fire(
+            'Falha ao entrar!',
+            'Fornceça um e-mail válido!',
+            'error'
+        )
+    }
+
+    function swalLoginInexistente() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro ao entrar!',
+            text: 'Parece que não está cadastrado em nosso sistema!',
+            footer: '<a href="cadastroFunc.html">Deseja cadastrar-se? Clique aqui!</a>'
+        })
+    }
+
 function verificarEmail() {
     const regexEmail = /\S+@\S+.\S+/;
     const verificaEmail = regexEmail.test(inputEmail.value);
 
-    if (!verificaEmail) {
-        alert('O email precisa ser válido!')
+    if (!verificaEmail) {        
+        swalEmailError()
     } else {
         const proximo = document.getElementById('butao');
         const caixadados2 = document.getElementById('formulario');
