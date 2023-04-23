@@ -106,7 +106,7 @@ function cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, te
     
     //Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     var instrucao = `
-    INSERT INTO Empresa (codigo, nomeFantasia, razaoSocial, CNPJ, telefone, email, fkEndereco) VALUES ('${codigo}', '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', ${cnpj}, '${telefone}', '${email}', (SELECT TOP 1 idEndereco FROM Endereco ORDER BY idEndereco DESC));                                                               
+    INSERT INTO Empresa (codigo, nomeFantasia, razaoSocial, CNPJ, telefone, email, fkEndereco) VALUES ('${codigo}', '${nomeEmpresaFantasia}', '${nomeEmpresaSocial}', '${cnpj}', '${telefone}', '${email}', (SELECT TOP 1 idEndereco FROM Endereco ORDER BY idEndereco DESC));                                                               
    `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

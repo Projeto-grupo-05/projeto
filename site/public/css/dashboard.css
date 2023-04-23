@@ -54,6 +54,24 @@ li {
     color: var(--branco-azul);
 }
 
+
+select{
+    width: 250px;
+    height: 6vh;
+    padding-left: 6px;
+    border: 3px;
+    border-radius: 4px;
+    border-style: solid;
+    border-color: black;
+    background-color: #f8f8f8;
+}
+
+select:hover{
+    border-color: #f8f8f8;
+    background-color: #85A1DB;
+    color: var(--branco-azul);
+}
+
 .grafico{
     margin-top: 20px;
 }

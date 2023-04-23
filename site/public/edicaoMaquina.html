@@ -5,15 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edicao Maquinas</title>
+    <title>Edicao Maquinas | SollicitUS</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/edicaoMaquina.css">
 </head>
 
 <body onload="">
-    HOSTNAME: <input type="text" id="iptHostname"><br>
-    FABRICANTE: <input type="text" id="iptFabricante"><br>
-    MODELO: <input type="text" id="iptModelo"><br>
-    COR: <input type="text" id="iptCor"><br>
-    <button onclick="editar()">EDITAR</button>
+
+    <div class="container">
+        <div class="caixa">
+            <img src="./assets/logo/logo-name.svg" alt="SollicitUS" style="width: 80%;">
+            <span id="aviso" class="bold-20 color-white"></span>
+            <a href="./listagem_maquina.html">
+                <button class="btn-voltar">Voltar</button>
+            </a>
+        </div>
+        <div class="caixa">
+            <li class="titulo bold-24 color-white">Edição de Máquina</li>
+            <div class="formulario">
+                <li class="bold-20 color-white">Hostname</li>
+                <input type="text" class="campo" id="iptHostname" placeholder="Novo/Atual HOSTNAME">
+                <li class="bold-20 color-white">Fabricante</li>
+                <input type="text" class="campo" id="iptFabricante" placeholder="Novo/Atual FABRICANTE">
+                <li class="bold-20 color-white">Modelo</li>
+                <input type="text" class="campo" id="iptModelo" placeholder="Novo/Atual MODELO">
+                <li class="bold-20 color-white">Cor</li>
+                <input type="text" class="campo" id="iptCor" placeholder="Novo/Atual COR">
+                <button onclick="editar()" class="btn-atualizarMaquina">EDITAR</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 
@@ -42,10 +63,14 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Máquina atualizada com sucesso!");
-                window.location = "listagem_maquina.html"
+                aviso.innerHTML = "Máquina atualizada com sucesso!";
+                setTimeout(function () {
+                    window.location = "./listagem_maquina.html"
+                }, 4000);
+
+
             } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
+                aviso.innerHTML = "ERRO 404!";
             } else {
                 // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
