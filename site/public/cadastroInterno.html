@@ -36,9 +36,11 @@
             <img src="assets/logo/logo-light.svg" class="logo">
         </div>
         <div class="div-menu-icones">
-            <div class="menu-icones">
-                <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
-            </div>
+            <a href="dashboard.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                </div>
+            </a>
             <a href="cadastro_maquina.html">
                 <div class="menu-icones">
                     <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
@@ -179,9 +181,8 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-
-                // window.location.reload();
-
+                swalCadastroRealizado()
+                window.location.reload();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
@@ -230,4 +231,10 @@
         return false;
     }
 
+</script>
+
+<script>
+    function swalCadastroRealizado() {
+        Swal.fire('Cadastro realizado com sucesso!')
+}
 </script>

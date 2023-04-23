@@ -31,11 +31,12 @@
         crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="css/menuLateral.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>Gerenciamento de Máquinas</title>
 </head>
 
-<body onload="listar()">
+<body onload="listar()" style="overflow-x: hidden;">
     <div class="container2">
         <div class="menu-lateral" id="menuLateral">
             <div>
@@ -90,7 +91,12 @@
                             <img src="assets/icons/hamb-icon.svg" class="icon-hamb" onclick="sideBar()">
                         </div>
                     </div>
-                    Gerenciamento de Máquinas
+                    <div style="display: flex; justify-content: space-between;">
+                        <span> Gerenciamento de Máquinas</span>
+                        <a href="login.html" class="sair"><i class="ri-door-open-fill" style="color: #990000;"
+                            onclick="sair()"></i>
+                        </a>
+                    </div>
                 </span>
                 <div class="botoes-selecao">
                     <a href="listagem_maquina.html">
@@ -304,9 +310,7 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Solução registrada!");
-                window.location = "listagem_maquina.html"
-
+                swalUpdateRealizado()
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -316,4 +320,16 @@
             console.log(`#ERRO: ${resposta}`);
         });
     }
+</script>
+
+<script>
+    function swalUpdateRealizado() {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Solução registrada com sucesso',
+            showConfirmButton: false,
+            timer: 1500
+            })
+}  
 </script>
