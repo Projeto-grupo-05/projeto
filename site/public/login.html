@@ -131,11 +131,15 @@
 
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
+        const regexEmail = /\S+@\S+.\S+/;
+        const verificaEmail = regexEmail.test(emailVar);
 
         if (emailVar == "" || senhaVar == "") {
             swalLoginError()
-
+            
             return false;
+        }else if(!verificaEmail){
+            swalEmailError()
         }
         else {
             console.log("FORM LOGIN: ", emailVar);
@@ -197,6 +201,14 @@
             'Falha ao entrar!',
             'Preencha todos os campos para prosseguir.',
             'warning'
+        )
+    }
+
+    function swalEmailError() {
+        Swal.fire(
+            'Falha ao entrar!',
+            'O email não existe!',
+            'error'
         )
     }
 
