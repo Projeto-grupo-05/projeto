@@ -24,9 +24,9 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-        <!-- sweetalert  -->
-        
-<link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- sweetalert  -->
+
+    <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
                     </button>
                 </nav>
             </div>
-    
+
             <div class="header bold-24 bg-azul-claro">
                 <div class="container2 header-bg">
                     <div class="item">
@@ -65,7 +65,7 @@
                             <a href="index.html">Home</a>
                         </li>
                     </div>
-    
+
                     <img src="assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
                     <div class="item" style=" justify-content: end;">
                         <li class="item-branco-azul">
@@ -95,11 +95,20 @@
                     <div class="formulario">
                         <h2 class="titulo-branco-azul">ENTRE EM SUA CONTA</h2>
 
-                        <input type="text" id="input_email" class="bold-20 input-login" placeholder="E-mail">
-                        <input type="text" id="input_senha" class="bold-20 input-login" placeholder="Senha">
-                        <input type="text" id="input_token" class="bold-20 input-login" placeholder="Token">
+                        <div class="box-input">
+                            <label for="input_email" class="bold-20 color-white">E-mail</label>
+                            <input type="email" id="input_email" class="bold-20 input-login" placeholder="exemplo@email.com">
+                        </div>
+                        <div class="box-input">
+                            <label for="input_email" class="bold-20 color-white">Senha</label>
+                            <input type="password" id="input_senha" class="bold-20 input-login" placeholder="*********">
+                        </div>
+                        <!-- <div class="box-input">
+                            <label for="input_email" class="bold-20 color-white">Token</label>
+                            <input type="text" id="input_token" class="bold-20 input-login" placeholder="Token">
+                        </div> -->
                         <a href="cadastroFunc.html" class="sbold-16 opcao-cadastral">
-                             Não tem conta? Cadastre-se já!
+                            Não tem conta? Cadastre-se já!
                         </a>
                         <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
                         <a><button onclick="entrar()" class="btn-login">Entrar</button></a>
@@ -113,6 +122,7 @@
         </div>
     </div>
 </body>
+
 </html>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="sweetalert2.all.min.js"></script>
@@ -125,65 +135,62 @@
 
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
-        var tokenVar = input_token.value;
 
-        if (emailVar == "" || senhaVar == "" || tokenVar=="") {
+        if (emailVar == "" || senhaVar == "") {
             swalLoginError()
-            
+
             return false;
         }
         else {
             console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-        console.log("FORM TOKEN: ", tokenVar);
+            console.log("FORM SENHA: ", senhaVar);
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar,
-                toeknServer: tokenVar
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        sessionStorage.EMAIL_USUARIO = emailVar;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.ID_EMPRESA = json.idEmpresa;
+                        sessionStorage.FK_GERENTE = json.fkGerente;
+
+
+                        setTimeout(function () {
+                            window.location = "http://localhost:8080/cadastro_maquina.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    swalLoginInexistente()
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
             })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = emailVar;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.ID_EMPRESA = json.idEmpresa;
-                    sessionStorage.FK_GERENTE = json.fkGerente;
-
-
-                    setTimeout(function () {
-                        window.location = "http://localhost:8080/cadastro_maquina.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-                console.log("Houve um erro ao tentar realizar o login!");
-                swalLoginInexistente()
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+            return false;
         }
     }
 </script>
@@ -191,10 +198,10 @@
 <script>
     function swalLoginError() {
         Swal.fire(
-                'Falha ao entrar!',
-                'Preencha todos os campos para prosseguir.',
-                'warning'
-                )
+            'Falha ao entrar!',
+            'Preencha todos os campos para prosseguir.',
+            'warning'
+        )
     }
 
     function swalLoginInexistente() {
@@ -203,6 +210,6 @@
             title: 'Erro ao entrar!',
             text: 'Parece que não está cadastrado em nosso sistema!',
             footer: '<a href="cadastroFunc.html">Deseja cadastrar-se? Clique aqui!</a>'
-            })
+        })
     }
 </script>

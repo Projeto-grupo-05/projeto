@@ -175,7 +175,7 @@ input {
     font-size: 13px;
     color: #2569CE;
     border-color: #2569CE;
-    background-color: #88B6FB;
+    background-color: var(--branco-azul);
     align-items: center;
     cursor: pointer;
 }
@@ -184,6 +184,11 @@ input {
     background-color: var(--azul);
     color: var(--branco-azul);
     
+}
+
+.box-input {
+    display: flex;
+    flex-direction: column;
 }
 
 .corpo {
