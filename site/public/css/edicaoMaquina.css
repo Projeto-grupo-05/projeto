@@ -59,3 +59,22 @@ li{
     background-color: #88B6FB;
     color: var(--branco-azul);
 }
+
+.btn-voltar{
+    width: 140px;
+    height: 5vh;
+    margin-top: 5px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #2569CE;
+    border-color: #2569CE;
+    transition: .5s;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-voltar:hover {
+    background-color: #88B6FB;
+    color: var(--branco-azul);
+}

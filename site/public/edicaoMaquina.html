@@ -16,6 +16,9 @@
         <div class="caixa">
             <img src="./assets/logo/logo-name.svg" alt="SollicitUS" style="width: 80%;">
             <span id="aviso" class="bold-20 color-white"></span>
+            <a href="./listagem_maquina.html">
+                <button class="btn-voltar">Voltar</button>
+            </a>
         </div>
         <div class="caixa">
             <li class="titulo bold-24 color-white">Edição de Máquina</li>
@@ -62,8 +65,8 @@
             if (resposta.ok) {
                 aviso.innerHTML = "Máquina atualizada com sucesso!";
                 setTimeout(function () {
-                    window.location = "listagem_maquina.html"
-                }, 5000);
+                    window.location = "./listagem_maquina.html"
+                }, 4000);
 
 
             } else if (resposta.status == 404) {
