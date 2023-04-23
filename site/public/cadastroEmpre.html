@@ -83,29 +83,34 @@
                     <input type="text" id="input_nome_empresa_social" class="sbold-16" placeholder="Insira nome SOCIAL">
                     <input type="text" id="input_nome_empresa_fantasia" class="sbold-16"
                         placeholder="Insira nome FANTASIA">
-                    <input type="text" id="input_cnpj" class="sbold-16" placeholder="CNPJ">
-                    <input type="text" id="input_telefone" class="sbold-16" placeholder="11999900000">
+                    <input type="text" id="input_cnpj" class="sbold-16" placeholder="CNPJ"
+                        onkeypress="CNPJ(this.value, input_cnpj)" maxlength="18">
+                    <input type="text" id="input_telefone" class="sbold-16" placeholder="(11)9999-00000"
+                        onkeypress="telefone(this.value, input_telefone)" maxlength="15">
                     <input type="text" id="input_email" class="sbold-16" placeholder="Email">
                 </div>
                 <div class="lado esquerda">
                     <input type="text" id="input_logradouro" class="sbold-16" placeholder="Logradouro">
-                    <input type="text" id="input_numero" class="sbold-16" placeholder="0000">
+                    <input type="text" id="input_numero" class="sbold-16" placeholder="Número" maxlength="4">
                     <input type="text" id="input_complemento" class="sbold-16" placeholder="Complemento">
                     <input type="text" id="input_cidade" class="sbold-16" placeholder="Cidade">
-                    <input type="text" id="input_cep" class="sbold-16" placeholder="CEP">
+                    <input type="text" id="input_cep" class="sbold-16" placeholder="CEP"
+                        onkeypress="CEP(this.value, input_cep)" maxlength="9">
                     <input type="text" id="input_estado" class="sbold-16" placeholder="Estado">
                 </div>
             </div>
-                <button id="butao" onclick="cadastrarEmpresa()" class="btn-login">Continuar</button>
-        </div>
+            <button id="butao" onclick="cadastrarEmpresa()" class="btn-login">Continuar</button>
     </div>
+            </div>
+        </div>
 </body>
 
 </html>
+<script src="js/regex.js"></script>
 <script>
 
     function cadastrarEmpresa() {
-
+        
         var codigoVar = input_codigo.value;
         var nomeSocialVar = input_nome_empresa_social.value;
         var nomeFantasiaVar = input_nome_empresa_fantasia.value;

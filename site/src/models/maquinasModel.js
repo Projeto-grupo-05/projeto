@@ -15,8 +15,8 @@ function listaFunc(fkEmpresa) {
 }
 
 function listarAvisos(fkEmpresa) {
-    instrucaoSql = `SELECT i.descricaoProblema, u.nome, i.descricaoSolucao, m.idMaquina, i.dataHora FROM dbo.Incidente AS i JOIN 
-    dbo.Usuario AS u  ON (u.idUsuario = i.fkUsuario) JOIN dbo.Maquina AS m ON (u.idUsuario = m.idMaquina) WHERE m.fkEmpresa = 1;
+    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, Incidente.dataHora FROM Usuario JOIN Incidente on fkUsuario = idUsuario 
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE IdEmpresa = '${fkEmpresa}';
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
