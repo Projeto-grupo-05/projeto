@@ -1,7 +1,6 @@
 function verificarMaquina() {
     //aplicar variável do session storage
-    sessionStorage.ID_MAQUINA = idMaquina;
-    //var idMaquina = 3;
+    // var idMaquina = 3;
     // Enviando o valor da nova input
 
     fetch(`/maquinas/verificarMaquina/${sessionStorage.ID_MAQUINA}`, { cache: 'no-store' }).then(function (response) {

@@ -212,10 +212,9 @@
                                     <td>-</td>
                                     <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].idMaquina}, '${resposta[i].Hostname}', '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
                                     <td><i class="ri-delete-bin-line pointer" onclick="excluirMaquina(${resposta[i].idMaquina})"></i></td>
-                                    <td><i class="ri-dashboard-3-line pointer" onclick=""></i></td>
+                                    <td><i class="ri-dashboard-3-line pointer" onclick="telaMaquina(${resposta[i].idMaquina})"></i></td>
                                     </tr>`;
                     }
-
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -261,7 +260,7 @@
 
     function telaMaquina(idMaquina) {
         sessionStorage.ID_MAQUINA = idMaquina;
-        window.location = "listagem_maquina.html";
+        window.location = "telaUnitaria.html";
     }
 
     function configuraModal(idMaquina) {

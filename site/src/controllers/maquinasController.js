@@ -105,7 +105,7 @@ function verificarMaquina(req, res) {
     var idMaquina = req.params.idMaquina;
 
 
-    maquinasModel.verificarMaquina(idMaquina, nome, descricaoSolucao, descricaoProblema)
+    maquinasModel.verificarMaquina(idMaquina)
         .then(
             function (resultado) {
                 res.json(resultado);
