@@ -32,6 +32,12 @@
     color: var(--azul-caneta);
 }
 
+.input-shadow {
+    background: rgba(255, 255, 255, 1);
+    border: none;
+    padding: 10px;
+}
+
 .div-icones{
     height: 100%;
     width: 20%;

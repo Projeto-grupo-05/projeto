@@ -55,9 +55,16 @@
     /* background-color: blue; */
     height: 15vh;
     width: 100%;
-    background-image: url(../assets/logo/logo-dark.svg);
+    background-image: url(../assets/logo/logo-light.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     margin: 40px 0 40px 0;
+}
+
+.mainContent {
+    padding: 40px 100px 40px 100px;
+    margin-left: 24vw;
+    float: left;
+    width: 100%;
 }

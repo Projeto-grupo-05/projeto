@@ -45,7 +45,7 @@
     /* background-color: blue; */
     height: 15vh;
     width: 100%;
-    background-image: url(../assets/logo/logo-dark.svg);
+    background-image: url(../assets/logo/logo-light.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -265,7 +265,7 @@ td{
     }
     
     .logo{
-        background-image: url(../assets/logo/logo-dark.svg);
+        background-image: url(../assets/logo/logo-light.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -447,7 +447,7 @@ td{
 }
 
 .logo{
-    background-image: url(../assets/logo/logo-dark.svg);
+    background-image: url(../assets/logo/logo-light.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -627,7 +627,7 @@ td{
     }
     
     .logo{
-        background-image: url(../assets/logo/logo-dark.svg);
+        background-image: url(../assets/logo/logo-light.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -821,7 +821,7 @@ td{
     }
     
     .logo{
-        background-image: url(../assets/logo/logo-dark.svg);
+        background-image: url(../assets/logo/logo-light.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;

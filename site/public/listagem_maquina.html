@@ -30,6 +30,8 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" href="css/menuLateral.css">
+
     <title>Gerenciamento de Máquinas</title>
 </head>
 
@@ -37,26 +39,51 @@
     <div class="container2">
         <div class="menu-lateral" id="menuLateral">
             <div>
-                <img src="assets/logo/logo-dark.svg" class="logo">
+                <img src="assets/logo/logo-light.svg" class="logo">
             </div>
             <div class="div-menu-icones">
-                <div class="menu-icones">
-                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
-                </div>
-                <div class="menu-icones-agora">
-                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
-                </div>
-                <div class="menu-icones">
-                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
-                </div>
-                <div class="menu-icones">
-                    <div class="div-icones"><i class="ri-tools-line"></i></div> Histórico de manutenções
-                </div>
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
             </div>
         </div>
 
-        <div class="divprincipal">
+        <div class="menu-lateral" id="menuLateralG">
+            <div>
+                <img src="assets/logo/logo-light.svg" class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="dashboard.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                    </div>
+                </a>
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+                <a href="cadastroInterno.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                    </div>
+                </a>
+            </div>
+        </div>
 
+        <div class="mainContent">
             <div class="titulo">
                 <span class="texto-titulo">
                     <div class="menu-lateral-hamburguer">
@@ -71,14 +98,14 @@
                         <div class="botao-selecao-agora">Listagem</div>
                     </a>
                     <a href="cadastro_maquina.html">
-                        <div class="botao-selecao">Cadastro</div>
+                        <div class="botao-selecao" style="color: var(--azul);" >Cadastro</div>
                     </a>
                 </div>
             </div>
             <div class="formulario">
                 <div class="formulario-titulo"><span class="spam-titulo-formulario">Listagem de Máquinas</span></div>
                 <div class="formulario-inputs">
-                    <table id="listagem">
+                    <table id="listagem" style="margin-top: 40px;">
                     </table>
                 </div>
                 <!-- <div class="formulario-botao"><button>1</button><button>2</button></div> -->
@@ -119,6 +146,7 @@
 </body>
 
 </html>
+<script src="js/autenticacaoUsuario.js"></script>
 
 <script>
     var teste = false;
