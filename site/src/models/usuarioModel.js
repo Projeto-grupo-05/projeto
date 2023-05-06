@@ -80,21 +80,18 @@ function pesquisarToken(texto) {
   return database.executar(instrucao);
 }
 
-function cadastrarMaquina(fabricante, modelo, cor, fabricacao, ucp, ram, so, hostname, qtdEspaco,idEmpresa) {
+function cadastrarMaquina(modelo, cor, fabricacao, hostname, idEmpresa) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
 
-     var instrucao =`INSERT INTO Maquina (hostname, fabricante, modelo, cor, anoFabricacao, UCP, RAM, SO, armazenamento, fkEmpresa) VALUES ('${hostname}','${fabricante}', '${modelo}', '${cor}','${fabricacao}','${ucp}', '${ram}', '${so}','${qtdEspaco}','${idEmpresa}');`
+     var instrucao =`INSERT INTO Maquina (hostname, modelo, cor, anoFabricacao, fkEmpresa) VALUES ('${hostname}', '${modelo}', '${cor}','${fabricacao}','${idEmpresa}');`
     
     //var instrucao02 = `
       //  INSERT INTO Maquina (Fabricante, Modelo, Cor, Ano_fabricacao) VALUES ('${fabricante}', '${modelo}', '${cor}','${fabricacao}');
     //`;
     return database.executar(instrucao);
-        
-
-    console.log("Executando a instrução SQL: \n" + instrucao);
 }
 
 function cadastrarEmpre(codigo, nomeEmpresaFantasia, nomeEmpresaSocial, cnpj, telefone, email,

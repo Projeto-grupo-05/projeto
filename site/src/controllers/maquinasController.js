@@ -39,9 +39,6 @@ function listaFunc(req, res) {
 }
 
 function listarAvisos(req, res) {
-
-    // const limite_linhas = 7;
-
     var fkEmpresa = req.params.fkEmpresa;
 
     maquinasModel.listarAvisos(fkEmpresa).then(function (resultado) {

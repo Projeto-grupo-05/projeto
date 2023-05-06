@@ -100,30 +100,19 @@
                     <div class="formulario-inputs">
                         <div class="formulario-inputs-esquerda">
                             <div><span class="inputs-titulos bold-24">Informações</span></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">Fabricante</span><input
-                                    id="novoinputFabricante" type="text" class="input-shadow"></div>
+                            <div class="div-formulario-input"><span class="inputs-titulos">Nome da máquina
+                                (Hostname)</span><input id="inputHost" type="text" class="input-shadow"></div>
                             <div class="div-formulario-input"><span class="inputs-titulos">Modelo</span><input
                                     id="inputModelo" type="text" class="input-shadow"></div>
                             <div class="div-formulario-input"><span class="inputs-titulos">Cor</span><input
                                     id="inputCor" type="text" class="input-shadow"></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">Armazenamento</span><input
-                                    id="inputArmazenamento" type="text" class="input-shadow"></div>
                             <div class="div-formulario-input"><span class="inputs-titulos">Ano de
                                     fabricação</span><input type="text" id="novoinputDtFabricacao" class="input-shadow"
                                     onfocus="(this.type='date')" onblur="if (!this.value) this.type='text'"></div>
+                                    
+                                <div class="formulario-botao"><button onclick="cadastrarMaquina()">Cadastrar</button></div>
                         </div>
-                        <div class="formulario-inputs-direita">
-                            <div><span class="inputs-titulos bold-24">Informações Técnicas</span></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">CPU</span><input
-                                    id="inputUcp" type="text" class="input-shadow"></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">RAM</span><input
-                                    id="inputRam" type="text" class="input-shadow"></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">SO</span><input id="inputSo"
-                                    type="text" class="input-shadow"></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">Nome da máquina
-                                    (Hostname)</span><input id="inputHost" type="text" class="input-shadow"></div>
-                            <div class="formulario-botao"><button onclick="cadastrarMaquina()">Cadastrar</button></div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
