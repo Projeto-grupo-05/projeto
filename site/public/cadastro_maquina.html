@@ -95,24 +95,37 @@
             </div>
 
             <div class="formulario">
-                <div class="formulario-titulo"><span class="spam-titulo-formulario">Cadastro de Máquinas</span></div>
+                <div class="formulario-titulo"><span class="spam-titulo-formulario">Pré-cadastro de Máquinas</span>
+                    <span class="tooltipp" >
+                        <span class="i-icon"><i class="ri-information-line"></i>
+                        <span class="tooltiptext">Cadastre as informações aqui e depois conclua em Sollicitus Collector</span></span>
+                    </span>
+                    </span>
+                </div>
                 <div style="margin-top: 40px;">
                     <div class="formulario-inputs">
                         <div class="formulario-inputs-esquerda">
                             <div><span class="inputs-titulos bold-24">Informações</span></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">Nome da máquina
-                                (Hostname)</span><input id="inputHost" type="text" class="input-shadow"></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">Modelo</span><input
-                                    id="inputModelo" type="text" class="input-shadow"></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">Cor</span><input
-                                    id="inputCor" type="text" class="input-shadow"></div>
-                            <div class="div-formulario-input"><span class="inputs-titulos">Ano de
-                                    fabricação</span><input type="text" id="novoinputDtFabricacao" class="input-shadow"
-                                    onfocus="(this.type='date')" onblur="if (!this.value) this.type='text'"></div>
-                                    
-                                <div class="formulario-botao"><button onclick="cadastrarMaquina()">Cadastrar</button></div>
+                            <div class="box-input">
+                                <div class="esquerda">
+                                    <div class="div-formulario-input"><span class="inputs-titulos">Nome da máquina
+                                            (Hostname)</span><input id="inputHost" type="text" class="input-shadow">
+                                    </div>
+                                    <div class="div-formulario-input"><span class="inputs-titulos">Modelo</span><input
+                                            id="inputModelo" type="text" class="input-shadow"></div>
+                                </div>
+                                <div class="direita">
+                                    <div class="div-formulario-input"><span class="inputs-titulos">Cor</span><input
+                                            id="inputCor" type="text" class="input-shadow"></div>
+                                    <div class="div-formulario-input"><span class="inputs-titulos">Ano de
+                                            fabricação</span><input type="number" maxlength="4"
+                                            id="novoinputDtFabricacao" class="input-shadow"
+                                            onblur="if (!this.value) this.type='text'"></div>
+                                </div>
+                            </div>
+                            <div class="formulario-botao"><button onclick="cadastrarMaquina()">Cadastrar</button></div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

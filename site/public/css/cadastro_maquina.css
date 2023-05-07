@@ -158,14 +158,12 @@
 
 .formulario-inputs{
     width: 100%;
-    display: flex;
 }
 
 .formulario-inputs-esquerda{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
     height: fit-content;
 }
 
@@ -173,7 +171,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
     height: fit-content;
 }
 
@@ -362,14 +359,12 @@
     
     .formulario-inputs{
         width: 100%;
-        display: flex;
     }
     
     .formulario-inputs-esquerda{
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
         height: 100%;
     }
     
@@ -377,7 +372,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
         height: 100%;
     }
     
@@ -560,14 +554,12 @@
     
     .formulario-inputs{
         width: 100%;
-        display: flex;
     }
     
     .formulario-inputs-esquerda{
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
         height: 100%;
     }
     
@@ -575,7 +567,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
         height: 100%;
     }
     
@@ -757,14 +748,12 @@
 
 .formulario-inputs{
     width: 100%;
-    display: flex;
 }
 
 .formulario-inputs-esquerda{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
     height: 100%;
 }
 
@@ -772,7 +761,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
     height: 100%;
 }
 
@@ -958,14 +946,12 @@
     
     .formulario-inputs{
         width: 100%;
-        display: flex;
     }
     
     .formulario-inputs-esquerda{
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
         height: 100%;
     }
     
@@ -973,7 +959,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
         height: 100%;
     }
     
@@ -1162,14 +1147,12 @@
     .formulario-inputs{
         width: 100%;
         height: 45vh;
-        display: flex;
     }
     
     .formulario-inputs-esquerda{
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
         height: 100%;
     }
     
@@ -1177,7 +1160,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
         height: 100%;
     }
     
@@ -1273,6 +1255,42 @@
 }
 
 
+.box-input {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.i-icon {
+    margin-left: 10px;
+}
+
+/* tooltip  */
+
+.tooltipp {
+    position: relative;
+    display: inline-block;
+    transition: 0.5s;
+  }
+  
+  .tooltipp .tooltiptext {
+    visibility: hidden;
+    width: 700px;
+    background-color: rgba(8, 119, 179, 0.606);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltipp:hover .tooltiptext {
+    visibility: visible;
+  }
+  
 /* 500 */
 
 @media only screen and (max-width: 499px){

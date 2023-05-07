@@ -205,6 +205,9 @@
                         `;
 
                     for (let i = 0; i < resposta.length; i++) {
+                        if (resposta[i].Fabricante == null) {
+                            resposta[i].Fabricante = "A CONFIGURAR"
+                        }
                         listagem.innerHTML += `<tr class="pointer">
                                     <td><button onclick="configuraModal(${resposta[i].idMaquina})" type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
                                             <i class="ri-error-warning-line"></i>
