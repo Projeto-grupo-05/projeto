@@ -16,6 +16,7 @@ function cadastrarMaquina() {
     var cor = inputCor.value;
     var dtFabricacao = novoinputDtFabricacao.value;
     var hostName = inputHost.value;
+    var fabricante = inputFabricante.value;
 
     if (dtFabricacao == "" || modelo == "" || cor == "" || hostName == "") {
         alert('Preencha todos os campos!');
@@ -37,6 +38,7 @@ function cadastrarMaquina() {
             corServer: cor,
             dtFabricacaoServer: dtFabricacao,
             hostNameServer: hostName,
+            fabricanteServer: fabricante,
             idEmpresaServer: idEmpresa
         })
     }).then(function (resposta) {
