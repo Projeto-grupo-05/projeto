@@ -49,6 +49,19 @@
 
 
     function editar() {
+
+        if (iptCor.value.length == "" || iptFabricante.value.length == "" ||
+            iptModelo.value.length == "" || iptHostname.value.length == "") {
+            aviso.innerHTML = "ERRO campos vazios!";
+
+            return false;
+        } else if (iptCor.value.length < 3 || iptFabricante.value.length < 3 ||
+            iptModelo.value.length < 3 || iptHostname.value.length < 3) {
+            aviso.innerHTML = "ERRO número de caracteres inválido!";
+
+            return false;
+        }
+
         fetch(`/maquinas/editar/${sessionStorage.ID_MAQUINA}`, {
             method: "PUT",
             headers: {
