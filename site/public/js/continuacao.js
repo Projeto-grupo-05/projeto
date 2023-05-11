@@ -1,35 +1,74 @@
 
-    function swalLoginError() {
-        Swal.fire(
-            'Falha ao entrar!',
-            'Preencha todos os campos para prosseguir.',
-            'warning'
-        )
-    }
+function swalLoginError() {
+    Swal.fire(
+        'Falha ao entrar!',
+        'Preencha todos os campos para prosseguir.',
+        'warning'
+    )
+}
 
-    function swalEmailError() {
-        Swal.fire(
-            'Falha ao entrar!',
-            'Fornceça um e-mail válido!',
-            'error'
-        )
-    }
+function swalEmailError() {
+    Swal.fire(
+        'Falha ao entrar!',
+        'Fornceça um e-mail válido!',
+        'error'
+    )
+}
 
-    function swalLoginInexistente() {
-        Swal.fire({
-            icon: 'error',
-            title: 'Erro ao entrar!',
-            text: 'Parece que não está cadastrado em nosso sistema!',
-            footer: '<a href="cadastroFunc.html">Deseja cadastrar-se? Clique aqui!</a>'
-        })
-    }
+function swalEmailAlreadyExists() {
+    Swal.fire(
+        'Falha ao Cadastrar!',
+        'Email já esta em uso!',
+        'error'
+    )
+}
 
-function verificarEmail() {
+function swalEmptyFields() {
+    Swal.fire(
+        'Falha ao Cadastrar!',
+        'Há campos vazios!',
+        'error'
+    )
+}
+
+function swalPassword() {
+    Swal.fire(
+        'Senha inválida!',
+        'Digite uma senha maior que 5 caracteres!',
+        'error'
+    )
+}
+
+function swalWrongPassword() {
+    Swal.fire(
+        'Senha inválida!',
+        'Confirme novamente sua senha!',
+        'error'
+    )
+}
+
+function swalLoginInexistente() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Erro ao entrar!',
+        text: 'Parece que não está cadastrado em nosso sistema!',
+        footer: '<a href="cadastroFunc.html">Deseja cadastrar-se? Clique aqui!</a>'
+    })
+}
+
+function verificarValidacao() {
     const regexEmail = /\S+@\S+.\S+/;
     const verificaEmail = regexEmail.test(inputEmail.value);
 
-    if (!verificaEmail) {        
-        swalEmailError()
+
+    if (inputEmail.value == "" || inputSenha.value == "" || inputConfirmaSenha.value == "") {
+        swalEmptyFields();
+    } else if(inputSenha.value.length <= 4) {
+        swalPassword();
+    } else if(inputConfirmaSenha.value != inputSenha.value){
+        swalWrongPassword();
+    } else if (!verificaEmail) {
+        swalEmailError();
     } else {
         const proximo = document.getElementById('butao');
         const caixadados2 = document.getElementById('formulario');

@@ -105,10 +105,8 @@
                                     placeholder="*********">
                             </div>
                         </div>
-                        <button id="butao" class="btn-login" onclick="verificarEmail()">Continuar</button>
+                        <button id="butao" class="btn-login" onclick="verificarValidacao()">Continuar</button>
                     </div>
-
-
 
                     <div id="formulario" style="display: none" class="formulario">
                         <div style="width: 80%; display: flex;" class="louquinha">
@@ -137,6 +135,39 @@
 </html>
 
 <script>
+
+function verificarUsuario() {
+        var emailVar = inputEmail.value;
+
+        fetch("/usuarios/verificarUsuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                cadastrar();
+
+            } else {
+                swalEmailAlreadyExists();
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
 
     function cadastrar() {
 
@@ -189,44 +220,6 @@
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-
-        return false;
-    }
-
-    function verificarUsuario() {
-        var emailVar = inputEmail.value;
-
-        fetch("/usuarios/verificarUsuario", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-
-
-                cadastrar();
-
-
-
-            } else {
-                console.log("Houve um erro ao tentar realizar o login!");
-                alert('Mais de um usuário tentando se cadastrar');
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
 
         return false;
     }
