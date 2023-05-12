@@ -187,35 +187,26 @@ function autenticarToken(req, res) {
 
 function cadastrarMaquina(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var fabricante = req.body.fabricanteServer;
     var modelo = req.body.modeloServer;
     var cor = req.body.corServer;
     var fabricacao = req.body.dtFabricacaoServer;
-    var ucp = req.body.ucpServer;
-    var ram = req.body.ramServer;
-    var so = req.body.soServer;
     var hostName = req.body.hostNameServer;
-    var qtdEspaco = req.body.qtdEspacoServer;
     var idEmpresa = req.body.idEmpresaServer;
+    var fabricante = req.body.fabricanteServer;
 
     // Faça as validações dos valores
-    if (fabricante == undefined) {
-        res.status(400).send("Seu fabricante está undefined!");
-    } else if (modelo == undefined) {
+    if (modelo == undefined) {
         res.status(400).send("Seu modelo está undefined!");
     } else if (cor == undefined) {
         res.status(400).send("Sua cor está undefined!");
     } else if (fabricacao == undefined) {
         res.status(400).send("Sua fabricacao está undefined!");
-    } else if (ucp == undefined) {
-        res.status(400).send("Sua ucp está undefined!");
-    } else if (ram == undefined) {
-        res.status(400).send("Sua ram está undefined!");       
+    } else if (hostName == undefined) {
+        res.status(400).send("Sua hostname está undefined!");
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarMaquina(fabricante, modelo, cor, fabricacao
-            ,ucp, ram, so, hostName, qtdEspaco, idEmpresa)
+        usuarioModel.cadastrarMaquina(modelo, cor, fabricacao, hostName, fabricante, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
