@@ -41,8 +41,31 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function editar(req, res) {
+
+    var fkComponente = req.params.fkComponente;
+    var alta = req.body.alta;
+    var media = req.body.media;
+    var baixa = req.body.baixa;
+
+
+    medidaModel.editar(fkComponente, alta, media, baixa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-
+    buscarMedidasEmTempoReal,
+    editar
 }
