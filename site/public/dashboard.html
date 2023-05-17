@@ -21,7 +21,7 @@
     <title>DASHBOARD</title>
 </head>
 
-<body style="overflow-x: hidden;">
+<body onload="listar()" style="overflow-x: hidden;">
     <div class="menu-lateral" id="menuLateral">
         <div>
             <img src="assets/logo/logo-light.svg" class="logo">
@@ -107,7 +107,7 @@
         </div>
         <div class="nivelUrgencia">
             <h3 style="color: black;">Níveis De Urgência</h3>
-            <table id="listagem" style="margin-top: 40px;">
+            <table id="listagem" style="margin-top: 40px; width: 85%;">
             </table>
 
         </div>
@@ -130,7 +130,7 @@
             console.log('Sem empresa!');
         }
 
-        fetch(`/maquinas/listar/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/listar/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -142,19 +142,17 @@
                         <th>RAM</th>
                         <th>CPU</th>
                         <th>DISCO</th>
+                        <th>EDITAR</th>
                     </tr>
                 </thead>
                 `;
 
                     for (let i = 0; i < resposta.length; i++) {
-                        if (resposta[i].Fabricante == null) {
-                            resposta[i].Fabricante = "A CONFIGURAR"
-                        }
-                        listagem.innerHTML += `<tr class="pointer">
+                        listagem.innerHTML += `<tr>
                             <td>${resposta[i].nome}</td>
-                            <td>${resposta[i].alta}</td>
-                            <td>${resposta[i].media}</td>
-                            <td>${resposta[i].baixa}</td>
+                            <td>${resposta[i].alta}%</td>
+                            <td>${resposta[i].media}%</td>
+                            <td>${resposta[i].baixa}%</td>
                             <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].fkComponente}, '${resposta[i].alta}', '${resposta[i].media}', '${resposta[i].baixa}')"></i></td>
                             </tr>`;
                     }
