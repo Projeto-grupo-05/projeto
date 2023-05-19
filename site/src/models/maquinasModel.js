@@ -23,6 +23,14 @@ function listarAvisos(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function listarAvisosPendentes(fkEmpresa) {
+    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, Incidente.dataHora FROM Usuario JOIN Incidente on fkUsuario = idUsuario 
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE IdEmpresa = '${fkEmpresa}';
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 function verificarMaquina(idMaquina) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarMaquina(): ", idMaquina);

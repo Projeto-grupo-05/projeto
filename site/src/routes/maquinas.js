@@ -15,6 +15,10 @@ router.get("/listarAvisos/:fkEmpresa", function (req, res) {
     maquinasController.listarAvisos(req, res);
 });
 
+router.post("/listarAvisosPendentes/:fkEmpresa", function (req,res) {
+    maquinasController.listarAvisosPendentes(req, res);
+});
+
 router.put("/editar/:idMaquina", function (req, res) {
     maquinasController.editar(req, res);
 });
