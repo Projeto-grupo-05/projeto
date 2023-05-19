@@ -13,6 +13,7 @@ router.get("/tempo-real/:idAquario", function (req, res) {
 
 router.put("/editar/:fkComponete", function (req, res) {
     medidaController.editar(req, res);
+});
 
 router.post("/cadastrarNU", function (req, res) {
     medidaController.cadastrarNU(req, res);
