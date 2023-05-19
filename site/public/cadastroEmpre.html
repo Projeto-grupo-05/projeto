@@ -100,9 +100,9 @@
                 </div>
             </div>
             <button id="butao" onclick="cadastrarEmpresa()" class="btn-login">Continuar</button>
-    </div>
-            </div>
         </div>
+    </div>
+    </div>
 </body>
 
 </html>
@@ -110,7 +110,7 @@
 <script>
 
     function cadastrarEmpresa() {
-        
+
         var codigoVar = input_codigo.value;
         var nomeSocialVar = input_nome_empresa_social.value;
         var nomeFantasiaVar = input_nome_empresa_fantasia.value;
@@ -156,6 +156,59 @@
 
             console.log("resposta: ", resposta);
 
+            if (resposta.ok) {
+
+                console.log("Cadastro Realizado");
+                checaNiveisUrgencia();
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            //finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function checaNiveisUrgencia() {
+        fetch(`/medidas/checa`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    
+                    if (resposta.length > 0) {
+                        resposta.forEach(cadastrarNiveisUrgencia);
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function cadastrarNiveisUrgencia(idEmpresa) {
+        console.log('Chamo aqui')
+        var idEmpresaVar = idEmpresa.idEmpresa;
+
+        // Enviando o valor da nova input
+        fetch("/medidas/cadastrarNU", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idEmpresaServer: idEmpresaVar
+            })
+        }).then(function (resposta) {
+            console.log("resposta: ", resposta);
             if (resposta.ok) {
 
                 console.log("Cadastro Realizado");
