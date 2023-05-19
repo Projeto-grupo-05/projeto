@@ -109,7 +109,6 @@
             <h3 style="color: black;">Níveis De Urgência</h3>
             <table id="listagem" style="margin-top: 40px; width: 85%;">
             </table>
-
         </div>
     </div>
 
@@ -153,7 +152,7 @@
                             <td>${resposta[i].alta}%</td>
                             <td>${resposta[i].media}%</td>
                             <td>${resposta[i].baixa}%</td>
-                            <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].fkComponente}, '${resposta[i].alta}', '${resposta[i].media}', '${resposta[i].baixa}')"></i></td>
+                            <td><i class="ri-pencil-line pointer" onclick="editarNivUrg(${resposta[i].fkComponente}, '${resposta[i].alta}', '${resposta[i].media}', '${resposta[i].baixa}')"></i></td>
                             </tr>`;
                     }
                 });
@@ -173,6 +172,6 @@
         sessionStorage.BAIXA = baixa;
         console.log("cliquei em editar - " + fkComponente);
         window.alert("Você será redirecionado à página de edição de nivel Urgência: " + fkComponente);
-        window.location = "edicaoMaquina.html";
+        window.location = "edicaoNivUrg.html";
     }
 </script>
