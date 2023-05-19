@@ -11,4 +11,8 @@ router.post("/cadastrarNU", function (req, res) {
     medidaController.cadastrarNU(req, res);
 });
 
+router.get("/listar/:fkEmpresa", function (req, res) {
+    medidaController.listar(req, res);
+});
+
 module.exports = router;

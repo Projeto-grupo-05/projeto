@@ -61,9 +61,15 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
+
+function listar(fkEmpresa) {
+    instrucaoSql = `SELECT c.nome, n.alta, n.media, n.baixa FROM dbo.NiveisUrgencia as n join tipoComponente as c ON n.fkComponente = c.idTipoComponente WHERE fkEmpresa = ${fkEmpresa};`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function checa() {
     instrucaoSql = `SELECT idEmpresa FROM dbo.Empresa LEFT JOIN dbo.NiveisUrgencia ON fkEmpresa = idEmpresa where fkEmpresa IS NULL ;`;
-
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -85,6 +91,7 @@ function cadastrarNU(idEmpresa) {
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
+    listar,
     checa,
     cadastrarNU
 }
