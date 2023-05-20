@@ -24,7 +24,7 @@
     <title>Histórico de Incidentes | SollicitUS</title>
 </head>
 
-<body onload="listarAvisos()">
+<body onload="listarAvisos(); listarAvisosPendentes()">
 
     <div class="main">
         <div class="menu-lateral" id="menuLateralG">
@@ -75,6 +75,7 @@
         <div class="mainContent">
             <p class="titulo-h1">Histórico de incidentes</p>
             <div id="avisos"></div>
+            <div id="avisosPendentes"></div>
         </div>
     </div>
 </body>

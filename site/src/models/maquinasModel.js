@@ -15,7 +15,7 @@ function listaFunc(fkEmpresa) {
 }
 
 function listarAvisos(fkEmpresa) {
-    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, Incidente.dataHora FROM Usuario JOIN Incidente on fkUsuario = idUsuario 
+    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, Incidente.dataHora, hostname FROM Usuario JOIN Incidente on fkUsuario = idUsuario 
     JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE IdEmpresa = '${fkEmpresa}';
     `;
 
@@ -24,8 +24,8 @@ function listarAvisos(fkEmpresa) {
 }
 
 function listarAvisosPendentes(fkEmpresa) {
-    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, Incidente.dataHora FROM Usuario JOIN Incidente on fkUsuario = idUsuario 
-    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE IdEmpresa = '${fkEmpresa}';
+    instrucaoSql = `SELECT descricaoProblema, idMaquina, Incidente.dataHora, hostname FROM Usuario RIGHT JOIN Incidente on fkUsuario = idUsuario 
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE Incidente.fkUsuario IS NULL AND IdEmpresa = '${fkEmpresa}';
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -99,6 +99,7 @@ module.exports = {
     excluirMaquina,
     verificarMaquina,
     listarAvisos,
+    listarAvisosPendentes,
     solucao,
     listaFunc
 };
