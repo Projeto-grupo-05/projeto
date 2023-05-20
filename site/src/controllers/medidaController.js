@@ -4,11 +4,11 @@ function buscarUltimasMedidas(req, res) {
 
     const limite_linhas = 7;
 
-    var idAquario = req.params.idAquario;
+    var fkEmpresa = req.params.fkEmpresa;
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+    console.log(`Trazendo os últimos ${limite_linhas} dias`);
 
-    medidaModel.buscarUltimasMedidas(idAquario, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas(fkEmpresa, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -46,8 +46,8 @@ function listar(req, res) {
     var fkEmpresa = req.params.fkEmpresa;
 
     medidaModel.listar(fkEmpresa).then(function (resultado) {
-      
-      if (resultado.length > 0) {
+
+        if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
             res.status(204).send("Nenhum resultado encontrado!")
@@ -81,30 +81,30 @@ function cadastrarNU(req, res) {
     // Faça as validações dos valores
 
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        medidaModel.cadastrarNU(idEmpresa)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                    console.log("MANO TA INDO");
-                }
-            ).catch(
-                function (erro) {
-                    console.log("MANO TA INDO NAO VEI, AJUDA!!");
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    medidaModel.cadastrarNU(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+                console.log("MANO TA INDO");
+            }
+        ).catch(
+            function (erro) {
+                console.log("MANO TA INDO NAO VEI, AJUDA!!");
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     checa,
     cadastrarNU,
-    listar
+    listar,
 }

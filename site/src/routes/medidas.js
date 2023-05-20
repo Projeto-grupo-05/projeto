@@ -15,4 +15,8 @@ router.get("/listar/:fkEmpresa", function (req, res) {
     medidaController.listar(req, res);
 });
 
+router.get("/ultimas/:fkEmpresa", function (req, res) {
+    medidaController.buscarUltimasMedidas(req, res);
+});
+
 module.exports = router;
