@@ -42,7 +42,7 @@
 
 <script>
 
-    iptComponente.value = sessionStorage.FK_COMPONENTE;
+    iptComponente.value = sessionStorage.COMPONENTE;
     iptAlta.value = sessionStorage.ALTA;
     iptMedia.value = sessionStorage.MEDIA;
     iptBaixa.value = sessionStorage.BAIXA;
@@ -69,7 +69,8 @@
             body: JSON.stringify({
                 alta : iptAlta.value,
                 media : iptMedia.value,
-                baixa : iptBaixa.value
+                baixa : iptBaixa.value,
+                idEmpresa : sessionStorage.ID_EMPRESA
 
             })
         }).then(function (resposta) {

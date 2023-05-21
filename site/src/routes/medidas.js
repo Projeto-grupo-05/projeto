@@ -11,7 +11,7 @@ router.get("/tempo-real/:idAquario", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 });
 
-router.put("/editar/:fkComponete", function (req, res) {
+router.put("/editar/:fkComponente", function (req, res) {
     medidaController.editar(req, res);
 });
 

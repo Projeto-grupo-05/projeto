@@ -44,13 +44,14 @@ function buscarMedidasEmTempoReal(req, res) {
 
 function editar(req, res) {
 
-    var fkComponente = req.params.fkComponente;
+    var componente = req.params.fkComponente;
     var alta = req.body.alta;
     var media = req.body.media;
     var baixa = req.body.baixa;
+    var idEmpresa = req.body.idEmpresa
 
 
-    medidaModel.editar(fkComponente, alta, media, baixa)
+    medidaModel.editar(componente, alta, media, baixa, idEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);

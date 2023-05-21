@@ -61,11 +61,11 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
-function editar(fkComponente, alta, media, baixa) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", fkComponente, alta, media, baixa);
+function editar(componente, alta, media, baixa, idEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", componente, alta, media, baixa, idEmpresa);
 
     var instrucao = `
-        UPDATE NiveisUrgencia SET alta = '${alta}',media = '${media}', baixa = '${baixa}' WHERE fkComponente = ${fkComponente};
+        UPDATE NiveisUrgencia SET alta = '${alta}',media = '${media}', baixa = '${baixa}' WHERE fkcomponente = ${componente} AND fkEmpresa = ${idEmpresa};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -73,7 +73,7 @@ function editar(fkComponente, alta, media, baixa) {
 
 
 function listar(fkEmpresa) {
-    instrucaoSql = `SELECT c.nome, n.alta, n.media, n.baixa FROM dbo.NiveisUrgencia as n join tipoComponente as c ON n.fkComponente = c.idTipoComponente WHERE fkEmpresa = ${fkEmpresa};`;
+    instrucaoSql = `SELECT c.nome, n.fkComponente, n.alta, n.media, n.baixa FROM dbo.NiveisUrgencia as n join tipoComponente as c ON n.fkComponente = c.idTipoComponente WHERE fkEmpresa = ${fkEmpresa};`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

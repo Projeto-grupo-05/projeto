@@ -152,7 +152,7 @@
                             <td>${resposta[i].alta}%</td>
                             <td>${resposta[i].media}%</td>
                             <td>${resposta[i].baixa}%</td>
-                            <td><i class="ri-pencil-line pointer" onclick="editarNivUrg(${resposta[i].fkComponente}, '${resposta[i].alta}', '${resposta[i].media}', '${resposta[i].baixa}')"></i></td>
+                            <td><i class="ri-pencil-line pointer" onclick="editarNivUrg('${resposta[i].fkComponente}','${resposta[i].nome}', '${resposta[i].alta}', '${resposta[i].media}', '${resposta[i].baixa}')"></i></td>
                             </tr>`;
                     }
                 });
@@ -165,8 +165,9 @@
             });
     }
 
-    function editarNivUrg(fkComponente, alta, media, baixa) {
+    function editarNivUrg(fkComponente, componente, alta, media, baixa) {
         sessionStorage.FK_COMPONENTE = fkComponente;
+        sessionStorage.COMPONENTE = componente;
         sessionStorage.ALTA = alta;
         sessionStorage.MEDIA = media;
         sessionStorage.BAIXA = baixa;
