@@ -12,7 +12,15 @@
 .box-maquina {
     max-width: 100%;
     word-break: break-word;
-    margin-top: 50px;
+}
+
+.box-title-alerta {
+    background-color: rgb(209 65 65)!important;
+    border: 2px!important;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 12px 0px #ff0000;
+    border-radius: 10px;
 }
 
 .box-title {
@@ -36,9 +44,33 @@
     border-radius: 0 0 10px 10px;
 }
 
+.box-alerta {
+    margin: 30px 0;
+}
+
+.box-content-alerta {
+    border-color: #d14141;
+    background: #ffd8d8;
+}
+
 .titulo-h1 {
     font-size: 28px;
     line-height: 49px;
     font-weight: 800;
     color: #00649D;
+}
+
+.titulo-h2 {
+    font-size: 24px;
+    line-height: 49px;
+    font-weight: 800;
+}
+
+.nav-link {
+    color: var(--azul-caneta)!important;
+}
+
+.nav-link.active {
+    color: var(--azul);
+    font-weight: 700;
 }

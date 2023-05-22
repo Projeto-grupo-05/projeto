@@ -61,6 +61,12 @@ body {
         --rosa-claro: #FFB7CD;
         --rosa-pink: #C23B65;
 
+        /* Vermelho */
+        --vermelho: #d14141;
+
+        /* Amarelo */
+        --amarelo:  rgb(225 171 90);
+
     /* PESO DA FONTE  */
     --regular: 400;
     --medium: 500;
@@ -130,17 +136,37 @@ body {
     background-color: var(--azul);
 }
 
+.bg-verde-agua {
+    background-color: var(--verde-agua)!important;
+}
+
+.bg-amarelo {
+    background-color: var(--amarelo)!important;
+}
+
 /* COLORS */
 .color-white {
     color: var(--branco-azul);
 }
 
 .color-azul-caneta {
-    color: var(--azul-caneta);
+    color: var(--azul-caneta)!important;
 }
 
 .color-azul {
     color: var(--azul);
+}
+
+.color-verde-agua {
+    color: var(--verde-agua)!important;
+}
+
+.color-vermelho {
+    color: var(--vermelho)!important;
+}
+
+.color-amarelo {
+    color: var(--amarelo)!important;
 }
 
 /* FLEX  */
@@ -200,4 +226,8 @@ body {
 
 .mt-10 {
     margin-top: 10px;
+}
+
+.mt-16 {
+    margin-top: 16px;
 }

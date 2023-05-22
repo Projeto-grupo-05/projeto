@@ -70,6 +70,22 @@ function listarAvisosPendentes(req, res) {
     });
 }
 
+function listarAvisosProgresso(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    maquinasModel.listarAvisosProgresso(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os incidentes em progresso.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function editar(req, res) {
     var idMaquina = req.params.idMaquina;
     var hostname = req.body.hostname;
@@ -156,6 +172,7 @@ module.exports = {
     excluirMaquina,
     verificarMaquina,
     listarAvisos,
+    listarAvisosProgresso,
     listarAvisosPendentes,
     solucao,
     listaFunc
