@@ -3,7 +3,7 @@ const ctx = document.getElementById('dashboard');
 new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+        labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5'],
         datasets: [{
             label: 'Tarefas',
             data: [12, 12, 14, 5, 2],
@@ -51,10 +51,16 @@ new Chart(ctx, {
     }
 });
 
+/*<option value="">Janeiro</option>
+<option value="">Fevereiro</option>
+<option value="">Março</option>
+*/
+
+
 let proximaAtualizacao;
 let fkEmpresa = sessionStorage.ID_EMPRESA;
         
-window.onload = obterDadosGrafico(fkEmpresa);
+// window.onload = obterDadosGrafico(fkEmpresa);
 
 // function alterarTitulo(fkEmpresa) {
 //     var tituloAquario = document.getElementById("tituloAquario")

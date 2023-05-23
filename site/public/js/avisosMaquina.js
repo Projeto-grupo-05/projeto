@@ -1,10 +1,5 @@
 function listarAvisos() {
 
-    // sessionStorage.HOSTNAME = null;
-    // sessionStorage.FABRICANTE = null;
-    // sessionStorage.COR = null;
-    // sessionStorage.MODELO = null;
-
     var fkEmpresa = sessionStorage.ID_EMPRESA;
 
 

@@ -19,7 +19,6 @@ function entrar(email, senha) {
     JOIN usuario u
     ON e.idEmpresa = u.fkEmpresa
     WHERE u.email = '${email}' AND u.senha = '${senha}';
-
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

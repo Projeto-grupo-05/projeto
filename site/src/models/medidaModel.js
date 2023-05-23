@@ -59,6 +59,12 @@ function listar(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function configuraCombo(fkEmpresa) {
+    instrucaoSql = `SELECT distinct YEAR(dataHoraIncidente) as ano, MONTH(dataHoraIncidente) as mes from Rastreabilidade JOIN [dbo].[Incidente] on fkIncidente = idIncidente JOIN [dbo].[logDesempenho] on fkLogDesempenho = idLogDesempenho JOIN [dbo].[Maquina] on fkMaquina = idMaquina JOIN [dbo].[Empresa] on fkEmpresa = idEmpresa WHERE fkEmpresa = ${fkEmpresa};`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function checa() {
     instrucaoSql = `SELECT idEmpresa FROM dbo.Empresa LEFT JOIN dbo.NiveisUrgencia ON fkEmpresa = idEmpresa where fkEmpresa IS NULL ;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -84,5 +90,6 @@ module.exports = {
     buscarMedidasEmTempoReal,
     listar,
     checa,
-    cadastrarNU
+    cadastrarNU,
+    configuraCombo
 }
