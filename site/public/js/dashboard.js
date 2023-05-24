@@ -32,21 +32,20 @@ function obterDadosGrafico(fkEmpresa) {
     let ano;
     let mes;
     let semana;
-
+    let diaMaximo;
+    let diaInicio;
+    let hoje = new Date();
     if (document.getElementById('checkAgora').checked) {
-        hoje = new Date();
         ano = hoje.getFullYear();
         mes = hoje.getMonth() + 1;
-        semana = Math.floor(hoje.getDate() / 7);
-        console.log(hoje)
-        console.log(ano);
-        console.log(mes);
-        console.log(semana);
+        diaMaximo = hoje.getDate();
     } else {
         ano = document.getElementById('ano').value;
         mes = document.getElementById('mes').value;
         semana = document.getElementById('semana').value;
+        diaMaximo = 7 * semana;
     }
+    diaInicio = diaMaximo - 6;
 
     let resultadoGeral =
     {
@@ -58,9 +57,16 @@ function obterDadosGrafico(fkEmpresa) {
 
     for (c = 0; c < 3; c++) {
 
-        for (i = 7 * (semana - 1) + 1; i <= 7 * semana; i++) {
+        for (i = diaInicio; i <= diaMaximo; i++) {
             let data = "" + ano + "-" + mes + "-" + i;
-            if (resultadoGeral.dias.length < 7) {
+            let dataDate = new Date(data);
+
+            
+            if (dataDate > hoje) {
+                break;
+            }
+
+            if (c == 0 && valDate(ano, mes, i)) {
                 resultadoGeral.dias.push(data);
             }
 
@@ -182,7 +188,7 @@ function atualizarGrafico(resultadoGeral, dados, myChart) {
     dados.datasets[1].data = [];  // apagar o primeiro de temperatura
     dados.datasets[2].data = [];  // apagar o primeiro de temperatura
 
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < resultadoGeral.dias.length; i++) {
         dia = new Date(resultadoGeral.dias[i]);
         dados.labels.push(`${weekdays[dia.getDay()]}`);
         dados.datasets[0].data.push(resultadoGeral.pendentes[i]);
@@ -192,3 +198,29 @@ function atualizarGrafico(resultadoGeral, dados, myChart) {
     myChart.update();
 }
 
+function valDate(ano, mes, i) {
+
+
+    let day = i;
+    let month = mes;
+    let year = ano;
+
+    let listaDias = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (month == 1 || month > 2) {
+        if (day > listaDias[month - 1]) {
+            return false;
+        }
+    } else if (month == 2) {
+        let bissexto = false;
+        if ((!(year % 4) && year % 100) || !(year % 400)) bissexto = true;
+
+        if ((bissexto == false) && (day >= 29)) {
+            return false;
+        }
+        else
+            if ((bissexto == true) && (day > 29)) {
+                return false;
+            }
+    }
+    return true;
+}
