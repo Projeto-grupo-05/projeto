@@ -1,6 +1,6 @@
 function verificarMaquina() {
     //aplicar variável do session storage
-    var idMaquina = 1;
+    var idMaquina = sessionStorage.ID_MAQUINA;
     // Enviando o valor da nova input
     /*sessionStorage.ID_MAQUINA*/
     fetch(`/maquinas/verificarMaquina/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
@@ -43,7 +43,7 @@ function obterDadosGrafico() {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
-    var idMaquina = 1
+    var idMaquina = sessionStorage.ID_MAQUINA
     fetch(`/maquinas/buscarUltimasMedidas/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
 
         if (response.ok) {
