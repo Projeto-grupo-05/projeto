@@ -92,7 +92,7 @@ function listarAvisosProgresso(fkEmpresa) {
 function verificarMaquina(idMaquina) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarMaquina(): ", idMaquina);
     var instrucao = `
-        SELECT m.hostname, m.modelo, m.cor, m.RAM, m.UCP, m.SO, l.discoDisponivel from dbo.Maquina as m join [dbo].[logDesempenho] as l on l.fkMaquina = m.idMaquina WHERE l.fkMaquina = 1;
+        SELECT m.hostname, m.modelo, m.cor, m.RAM, m.UCP, m.SO, l.discoDisponivel from dbo.Maquina as m join [dbo].[logDesempenho] as l on l.fkMaquina = m.idMaquina WHERE l.fkMaquina = ${idMaquina};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao);
