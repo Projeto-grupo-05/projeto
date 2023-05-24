@@ -1,5 +1,44 @@
 var database = require("../database/config")
 
+function buscarUltimasMedidas(idMaquina, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select top ${limite_linhas} l.nivelRAM, l.nivelCPU, l.discoDisponivel, FORMAT(l.dataHora, 'HH:mm') as momento_grafico from [dbo].[logDesempenho] as l where fkMaquina = ${idMaquina};`
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select top ${limite_linhas} l.nivelCPU, l.nivelRam , l.discoDisponivel, FORMAT(l.dataHora, 'HH:mm') as momento_grafico from [dbo].[logDesempenho] as l where fkMaquina = ${idMaquina};`
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoReal(idMaquina) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select top 1 l.nivelRam, l.nivelCPU, l.discoDisponivel, FORMAT(l.dataHora, 'HH:mm') as momento_grafico from [dbo].[logDesempenho] as l where fkMaquina = ${idMaquina};`;
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select top 1 nivelRam, nivelCPU, discoDisponivel from [dbo].[logDesempenho] where fkMaquina = ${idMaquina};`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+//DASHBOARD /\========================/\==========================/\
 function listar(fkEmpresa) {
     instrucaoSql = `SELECT idMaquina, Hostname, Fabricante, Modelo, Cor, YEAR (anoFabricacao) as ano FROM dbo.Maquina WHERE fkEmpresa = ${fkEmpresa};`;
 
@@ -53,7 +92,7 @@ function listarAvisosProgresso(fkEmpresa) {
 function verificarMaquina(idMaquina) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarMaquina(): ", idMaquina);
     var instrucao = `
-        SELECT hostname, modelo, cor, RAM, UCP, SO, armazenamento from dbo.Maquina WHERE idMaquina = ${idMaquina};
+        SELECT m.hostname, m.modelo, m.cor, m.RAM, m.UCP, m.SO, l.discoDisponivel from dbo.Maquina as m join [dbo].[logDesempenho] as l on l.fkMaquina = m.idMaquina WHERE l.fkMaquina = 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao);
@@ -106,7 +145,7 @@ function excluirLog(idMaquina) {
     var instrucao = `
         DELETE LogDesempenho FROM LogDesempenho JOIN dbo.Maquina ON idMaquina = fkMaquina WHERE idMaquina = ${idMaquina};
     `;
-    
+
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -120,5 +159,7 @@ module.exports = {
     listarAvisosProgresso,
     listarAvisosPendentes,
     solucao,
-    listaFunc
+    listaFunc,
+    buscarUltimasMedidas,
+    buscarMedidasEmTempoReal
 };

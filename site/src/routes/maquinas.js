@@ -26,7 +26,15 @@ router.get("/listarAvisosProgresso/:fkEmpresa", function (req,res) {
 router.put("/editar/:idMaquina", function (req, res) {
     maquinasController.editar(req, res);
 });
+// DASHBOARD ------------------------------------------------------------------------
+router.get("/atualizaGrafico/:idMaquina", function (req, res) {
+    maquinasController.buscarMedidasEmTempoReal(req, res);
+});
 
+router.get("/buscarUltimasMedidas/:idMaquina", function (req, res) {
+    maquinasController.buscarUltimasMedidas(req, res);
+});
+// DASHBOARD ------------------------------------------------------------------------
 router.put("/solucao/:idMaquina", function (req, res) {
     maquinasController.solucao(req, res);
 });
