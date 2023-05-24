@@ -15,13 +15,39 @@ function listaFunc(fkEmpresa) {
 }
 
 function listarAvisos(fkEmpresa) {
-    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, Incidente.dataHora FROM Usuario JOIN Incidente on fkUsuario = idUsuario 
-    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE IdEmpresa = '${fkEmpresa}';
+    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, dataHoraSolucao, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+	JOIN Incidente ON fkUsuario = idUsuario 
+	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraSolucao IS NOT NULL AND IdEmpresa = '${fkEmpresa}' 
+	GROUP BY descricaoProblema, nome, descricaoSolucao, idMaquina, dataHoraSolucao, dataHoraManutencao, dataHoraIncidente, hostname;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function listarAvisosPendentes(fkEmpresa) {
+    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+	JOIN Incidente ON fkUsuario = idUsuario 
+	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarAvisosProgresso(fkEmpresa) {
+    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+	JOIN Incidente ON fkUsuario = idUsuario 
+	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NOT NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 function verificarMaquina(idMaquina) {
@@ -91,6 +117,8 @@ module.exports = {
     excluirMaquina,
     verificarMaquina,
     listarAvisos,
+    listarAvisosProgresso,
+    listarAvisosPendentes,
     solucao,
     listaFunc
 };
