@@ -41,6 +41,31 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+
+function editar(req, res) {
+
+    var componente = req.params.fkComponente;
+    var alta = req.body.alta;
+    var media = req.body.media;
+    var baixa = req.body.baixa;
+    var idEmpresa = req.body.idEmpresa
+
+
+    medidaModel.editar(componente, alta, media, baixa, idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function listar(req, res) {
 
     var fkEmpresa = req.params.fkEmpresa;
@@ -106,5 +131,6 @@ module.exports = {
     buscarMedidasEmTempoReal,
     checa,
     cadastrarNU,
+    editar,
     listar
 }
