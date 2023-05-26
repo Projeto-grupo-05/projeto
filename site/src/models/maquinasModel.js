@@ -108,6 +108,16 @@ function editar(idMaquina, hostname, fabricante, modelo, cor) {
     return database.executar(instrucao);
 }
 
+function atribuirIncidente(idIncidente, idUsuario) {
+    var instrucao = `
+    UPDATE Incidente
+    SET fkUsuario = ${idUsuario}
+    WHERE idIncidente = ${idIncidente}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function solucao(idMaquina, descProblema, descSolucao) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idMaquina, descProblema, descSolucao);
 
@@ -158,6 +168,7 @@ module.exports = {
     listarAvisos,
     listarAvisosProgresso,
     listarAvisosPendentes,
+    atribuirIncidente,
     solucao,
     listaFunc,
     buscarUltimasMedidas,

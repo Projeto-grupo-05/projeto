@@ -149,6 +149,25 @@ function editar(req, res) {
         );
 }
 
+function atribuirIncidente(req, res) {
+    var idIncidente = req.params.idIncidente;
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    maquinasModel.atribuirIncidente(idIncidente, idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function solucao(req, res) {
     var idMaquina = req.params.idMaquina;
     var descProblema = req.body.descProblema;
@@ -211,6 +230,7 @@ module.exports = {
     editar,
     excluirMaquina,
     verificarMaquina,
+    atribuirIncidente,
     listarAvisos,
     listarAvisosProgresso,
     listarAvisosPendentes,
