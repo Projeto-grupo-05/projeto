@@ -19,7 +19,7 @@ router.get("/configuraCombo/:fkEmpresa", function (req, res) {
     medidaController.configuraCombo(req, res);
 });
 
-router.get("/ultimas/:fkEmpresa", function (req, res) {
+router.get("/ultimas/:fkEmpresa/:ano/:mes/:semana", function (req, res) {
     medidaController.buscarUltimasMedidas(req, res);
 });
 

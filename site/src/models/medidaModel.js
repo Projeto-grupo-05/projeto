@@ -1,18 +1,18 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(fkEmpresa, limite_linhas) {
+function buscarUltimasMedidasConcluidos(fkEmpresa, data) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`;
+        instrucaoSql = `
+        SELECT COUNT(1) as contagem
+        FROM Incidente
+        JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente
+        JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho
+        JOIN [dbo].[Maquina] ON idMaquina = fkMaquina
+        WHERE fkEmpresa = ${fkEmpresa}
+        AND dataHoraSolucao = ${data};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -21,6 +21,56 @@ function buscarUltimasMedidas(fkEmpresa, limite_linhas) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function buscarUltimasMedidasProgresso(fkEmpresa, data) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `
+        SELECT COUNT(1) as contagem
+        FROM Incidente 
+        JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente 
+        JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho 
+        JOIN [dbo].[Maquina] ON idMaquina = fkMaquina 
+        WHERE fkEmpresa = ${fkEmpresa}
+        AND dataHoraIncidente <= ${data}
+        AND dataHoraManutencao <= ${data}
+        AND (dataHoraSolucao > ${data}
+        OR dataHoraSolucao IS NULL)`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimasMedidasPendente(fkEmpresa, data) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `
+        SELECT COUNT(1) as contagem
+        FROM Incidente
+        JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente
+        JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho
+        JOIN [dbo].[Maquina] ON idMaquina = fkMaquina
+        WHERE fkEmpresa = ${fkEmpresa}
+        AND dataHoraIncidente <= ${data}
+        AND (dataHoraManutencao > ${data}
+        OR dataHoraManutencao IS NULL);`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 function buscarMedidasEmTempoReal(idAquario) {
 
@@ -86,7 +136,9 @@ function cadastrarNU(idEmpresa) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
+    buscarUltimasMedidasConcluidos,
+    buscarUltimasMedidasProgresso,
+    buscarUltimasMedidasPendente,
     buscarMedidasEmTempoReal,
     listar,
     checa,
