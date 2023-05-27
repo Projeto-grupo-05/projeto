@@ -244,7 +244,7 @@ function listarAvisosProgresso() {
                     <div class="box-maquina">
                         <div class="bg-amarelo box-title">
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
-                            <td><button onclick="configuraModal(${resposta[i].idMaquina})" type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
+                            <td><button onclick="configuraModal(${resposta[i].idIncidente})" type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
                                             <i class="ri-error-warning-line"></i>
                                         </button>
                                     </td>

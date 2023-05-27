@@ -77,7 +77,7 @@ function listarAvisosPendentes(fkEmpresa) {
 }
 
 function listarAvisosProgresso(fkEmpresa) {
-    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+    instrucaoSql = `SELECT nome, idIncidente, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
 	JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
     JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NOT NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
@@ -127,11 +127,28 @@ function atribuirRastreioAtribuicao(data, idIncidente) {
     return database.executar(instrucao);
 }
 
-function solucao(idMaquina, descProblema, descSolucao) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idMaquina, descProblema, descSolucao);
-
+function atribuirRastreioSolucao(data, idIncidente) {
+    console.log('aqui a data do atribuir rastreio' +data)
     var instrucao = `
-        UPDATE Incidente SET descricaoProblema = '${descProblema}', descricaoSolucao = '${descSolucao}' WHERE descricaoSolucao = '' AND fkLogDesempenho = (SELECT TOP 1 idLogDesempenho FROM logDesempenho WHERE fkMaquina = ${idMaquina} ORDER BY 1 DESC);
+        UPDATE Rastreabilidade
+        SET dataHoraSolucao = '${data}' 
+        WHERE fkIncidente = ${idIncidente}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
+function solucao(descProblema, descSolucao, idIncidente, data) {
+    console.log('aqui a data da solucao' +data)
+    atribuirRastreioSolucao(data, idIncidente)
+    var instrucao = `
+        UPDATE Incidente 
+        SET descricaoProblema = '${descProblema}'
+        ,descricaoSolucao = '${descSolucao}' 
+        WHERE descricaoSolucao IS NULL
+        AND idIncidente = ${idIncidente};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -179,6 +196,7 @@ module.exports = {
     listarAvisosPendentes,
     atribuirIncidente,
     atribuirRastreioAtribuicao,
+    atribuirRastreioSolucao,
     solucao,
     listaFunc,
     buscarUltimasMedidas,

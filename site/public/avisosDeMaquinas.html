@@ -126,7 +126,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-primary" onclick="registraSolucao()">Salvar mudanças</button>
+                            <button type="button" class="btn btn-primary" onclick="dataAtual(); registraSolucao()">Salvar mudanças</button>
                         </div>
                     </div>
                 </div>
@@ -144,9 +144,8 @@
 <script src="js/autenticacaoUsuario.js"></script>
 
 <script>
-    function configuraModal(idMaquina) {
-        sessionStorage.ID_MAQUINA = idMaquina;
-
+    function configuraModal(idIncidente) {
+        sessionStorage.ID_INCIDENTE = idIncidente;
         var fkEmpresaVar = sessionStorage.ID_EMPRESA;
 
         fetch(`/maquinas/listaFunc/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
@@ -154,12 +153,12 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
+                    iptResponsavel.innerHTML = '';
                     for (let i = 0; i < resposta.length; i++) {
                         iptResponsavel.innerHTML += `
                         <option value="${resposta[i].idUsuario}">${resposta[i].nome}</option>
                         `;
                     }
-
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -170,33 +169,35 @@
             });
     }
 
-    function registraSolucao() {
+    function registraSolucao(data) {
+        data = sessionStorage.DATE_TIME;
+        console.log('aqui a data do regsitra solucao do html ' +data)
+        idIncidente = sessionStorage.ID_INCIDENTE;
+        fetch(`/maquinas/solucao/${idIncidente}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descProblema: iptDescProblema.value,
+                descSolucao: iptDescSolucao.value,
+                idIncidenteServer: idIncidente,
+                dataServer: data
+            })
+        }).then(function (resposta) {
 
-    fetch(`/maquinas/solucao/${sessionStorage.ID_MAQUINA}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            descProblema: iptDescProblema.value,
-            descSolucao: iptDescSolucao.value,
-            componente: slcComponente.value
-        })
-    }).then(function (resposta) {
-
-        if (resposta.ok) {
-            swalUpdateRealizado()
-        } else if (resposta.status == 404) {
-            window.alert("Deu 404!");
-        } else {
-            // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
+            if (resposta.ok) {
+                swalUpdateRealizado()
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
     }
-
-    function swalUpdateRealizado() {
+    function swalUpdateRealizado() {   
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -204,7 +205,5 @@
             showConfirmButton: false,
             timer: 1500
             })
-}  
-
-    
+} 
 </script>

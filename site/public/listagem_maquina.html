@@ -180,16 +180,16 @@
                         }
                         listagem.innerHTML += `<tr class="pointer">
                                     
-                                    <td>${resposta[i].Hostname}</td>
-                                    <td>${resposta[i].Fabricante}</td>
-                                    <td>${resposta[i].Modelo}</td>
-                                    <td>${resposta[i].Cor}</td>
-                                    <td>${resposta[i].ano}</td>
-                                    <td>-</td>
-                                    <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].idMaquina}, '${resposta[i].Hostname}', '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
-                                    <td><i class="ri-delete-bin-line pointer" onclick="excluirMaquina(${resposta[i].idMaquina})"></i></td>
-                                    <td><i class="ri-dashboard-3-line pointer" onclick="telaMaquina(${resposta[i].idMaquina})"></i></td>
-                                    </tr>`;
+                            <td>${resposta[i].Hostname}</td>
+                            <td>${resposta[i].Fabricante}</td>
+                            <td>${resposta[i].Modelo}</td>
+                            <td>${resposta[i].Cor}</td>
+                            <td>${resposta[i].ano}</td>
+                            <td>-</td>
+                            <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].idMaquina}, '${resposta[i].Hostname}', '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
+                            <td><i class="ri-delete-bin-line pointer" onclick="excluirMaquina(${resposta[i].idMaquina})"></i></td>
+                            <td><i class="ri-dashboard-3-line pointer" onclick="telaMaquina(${resposta[i].idMaquina})"></i></td>
+                            </tr>`;
                     }
                 });
             } else {
@@ -239,9 +239,6 @@
         window.location = "telaUnitaria.html";
     }
 
-    
-
-    
 </script>
 
 <script>

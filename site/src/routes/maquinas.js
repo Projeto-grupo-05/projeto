@@ -39,7 +39,7 @@ router.get("/buscarUltimasMedidas/:idMaquina", function (req, res) {
     maquinasController.buscarUltimasMedidas(req, res);
 });
 // DASHBOARD ------------------------------------------------------------------------
-router.put("/solucao/:idMaquina", function (req, res) {
+router.put("/solucao/:idIncidente", function (req, res) {
     maquinasController.solucao(req, res);
 });
 

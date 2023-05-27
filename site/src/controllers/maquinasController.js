@@ -155,8 +155,6 @@ function atribuirIncidente(req, res) {
     var idUsuario = req.body.idUsuarioServer;
     var data = req.body.dataServer;
 
-    console.log('OIEEE OLHA A usuario CONTROLLER: '+idUsuario)
-
     maquinasModel.atribuirIncidente(idIncidente, idUsuario, data)
         .then(
             function (resultado) {
@@ -173,15 +171,17 @@ function atribuirIncidente(req, res) {
 }
 
 function solucao(req, res) {
-    var idMaquina = req.params.idMaquina;
+    var idIncidente = req.params.idIncidente;
     var descProblema = req.body.descProblema;
     var descSolucao = req.body.descSolucao;
+    var data = req.body.dataServer;
 
-
-    maquinasModel.solucao(idMaquina, descProblema, descSolucao)
+    console.log('aqui a data do controller' +data)
+    maquinasModel.solucao(descProblema, descSolucao, idIncidente, data)
         .then(
             function (resultado) {
                 res.json(resultado);
+                console.log('resultado do controller data ' +data)
             }
         )
         .catch(
