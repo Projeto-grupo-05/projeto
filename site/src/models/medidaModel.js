@@ -71,6 +71,23 @@ function buscarUltimasMedidasPendente(fkEmpresa, data) {
     return database.executar(instrucaoSql);
 }
 
+function testando(resultadoGeral, fkEmpresa, ano, mes, semana) {
+    for (i = 7 * (semana - 1) + 1; i <= 7 * semana; i++) {
+        let data = "" + ano + "-" + mes + "-" + i;
+        resultadoGeral.dias.push(data);
+
+        concluidos = buscarUltimasMedidasConcluidos(fkEmpresa, data);
+        resultadoGeral.concluidos.push(concluidos);
+
+        progresso = buscarUltimasMedidasProgresso(fkEmpresa, data);
+        resultadoGeral.progresso.push(progresso);
+
+        pendente = buscarUltimasMedidasPendente(fkEmpresa, data);
+        resultadoGeral.progresso.push(pendente);
+
+    }
+    return resultadoGeral;
+}
 
 function buscarMedidasEmTempoReal(idAquario) {
 
@@ -143,5 +160,6 @@ module.exports = {
     listar,
     checa,
     cadastrarNU,
-    configuraCombo
+    configuraCombo,
+    testando
 }

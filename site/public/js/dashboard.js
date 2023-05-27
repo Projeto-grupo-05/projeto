@@ -87,6 +87,7 @@ function obterDadosGrafico(fkEmpresa) {
     fetch(`/medidas/ultimas/${fkEmpresa}/${ano}/${mes}/${semana}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
+                console.log('Chego aqui')
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
 
@@ -105,13 +106,13 @@ function obterDadosGrafico(fkEmpresa) {
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
 function plotarGrafico(resposta, fkEmpresa) {
-    console.log('iniciando plotagem do gráfico...');
+    console.log(resposta[0].concluidos);
     let weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
 
     let labels = [];
 
-    for(i = 0; i < 7; i++){
-        dia = resposta.dias[i];
+    for (i = 0; i < 7; i++) {
+        dia = resposta[0].dias[i];
         labels.push(`${dia} + " - " + ${weekdays[getDay(dia)]}`);
     }
 
