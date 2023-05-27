@@ -54,11 +54,10 @@ function listaFunc(fkEmpresa) {
 }
 
 function listarAvisos(fkEmpresa) {
-    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, dataHoraSolucao, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, dataHoraSolucao, dataHoraManutencao, dataHoraIncidente, urgenciaRAM, urgenciaCPU, urgenciaDisco, hostname FROM Usuario 
 	JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
-    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraSolucao IS NOT NULL AND IdEmpresa = '${fkEmpresa}' 
-	GROUP BY descricaoProblema, nome, descricaoSolucao, idMaquina, dataHoraSolucao, dataHoraManutencao, dataHoraIncidente, hostname;
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraSolucao IS NOT NULL AND IdEmpresa = ${fkEmpresa}
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -66,10 +65,13 @@ function listarAvisos(fkEmpresa) {
 }
 
 function listarAvisosPendentes(fkEmpresa) {
-    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname, idIncidente, fkUsuario FROM Usuario 
+    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname, idIncidente, fkUsuario, urgenciaCPU, urgenciaRAM, urgenciaDisco FROM Usuario 
 	JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
-    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho 
+	JOIN Maquina on idMaquina = fkMaquina 
+	JOIN Empresa on idEmpresa = Maquina.fkEmpresa 
+	WHERE dataHoraManutencao IS NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -77,7 +79,7 @@ function listarAvisosPendentes(fkEmpresa) {
 }
 
 function listarAvisosProgresso(fkEmpresa) {
-    instrucaoSql = `SELECT nome, idIncidente, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+    instrucaoSql = `SELECT nome, idIncidente, dataHoraManutencao, dataHoraIncidente, hostname, urgenciaRAM, urgenciaCPU, urgenciaDisco FROM Usuario 
 	JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
     JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NOT NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
