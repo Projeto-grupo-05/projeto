@@ -124,7 +124,7 @@ function listarAvisosPendentes() {
                         <div class="box-title-alerta box-title">
                             <i class="ri-arrow-right-circle-fill atribuir-icon opacity-0" height="32" width="32"></i>
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
-                            <i class="ri-arrow-right-circle-fill atribuir-icon" onclick="atribuirIncidente()"></i>
+                            <i class="ri-arrow-right-circle-fill atribuir-icon" onclick="atribuirIncidente(${resposta[i].idIncidente}, ${resposta[i].fkUsuario}); dataAtual()"></i>
                         </div>
                         <div class="box-content-alerta box-content sbold-16">
                             <div class="mt-10"><span class="xbold-16">Data e hora do incidente: </span><span>${dia}/${mes}/${ano} às ${hora}:${minuto}</span></div>
@@ -142,6 +142,55 @@ function listarAvisosPendentes() {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
+}
+
+
+function atribuirIncidente(idIncidente, idUsuario, data) {
+    sessionStorage.ID_INCIDENTE = idIncidente;
+    idIncidente = sessionStorage.ID_INCIDENTE;
+    
+    idUsuario = sessionStorage.ID_USUARIO;
+    data = sessionStorage.DATE_TIME;
+
+    fetch(`/maquinas/atribuirIncidente/${idIncidente}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: idUsuario,
+            dataServer: data
+        })
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            setTimeout(function () {
+                console.log('deu certo a atribuirIncidente')
+            }, 3000);
+
+
+        } else if (resposta.status == 404) {
+            console.log("ERRO 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+
+function dataAtual(){
+    const dataManutencao = new Date();
+    const dia = dataManutencao.getDate();
+    const mes = dataManutencao.getMonth() + 1;
+    const ano = dataManutencao.getFullYear();
+
+    const hora = dataManutencao.getHours();
+    const minuto = dataManutencao.getMinutes();
+
+    const formatada = `${ano}-${mes}-${dia} ${hora}:${minuto}`
+    console.log(formatada);
+    sessionStorage.DATE_TIME = `${ano}-${mes}-${dia} ${hora}:${minuto}`;
 }
 
 function listarAvisosProgresso() {
@@ -220,34 +269,3 @@ function listarAvisosProgresso() {
         });
 }
 
-function atribuirIncidente(){
-
-        fetch(`/maquinas/atribuirIncidente}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                hostname: iptHostname.value,
-                fabricante: iptFabricante.value,
-                modelo: iptModelo.value,
-                cor: iptCor.value
-            })
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                aviso.innerHTML = "Máquina atualizada com sucesso!";
-                setTimeout(function () {
-                    window.location = "./listagem_maquina.html"
-                }, 4000);
-
-
-            } else if (resposta.status == 404) {
-                aviso.innerHTML = "ERRO 404!";
-            } else {
-                // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-}

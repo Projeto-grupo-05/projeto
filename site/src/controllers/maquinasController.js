@@ -1,3 +1,4 @@
+const { DateTime } = require("mssql");
 var maquinasModel = require("../models/maquinasModel");
 
 function buscarUltimasMedidas(req, res) {
@@ -151,9 +152,12 @@ function editar(req, res) {
 
 function atribuirIncidente(req, res) {
     var idIncidente = req.params.idIncidente;
-    var idUsuario = sessionStorage.ID_USUARIO;
+    var idUsuario = req.body.idUsuarioServer;
+    var data = req.body.dataServer;
 
-    maquinasModel.atribuirIncidente(idIncidente, idUsuario)
+    console.log('OIEEE OLHA A usuario CONTROLLER: '+idUsuario)
+
+    maquinasModel.atribuirIncidente(idIncidente, idUsuario, data)
         .then(
             function (resultado) {
                 res.json(resultado);

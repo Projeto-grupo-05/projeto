@@ -66,7 +66,7 @@ function listarAvisos(fkEmpresa) {
 }
 
 function listarAvisosPendentes(fkEmpresa) {
-    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname, idIncidente, fkUsuario FROM Usuario 
 	JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
     JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
@@ -87,8 +87,6 @@ function listarAvisosProgresso(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
-
-
 function verificarMaquina(idMaquina) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarMaquina(): ", idMaquina);
     var instrucao = `
@@ -108,11 +106,22 @@ function editar(idMaquina, hostname, fabricante, modelo, cor) {
     return database.executar(instrucao);
 }
 
-function atribuirIncidente(idIncidente, idUsuario) {
+function atribuirIncidente(idIncidente, idUsuario, data) {
+    atribuirRastreioAtribuicao(data, idIncidente);
     var instrucao = `
-    UPDATE Incidente
-    SET fkUsuario = ${idUsuario}
-    WHERE idIncidente = ${idIncidente}
+        UPDATE Incidente
+        SET fkUsuario = ${idUsuario}
+        WHERE idIncidente = ${idIncidente}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atribuirRastreioAtribuicao(data, idIncidente) {
+    var instrucao = `
+        UPDATE Rastreabilidade
+        SET dataHoraManutencao = '${data}' 
+        WHERE fkIncidente = ${idIncidente}
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -169,6 +178,7 @@ module.exports = {
     listarAvisosProgresso,
     listarAvisosPendentes,
     atribuirIncidente,
+    atribuirRastreioAtribuicao,
     solucao,
     listaFunc,
     buscarUltimasMedidas,
