@@ -12,6 +12,12 @@
 .box-maquina {
     max-width: 100%;
     word-break: break-word;
+    transition: .5s;
+}
+
+.box-maquina:hover {
+    cursor: pointer;
+    scale: 1.01;
 }
 
 
@@ -32,7 +38,7 @@
     -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 12px 0px #ff0000;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0 ;
     justify-content: space-between;
 }
 
@@ -89,5 +95,5 @@
 }
 
 .atribuir-icon:hover {
-    scale: 1.2;
+    color: white;
 }

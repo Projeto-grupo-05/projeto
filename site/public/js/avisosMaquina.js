@@ -53,7 +53,7 @@ function listarAvisos() {
 
 
                     avisos.innerHTML += `
-                    <div class="box-maquina">
+                    <div class="box-maquina" onclick="toDashboard(${resposta[i].idMaquina})">
                         <div class="bg-verde-agua box-title">
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
                         </div>
@@ -121,7 +121,7 @@ function listarAvisosPendentes() {
                     var hora = dataIncidente.getUTCHours();
                     var minuto = dataIncidente.getMinutes();
                     avisosPendentes.innerHTML += `
-                    <div class="box-alerta box-maquina">
+                    <div class="box-alerta box-maquina" onclick="toDashboard(${resposta[i].idMaquina})">
                         <div class="box-title-alerta box-title">
                             <i class="ri-arrow-right-circle-fill atribuir-icon opacity-0" height="32" width="32"></i>
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
@@ -246,7 +246,7 @@ function listarAvisosProgresso() {
                                         var horaM = dataManutencao.getUTCHours();
                                         var minutoM = dataManutencao.getMinutes();
                     avisosProgresso.innerHTML += `
-                    <div class="box-maquina">
+                    <div class="box-maquina" onclick="toDashboard(${resposta[i].idMaquina})">
                         <div class="bg-amarelo box-title">
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
                             <td><button onclick="configuraModal(${resposta[i].idIncidente})" type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
@@ -279,3 +279,9 @@ function listarAvisosProgresso() {
         });
 }
 
+function toDashboard(idMaquina) {
+  
+    sessionStorage.ID_MAQUINA = idMaquina;
+    window.location = "telaUnitaria.html";
+
+}

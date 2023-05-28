@@ -66,7 +66,7 @@ function listarAvisos(fkEmpresa) {
 
 function listarAvisosPendentes(fkEmpresa) {
     instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname, idIncidente, fkUsuario, urgenciaCPU, urgenciaRAM, urgenciaDisco FROM Usuario 
-	JOIN Incidente ON fkUsuario = idUsuario 
+	RIGHT JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
     JOIN logDesempenho on idLogDesempenho = fklogDesempenho 
 	JOIN Maquina on idMaquina = fkMaquina 
@@ -79,7 +79,7 @@ function listarAvisosPendentes(fkEmpresa) {
 }
 
 function listarAvisosProgresso(fkEmpresa) {
-    instrucaoSql = `SELECT nome, idIncidente, dataHoraManutencao, dataHoraIncidente, hostname, urgenciaRAM, urgenciaCPU, urgenciaDisco FROM Usuario 
+    instrucaoSql = `SELECT nome, idMaquina, idIncidente, dataHoraManutencao, dataHoraIncidente, hostname, urgenciaRAM, urgenciaCPU, urgenciaDisco FROM Usuario 
 	JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
     JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NOT NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
