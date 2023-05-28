@@ -80,7 +80,7 @@ function plotarGrafico(resposta, idMaquina) {
             data: [],
             borderWidth: 1
         }, {
-            label: '# HDD/SSD',
+            label: '# disco disponível',
             data: [],
             borderWidth: 1
         }]
@@ -152,14 +152,19 @@ function atualizarGrafico(idMaquina, dados, myChart) {
                     // dados.labels.shift(); // apagar o primeiro
                     // dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
+                    var dataIncidente = new Date(novoRegistro[0].momento_grafico);
+                    var hora = dataIncidente.getUTCHours();
+                    var minuto = dataIncidente.getMinutes();
+                    var teste = `${hora}:${minuto}`
+
                     dados.labels.shift();
-                    dados.labels.push(novoRegistro[0].momento_grafico);
+                    dados.labels.push(teste);
 
                     dados.datasets[0].data.shift();
                     dados.datasets[0].data.push(novoRegistro[0].nivelCPU);
 
                     dados.datasets[1].data.shift();
-                    dados.datasets[1].data.push(novoRegistro[0].nivelRAM);
+                    dados.datasets[1].data.push(novoRegistro[0].nivelRam);
 
                     dados.datasets[2].data.shift();
                     dados.datasets[2].data.push(novoRegistro[0].discoDisponivel);

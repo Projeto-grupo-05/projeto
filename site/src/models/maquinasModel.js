@@ -24,7 +24,7 @@ function buscarMedidasEmTempoReal(idMaquina) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top 1 l.nivelRam, l.nivelCPU, l.discoDisponivel, FORMAT(l.dataHora, 'HH:mm') as momento_grafico from [dbo].[logDesempenho] as l where fkMaquina = ${idMaquina};`;
+        instrucaoSql = `select top 1 l.nivelRam, l.nivelCPU, l.discoDisponivel, l.dataHora as momento_grafico from [dbo].[logDesempenho] as l where fkMaquina = ${idMaquina} ORDER BY momento_grafico DESC;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select top 1 nivelRam, nivelCPU, discoDisponivel from [dbo].[logDesempenho] where fkMaquina = ${idMaquina};`;
