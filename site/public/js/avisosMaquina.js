@@ -53,11 +53,11 @@ function listarAvisos() {
 
 
                     avisos.innerHTML += `
-                    <div class="box-maquina" onclick="toDashboard(${resposta[i].idMaquina})">
+                    <div class="box-maquina">
                         <div class="bg-verde-agua box-title">
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
                         </div>
-                        <div class="box-content sbold-16">
+                        <div class="box-content sbold-16" onclick="toDashboard(${resposta[i].idMaquina})">
                             <div><span class="xbold-16">Data e hora do incidente: </span><span>${dia}/${mes}/${ano} às ${hora}:${minuto}</span></div>
                             <div class="mt-10"><span class="xbold-16">Data e hora do início da manutenção: </span><span>${diaM}/${mesM}/${anoM} às ${horaM}:${minutoM}</span></div>
                             <div class="mt-10"><span class="xbold-16">Responsável: </span><span>${resposta[i].nome}</span></div>
@@ -121,13 +121,13 @@ function listarAvisosPendentes() {
                     var hora = dataIncidente.getUTCHours();
                     var minuto = dataIncidente.getMinutes();
                     avisosPendentes.innerHTML += `
-                    <div class="box-alerta box-maquina" onclick="toDashboard(${resposta[i].idMaquina})">
+                    <div class="box-alerta box-maquina">
                         <div class="box-title-alerta box-title">
                             <i class="ri-arrow-right-circle-fill atribuir-icon opacity-0" height="32" width="32"></i>
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
                             <i class="ri-arrow-right-circle-fill atribuir-icon" onclick="atribuirIncidente(${resposta[i].idIncidente}, ${resposta[i].fkUsuario}); dataAtual()"></i>
                         </div>
-                        <div class="box-content-alerta box-content sbold-16">
+                        <div class="box-content-alerta box-content sbold-16" onclick="toDashboard(${resposta[i].idMaquina})">
                             <div class="mt-10"><span class="xbold-16">Data e hora do incidente: </span><span>${dia}/${mes}/${ano} às ${hora}:${minuto}</span></div>
                             <hr>
                             <div class="mt-10"><span class="xbold-16">Urgência RAM: </span><span>${resposta[i].urgenciaRAM}</span></span></div>
@@ -246,7 +246,7 @@ function listarAvisosProgresso() {
                                         var horaM = dataManutencao.getUTCHours();
                                         var minutoM = dataManutencao.getMinutes();
                     avisosProgresso.innerHTML += `
-                    <div class="box-maquina" onclick="toDashboard(${resposta[i].idMaquina})">
+                    <div class="box-maquina">
                         <div class="bg-amarelo box-title">
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
                             <td><button onclick="configuraModal(${resposta[i].idIncidente})" type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
@@ -254,7 +254,7 @@ function listarAvisosProgresso() {
                                         </button>
                                     </td>
                         </div>
-                        <div class="box-content sbold-16">
+                        <div class="box-content sbold-16" onclick="toDashboard(${resposta[i].idMaquina})">
                             <div class="mt-10"><span class="xbold-16">Data e hora do incidente: </span><span>${dia}/${mes}/${ano} às ${hora}:${minuto}</span></div>
                             <div class="mt-10"><span class="xbold-16">Data e hora do início da manutenção: </span><span>${diaM}/${mesM}/${anoM} às ${horaM}:${minutoM}</span></div>
                             <div class="mt-10"><span class="xbold-16">Responsável: </span><span>${resposta[i].nome}</span></div>
