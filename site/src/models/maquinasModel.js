@@ -54,11 +54,10 @@ function listaFunc(fkEmpresa) {
 }
 
 function listarAvisos(fkEmpresa) {
-    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, dataHoraSolucao, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+    instrucaoSql = `SELECT descricaoProblema, nome, descricaoSolucao, idMaquina, dataHoraSolucao, dataHoraManutencao, dataHoraIncidente, urgenciaRAM, urgenciaCPU, urgenciaDisco, hostname FROM Usuario 
 	JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
-    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraSolucao IS NOT NULL AND IdEmpresa = '${fkEmpresa}' 
-	GROUP BY descricaoProblema, nome, descricaoSolucao, idMaquina, dataHoraSolucao, dataHoraManutencao, dataHoraIncidente, hostname;
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraSolucao IS NOT NULL AND IdEmpresa = ${fkEmpresa}
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -66,10 +65,13 @@ function listarAvisos(fkEmpresa) {
 }
 
 function listarAvisosPendentes(fkEmpresa) {
-    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
-	JOIN Incidente ON fkUsuario = idUsuario 
+    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname, idIncidente, fkUsuario, urgenciaCPU, urgenciaRAM, urgenciaDisco FROM Usuario 
+	RIGHT JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
-    JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
+    JOIN logDesempenho on idLogDesempenho = fklogDesempenho 
+	JOIN Maquina on idMaquina = fkMaquina 
+	JOIN Empresa on idEmpresa = Maquina.fkEmpresa 
+	WHERE dataHoraManutencao IS NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -77,7 +79,7 @@ function listarAvisosPendentes(fkEmpresa) {
 }
 
 function listarAvisosProgresso(fkEmpresa) {
-    instrucaoSql = `SELECT nome, idMaquina, dataHoraManutencao, dataHoraIncidente, hostname FROM Usuario 
+    instrucaoSql = `SELECT nome, idMaquina, idIncidente, dataHoraManutencao, dataHoraIncidente, hostname, urgenciaRAM, urgenciaCPU, urgenciaDisco FROM Usuario 
 	JOIN Incidente ON fkUsuario = idUsuario 
 	RIGHT JOIN Rastreabilidade ON fkIncidente = idIncidente
     JOIN logDesempenho on idLogDesempenho = fklogDesempenho JOIN Maquina on idMaquina = fkMaquina JOIN Empresa on idEmpresa = Maquina.fkEmpresa WHERE dataHoraManutencao IS NOT NULL AND dataHoraSolucao IS NULL AND IdEmpresa = '${fkEmpresa}';
@@ -86,8 +88,6 @@ function listarAvisosProgresso(fkEmpresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
-
 
 function verificarMaquina(idMaquina) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarMaquina(): ", idMaquina);
@@ -108,11 +108,49 @@ function editar(idMaquina, hostname, fabricante, modelo, cor) {
     return database.executar(instrucao);
 }
 
-function solucao(idMaquina, descProblema, descSolucao) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idMaquina, descProblema, descSolucao);
-
+function atribuirIncidente(idIncidente, idUsuario, data) {
+    atribuirRastreioAtribuicao(data, idIncidente);
     var instrucao = `
-        UPDATE Incidente SET descricaoProblema = '${descProblema}', descricaoSolucao = '${descSolucao}' WHERE descricaoSolucao = '' AND fkLogDesempenho = (SELECT TOP 1 idLogDesempenho FROM logDesempenho WHERE fkMaquina = ${idMaquina} ORDER BY 1 DESC);
+        UPDATE Incidente
+        SET fkUsuario = ${idUsuario}
+        WHERE idIncidente = ${idIncidente}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atribuirRastreioAtribuicao(data, idIncidente) {
+    var instrucao = `
+        UPDATE Rastreabilidade
+        SET dataHoraManutencao = '${data}' 
+        WHERE fkIncidente = ${idIncidente}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atribuirRastreioSolucao(data, idIncidente) {
+    console.log('aqui a data do atribuir rastreio' +data)
+    var instrucao = `
+        UPDATE Rastreabilidade
+        SET dataHoraSolucao = '${data}' 
+        WHERE fkIncidente = ${idIncidente}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
+function solucao(descProblema, descSolucao, idIncidente, data) {
+    console.log('aqui a data da solucao' +data)
+    atribuirRastreioSolucao(data, idIncidente)
+    var instrucao = `
+        UPDATE Incidente 
+        SET descricaoProblema = '${descProblema}'
+        ,descricaoSolucao = '${descSolucao}' 
+        WHERE descricaoSolucao IS NULL
+        AND idIncidente = ${idIncidente};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -158,6 +196,9 @@ module.exports = {
     listarAvisos,
     listarAvisosProgresso,
     listarAvisosPendentes,
+    atribuirIncidente,
+    atribuirRastreioAtribuicao,
+    atribuirRastreioSolucao,
     solucao,
     listaFunc,
     buscarUltimasMedidas,

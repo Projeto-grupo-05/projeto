@@ -231,3 +231,8 @@ body {
 .mt-16 {
     margin-top: 16px;
 }
+
+/*OPACITY*/
+.opacity-0 {
+    opacity: 0;
+}

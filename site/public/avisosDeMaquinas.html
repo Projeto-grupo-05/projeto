@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="mainContent">
-            
+            <div>
             <p class="titulo-h1">Histórico de incidentes</p>
 
             <nav>
@@ -84,6 +84,7 @@
                   <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Concluídos</button>
                 </div>
               </nav>
+            </div>
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <p class="titulo-h2 color-vermelho mt-16">Pendentes (<span id="campoQtdeIncPen"></span>)</p>
@@ -95,7 +96,7 @@
                 </div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                     <p class="titulo-h2 color-verde-agua mt-16">Concluídos (<span id="campoQtdeInc"></span>)</p>
-                    
+                
                     <div id="avisos"></div>
                 </div>
               </div>
@@ -115,18 +116,12 @@
                         <div class="modal-body">
                             <div> Nome do Responsável: <select name="responsavel" id="iptResponsavel">
                                 </select></div>
-                            <div> Problema: <textarea class="textareaModal" type="text" id="iptDescProblema"></textarea></div>
-                            <div> Solução: <textarea class="textareaModal" type="text" id="iptDescSolucao"></textarea></div>
-                            <div>Componente: <select name="componente" id="slcComponente">
-                                    <option value="RAM">RAM</option>
-                                    <option value="CPU">CPU</option>
-                                    <option value="Disco">Disco</option>
-                                </select>
-                            </div>
+                            <div class="mt-16"> Problema: <textarea class="textareaModal" type="text" id="iptDescProblema"></textarea></div>
+                            <div class="mt-16"> Solução: <textarea class="textareaModal" type="text" id="iptDescSolucao"></textarea></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-primary" onclick="registraSolucao()">Salvar mudanças</button>
+                            <button type="button" class="btn btn-purple" onclick="dataAtual(); registraSolucao(); recarregarPagina()">Salvar mudanças</button>
                         </div>
                     </div>
                 </div>
@@ -144,9 +139,15 @@
 <script src="js/autenticacaoUsuario.js"></script>
 
 <script>
-    function configuraModal(idMaquina) {
-        sessionStorage.ID_MAQUINA = idMaquina;
 
+    function recarregarPagina() {
+        setTimeout(function () {
+                window.location.reload();
+                }, 3000);
+    }
+
+    function configuraModal(idIncidente) {
+        sessionStorage.ID_INCIDENTE = idIncidente;
         var fkEmpresaVar = sessionStorage.ID_EMPRESA;
 
         fetch(`/maquinas/listaFunc/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
@@ -154,12 +155,12 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
+                    iptResponsavel.innerHTML = '';
                     for (let i = 0; i < resposta.length; i++) {
                         iptResponsavel.innerHTML += `
                         <option value="${resposta[i].idUsuario}">${resposta[i].nome}</option>
                         `;
                     }
-
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -170,33 +171,35 @@
             });
     }
 
-    function registraSolucao() {
+    function registraSolucao(data) {
+        data = sessionStorage.DATE_TIME;
+        console.log('aqui a data do regsitra solucao do html ' +data)
+        idIncidente = sessionStorage.ID_INCIDENTE;
+        fetch(`/maquinas/solucao/${idIncidente}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descProblema: iptDescProblema.value,
+                descSolucao: iptDescSolucao.value,
+                idIncidenteServer: idIncidente,
+                dataServer: data
+            })
+        }).then(function (resposta) {
 
-    fetch(`/maquinas/solucao/${sessionStorage.ID_MAQUINA}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            descProblema: iptDescProblema.value,
-            descSolucao: iptDescSolucao.value,
-            componente: slcComponente.value
-        })
-    }).then(function (resposta) {
-
-        if (resposta.ok) {
-            swalUpdateRealizado()
-        } else if (resposta.status == 404) {
-            window.alert("Deu 404!");
-        } else {
-            // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
+            if (resposta.ok) {
+                swalUpdateRealizado()
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
     }
-
-    function swalUpdateRealizado() {
+    function swalUpdateRealizado() {   
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -204,7 +207,5 @@
             showConfirmButton: false,
             timer: 1500
             })
-}  
-
-    
+} 
 </script>
