@@ -55,7 +55,9 @@ function listarAvisos() {
                     avisos.innerHTML += `
                     <div class="box-maquina">
                         <div class="bg-verde-agua box-title">
+                        <i class="ri-arrow-right-circle-fill atribuir-icon opacity-0" height="32" width="32"></i>
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
+                            <i class="ri-arrow-right-circle-fill atribuir-icon opacity-0" height="32" width="32"></i>
                         </div>
                         <div class="box-content sbold-16" onclick="toDashboard(${resposta[i].idMaquina})">
                             <div><span class="xbold-16">Data e hora do incidente: </span><span>${dia}/${mes}/${ano} às ${hora}:${minuto}</span></div>
@@ -125,7 +127,7 @@ function listarAvisosPendentes() {
                         <div class="box-title-alerta box-title">
                             <i class="ri-arrow-right-circle-fill atribuir-icon opacity-0" height="32" width="32"></i>
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
-                            <i class="ri-arrow-right-circle-fill atribuir-icon" onclick="atribuirIncidente(${resposta[i].idIncidente}, ${resposta[i].fkUsuario}); dataAtual()"></i>
+                            <i class="ri-arrow-right-circle-fill atribuir-icon" onclick="temCerteza(); atribuirIncidente(${resposta[i].idIncidente}, ${resposta[i].fkUsuario}); dataAtual()"></i>
                         </div>
                         <div class="box-content-alerta box-content sbold-16" onclick="toDashboard(${resposta[i].idMaquina})">
                             <div class="mt-10"><span class="xbold-16">Data e hora do incidente: </span><span>${dia}/${mes}/${ano} às ${hora}:${minuto}</span></div>
@@ -149,6 +151,23 @@ function listarAvisosPendentes() {
         });
 }
 
+function temCerteza() {
+    Swal.fire(
+        'Tem certeza?',
+        'Gostaria de atribuir essa tarefa a você?',
+        'question'
+    )
+    recarregarPagina();
+}
+
+function temCertezaConcluir() {
+    Swal.fire(
+        'Tem certeza?',
+        'Gostaria de marcar esse incidente como concluído?',
+        'question'
+    )
+    recarregarPagina();
+}
 
 function atribuirIncidente(idIncidente, idUsuario, data) {
     sessionStorage.ID_INCIDENTE = idIncidente;
@@ -247,10 +266,14 @@ function listarAvisosProgresso() {
                                         var minutoM = dataManutencao.getMinutes();
                     avisosProgresso.innerHTML += `
                     <div class="box-maquina">
-                        <div class="bg-amarelo box-title">
+                        <div class="bg-amarelo box-title" style="justify-content: space-between;">
+                        <span class="opacity-0"><td><button type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
+                            <i class="ri-error-warning-line"></i>
+                        </button>
+                    </td></span>
                             <span class="bold-24">Máquina: ${resposta[i].hostname}</span>
                             <td><button onclick="configuraModal(${resposta[i].idIncidente})" type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
-                                            <i class="ri-error-warning-line"></i>
+                            <i class="ri-checkbox-circle-fill atribuir-icon"></i>
                                         </button>
                                     </td>
                         </div>

@@ -94,6 +94,55 @@
     cursor: pointer;
 }
 
+.color-amarelo {
+    color: #fff4e0;
+}
+
 .atribuir-icon:hover {
     color: white;
+}
+
+.modal {
+    font-weight: 700;
+}
+
+/* .modal-content {
+    background-color: #00649D!important;
+} */
+
+.modal-header {
+    background: linear-gradient(140.37deg, #3182BF -5.96%, #A864FF 111.92%);
+
+}
+
+.close {
+    background-color: transparent;
+    padding: 5px;
+    border: none;
+    font-size: 30px;
+    color: white;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: white;
+}
+
+#iptResponsavel {
+    font-weight: 700;
+}
+
+.textareaModal {
+    resize: none;
+    transition: .5s;
+    padding: 10px;
+}
+
+.textareaModal:focus {
+    outline-color: rgb(137, 137, 137);
+}
+
+.btn-purple {
+    background-color: #6d42a5!important;
+    color: white!important;
 }

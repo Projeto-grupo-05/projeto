@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="mainContent">
-            
+            <div>
             <p class="titulo-h1">Histórico de incidentes</p>
 
             <nav>
@@ -84,6 +84,7 @@
                   <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Concluídos</button>
                 </div>
               </nav>
+            </div>
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <p class="titulo-h2 color-vermelho mt-16">Pendentes (<span id="campoQtdeIncPen"></span>)</p>
@@ -95,7 +96,7 @@
                 </div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                     <p class="titulo-h2 color-verde-agua mt-16">Concluídos (<span id="campoQtdeInc"></span>)</p>
-                    
+                
                     <div id="avisos"></div>
                 </div>
               </div>
@@ -115,18 +116,12 @@
                         <div class="modal-body">
                             <div> Nome do Responsável: <select name="responsavel" id="iptResponsavel">
                                 </select></div>
-                            <div> Problema: <textarea class="textareaModal" type="text" id="iptDescProblema"></textarea></div>
-                            <div> Solução: <textarea class="textareaModal" type="text" id="iptDescSolucao"></textarea></div>
-                            <div>Componente: <select name="componente" id="slcComponente">
-                                    <option value="RAM">RAM</option>
-                                    <option value="CPU">CPU</option>
-                                    <option value="Disco">Disco</option>
-                                </select>
-                            </div>
+                            <div class="mt-16"> Problema: <textarea class="textareaModal" type="text" id="iptDescProblema"></textarea></div>
+                            <div class="mt-16"> Solução: <textarea class="textareaModal" type="text" id="iptDescSolucao"></textarea></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-primary" onclick="dataAtual(); registraSolucao()">Salvar mudanças</button>
+                            <button type="button" class="btn btn-purple" onclick="dataAtual(); registraSolucao(); recarregarPagina()">Salvar mudanças</button>
                         </div>
                     </div>
                 </div>
@@ -144,6 +139,13 @@
 <script src="js/autenticacaoUsuario.js"></script>
 
 <script>
+
+    function recarregarPagina() {
+        setTimeout(function () {
+                window.location.reload();
+                }, 3000);
+    }
+
     function configuraModal(idIncidente) {
         sessionStorage.ID_INCIDENTE = idIncidente;
         var fkEmpresaVar = sessionStorage.ID_EMPRESA;
