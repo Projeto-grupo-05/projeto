@@ -80,7 +80,7 @@ function plotarGrafico(resposta, idMaquina) {
             data: [],
             borderWidth: 1
         }, {
-            label: '# HDD/SSD',
+            label: '# disco disponível',
             data: [],
             borderWidth: 1
         }]
