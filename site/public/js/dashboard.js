@@ -81,12 +81,11 @@ function obterDadosGrafico(fkEmpresa) {
                                 console.log(resultadoGeral);
                                 break;
                         }
-
+                        chamaGraf(resultadoGeral);
                     });
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
                 }
-                chamaGraf(resultadoGeral);
             })
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
