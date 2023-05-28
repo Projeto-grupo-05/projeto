@@ -1,18 +1,20 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidasConcluidos(fkEmpresa, data) {
-
+function buscarUltimasMedidasConcluidos(fkEmpresa, data, conjunto, i) {
+    console.log("To entrando no Model")
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-        SELECT COUNT(1) as contagem
+        SELECT COUNT(1) as contagem,
+        ${i} as dia,
+        ${conjunto} as conjunto
         FROM Incidente
         JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente
         JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho
         JOIN [dbo].[Maquina] ON idMaquina = fkMaquina
         WHERE fkEmpresa = ${fkEmpresa}
-        AND dataHoraSolucao = ${data};`;
+        AND (CONVERT(date, dataHoraSolucao, 101)) = '${data}';`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -22,22 +24,23 @@ function buscarUltimasMedidasConcluidos(fkEmpresa, data) {
     return database.executar(instrucaoSql);
 }
 
-function buscarUltimasMedidasProgresso(fkEmpresa, data) {
+function buscarUltimasMedidasProgresso(fkEmpresa, data, conjunto, i) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-        SELECT COUNT(1) as contagem
+        SELECT COUNT(1) as contagem,
+        ${i} as dia,
+        ${conjunto} as conjunto
         FROM Incidente 
         JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente 
         JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho 
         JOIN [dbo].[Maquina] ON idMaquina = fkMaquina 
         WHERE fkEmpresa = ${fkEmpresa}
-        AND dataHoraIncidente <= ${data}
-        AND dataHoraManutencao <= ${data}
-        AND (dataHoraSolucao > ${data}
-        OR dataHoraSolucao IS NULL)`;
+        AND (CONVERT(date, dataHoraManutencao, 101)) <= '${data}'
+        AND ((CONVERT(date, dataHoraSolucao, 101)) > '${data}'
+        OR (CONVERT(date, dataHoraSolucao, 101)) IS NULL)`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -47,21 +50,23 @@ function buscarUltimasMedidasProgresso(fkEmpresa, data) {
     return database.executar(instrucaoSql);
 }
 
-function buscarUltimasMedidasPendente(fkEmpresa, data) {
+function buscarUltimasMedidasPendente(fkEmpresa, data, conjunto, i) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-        SELECT COUNT(1) as contagem
+        SELECT COUNT(1) as contagem,
+        ${i} as dia,
+        ${conjunto} as conjunto
         FROM Incidente
         JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente
         JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho
         JOIN [dbo].[Maquina] ON idMaquina = fkMaquina
         WHERE fkEmpresa = ${fkEmpresa}
-        AND dataHoraIncidente <= ${data}
-        AND (dataHoraManutencao > ${data}
-        OR dataHoraManutencao IS NULL);`;
+        AND (CONVERT(date, dataHoraIncidente, 101)) <= '${data}'
+        AND ((CONVERT(date, dataHoraManutencao, 101)) > '${data}'
+        OR (CONVERT(date, dataHoraManutencao, 101)) IS NULL);`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -69,24 +74,6 @@ function buscarUltimasMedidasPendente(fkEmpresa, data) {
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
-}
-
-function testando(resultadoGeral, fkEmpresa, ano, mes, semana) {
-    for (i = 7 * (semana - 1) + 1; i <= 7 * semana; i++) {
-        let data = "" + ano + "-" + mes + "-" + i;
-        resultadoGeral.dias.push(data);
-
-        concluidos = buscarUltimasMedidasConcluidos(fkEmpresa, data);
-        resultadoGeral.concluidos.push(concluidos);
-
-        progresso = buscarUltimasMedidasProgresso(fkEmpresa, data);
-        resultadoGeral.progresso.push(progresso);
-
-        pendente = buscarUltimasMedidasPendente(fkEmpresa, data);
-        resultadoGeral.progresso.push(pendente);
-
-    }
-    return resultadoGeral;
 }
 
 function buscarMedidasEmTempoReal(idAquario) {
@@ -160,6 +147,5 @@ module.exports = {
     listar,
     checa,
     cadastrarNU,
-    configuraCombo,
-    testando
+    configuraCombo
 }

@@ -2,32 +2,51 @@ var medidaModel = require("../models/medidaModel");
 function buscarUltimasMedidas(req, res) {
 
     var fkEmpresa = req.params.fkEmpresa;
-    let ano = req.params.ano;
-    let mes = req.params.mes;
-    let semana = req.params.semana;
+    let data = req.params.data;
+    let status = req.params.c;
+    let i = req.params.i;
 
-    let resultadoGeral =
-        [
-            {
-                concluidos: [],
-                pendentes: [],
-                progresso: [],
-                dias: []
-            }
-        ];
-        
-    for (i = 7 * (semana - 1) + 1; i <= 7 * semana; i++) {
-        let data = "" + ano + "-" + mes + "-" + i;
-        resultadoGeral[0].dias.push(data);
-        
-        resultadoGeral[0].concluidos.push(medidaModel.buscarUltimasMedidasConcluidos(fkEmpresa, data));
-        resultadoGeral[0].progresso.push(medidaModel.buscarUltimasMedidasProgresso(fkEmpresa, data));
-        resultadoGeral[0].pendentes.push(medidaModel.buscarUltimasMedidasPendente(fkEmpresa, data));
-    }
-    if (resultadoGeral.length > 0) {
-        res.status(200).json(resultadoGeral);
-    } else {
-        res.status(204).send("Nenhum resultado encontrado!")
+    switch (status) {
+        case '0':
+            medidaModel.buscarUltimasMedidasConcluidos(fkEmpresa, data, status, i).then(function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+            break;
+        case '1':
+            medidaModel.buscarUltimasMedidasProgresso(fkEmpresa, data, status, i).then(function (resultado) {
+                if (resultado.length > 0) {
+                    
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+            break;
+        case '2':
+            medidaModel.buscarUltimasMedidasPendente(fkEmpresa, data, status, i).then(function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+            break;
     }
 }
 

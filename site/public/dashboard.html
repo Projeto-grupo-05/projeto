@@ -237,9 +237,9 @@
                     listagem.innerHTML = `<thead>
                     <tr>
                         <th>Componente</th>
-                        <th>RAM</th>
-                        <th>CPU</th>
-                        <th>DISCO</th>
+                        <th>BAIXA</th>
+                        <th>MEDIA</th>
+                        <th>ALTA</th>
                         <th>EDITAR</th>
                     </tr>
                 </thead>
@@ -248,9 +248,9 @@
                     for (let i = 0; i < resposta.length; i++) {
                         listagem.innerHTML += `<tr>
                             <td>${resposta[i].nome}</td>
-                            <td>${resposta[i].alta}%</td>
-                            <td>${resposta[i].media}%</td>
                             <td>${resposta[i].baixa}%</td>
+                            <td>${resposta[i].media}%</td>
+                            <td>${resposta[i].alta}%</td>
                             <td><i class="ri-pencil-line pointer" onclick="editarNivUrg(${resposta[i].fkComponente}, '${resposta[i].alta}', '${resposta[i].media}', '${resposta[i].baixa}')"></i></td>
                             </tr>`;
                     }

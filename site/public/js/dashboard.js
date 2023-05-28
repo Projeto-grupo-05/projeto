@@ -1,62 +1,11 @@
-const ctx = document.getElementById('dashboard');
-
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5'],
-        datasets: [{
-            label: 'Tarefas',
-            data: [12, 12, 14, 5, 2],
-            fill: false,
-            borderColor: 'rgb(222, 42, 37)',
-            backgroundColor: [`rgb(222, 42, 37)`],
-            tension: 0.1
-        }, {
-            label: 'Progresso',
-            data: [10, 20, 21, 17, 15],
-            fill: false,
-            borderColor: 'rgb(54, 128, 194)',
-            backgroundColor: [`rgb(54, 128, 194)`],
-            tension: 0.1
-        }, {
-            label: 'Concluido',
-            data: [8, 8, 13, 10, 13],
-            fill: false,
-            borderColor: 'rgb(29, 142, 74)',
-            backgroundColor: [`rgb(29, 142, 74)`],
-            tension: 0.1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                borderWidth: 30
-            },
-            x: {
-                grid: {
-                    offset: true
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                labels: {
-                    font: {
-                        size: 16
-                    }
-                }
-            }
-        }
-    }
-});
-
 /*<option value="">Janeiro</option>
 <option value="">Fevereiro</option>
 <option value="">Março</option>
 */
 
 let fkEmpresa = sessionStorage.ID_EMPRESA;
+let MyChart;
+let dados;
 
 // window.onload = obterDadosGrafico(fkEmpresa);
 
@@ -76,67 +25,117 @@ let fkEmpresa = sessionStorage.ID_EMPRESA;
 
 //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
 //     Para ajustar o "select", ajuste o comando sql em src/models
+let gerou = false;
+let weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
 function obterDadosGrafico(fkEmpresa) {
     // alterarTitulo(fkEmpresa)
+    let ano;
+    let mes;
+    let semana;
 
-    let ano = document.getElementById('ano').value;
-    let mes = document.getElementById('mes').value;
-    let semana = document.getElementById('semana').value;
+    if (document.getElementById('checkAgora').checked) {
+        hoje = new Date();
+        ano = hoje.getFullYear();
+        mes = hoje.getMonth() + 1;
+        semana = Math.floor(hoje.getDate() / 7);
+        console.log(hoje)
+        console.log(ano);
+        console.log(mes);
+        console.log(semana);
+    } else {
+        ano = document.getElementById('ano').value;
+        mes = document.getElementById('mes').value;
+        semana = document.getElementById('semana').value;
+    }
 
+    let resultadoGeral =
+    {
+        pendentes: [],
+        progresso: [],
+        concluidos: [],
+        dias: []
+    };
 
-    fetch(`/medidas/ultimas/${fkEmpresa}/${ano}/${mes}/${semana}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log('Chego aqui')
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
+    for (c = 0; c < 3; c++) {
 
-                plotarGrafico(resposta, fkEmpresa);
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
+        for (i = 7 * (semana - 1) + 1; i <= 7 * semana; i++) {
+            let data = "" + ano + "-" + mes + "-" + i;
+            if (resultadoGeral.dias.length < 7) {
+                resultadoGeral.dias.push(data);
+            }
+
+            fetch(`/medidas/ultimas/${fkEmpresa}/${data}/${c}/${i}`, { cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        resposta.reverse();
+                        switch (resposta[0].conjunto) {
+                            case 0:
+                                resultadoGeral.concluidos[resultadoGeral.dias.indexOf("" + ano + "-" + mes + "-" + resposta[0].dia)] = resposta[0].contagem;
+                                break;
+                            case 1:
+                                resultadoGeral.progresso[resultadoGeral.dias.indexOf("" + ano + "-" + mes + "-" + resposta[0].dia)] = resposta[0].contagem;
+                                break;
+                            case 2:
+                                resultadoGeral.pendentes[resultadoGeral.dias.indexOf("" + ano + "-" + mes + "-" + resposta[0].dia)] = resposta[0].contagem;
+                                console.log(resultadoGeral);
+                                break;
+                        }
+
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+                chamaGraf(resultadoGeral);
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
         }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+    }
 }
 
+function chamaGraf(resultadoGeral) {
+    if (gerou) {
+        atualizarGrafico(resultadoGeral, dados, MyChart)
+    } else {
+        gerou = true;
+        plotarGrafico(resultadoGeral);
+    }
+}
 // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+// Configura o gráfico (cores, tipo, etc), materializa-o na página e,
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-function plotarGrafico(resposta, fkEmpresa) {
-    console.log(resposta[0].concluidos);
-    let weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+function plotarGrafico(resultadoGeral) {
 
     let labels = [];
 
     for (i = 0; i < 7; i++) {
-        dia = resposta[0].dias[i];
-        labels.push(`${dia} + " - " + ${weekdays[getDay(dia)]}`);
+        dia = resultadoGeral.dias[i];
+        labels.push(`${dia}`);
     }
 
-    console.log(labels);
+    // console.log(labels);
     // Criando estrutura para plotar gráfico - dados
-    let dados = {
+    dados = {
         labels: labels,
         datasets: [{
-            label: 'Tarefas',
-            data: [12, 12, 14, 5, 2],
+            label: 'Pendentes',
+            data: resultadoGeral.pendentes,
             fill: false,
             borderColor: 'rgb(222, 42, 37)',
             backgroundColor: [`rgb(222, 42, 37)`],
             tension: 0.1
         }, {
-            label: 'Progresso',
-            data: [10, 20, 21, 17, 15],
+            label: 'Em Progresso',
+            data: resultadoGeral.progresso,
             fill: false,
             borderColor: 'rgb(54, 128, 194)',
             backgroundColor: [`rgb(54, 128, 194)`],
             tension: 0.1
         }, {
             label: 'Concluido',
-            data: [8, 8, 13, 10, 13],
+            data: resultadoGeral.concluidos,
             fill: false,
             borderColor: 'rgb(29, 142, 74)',
             backgroundColor: [`rgb(29, 142, 74)`],
@@ -146,7 +145,7 @@ function plotarGrafico(resposta, fkEmpresa) {
 
     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
+    // console.log(resposta)
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     // for (i = 0; i < resposta.length; i++) {
@@ -171,8 +170,26 @@ function plotarGrafico(resposta, fkEmpresa) {
     };
 
     // Adicionando gráfico criado em div na tela
-    let myChart = new Chart(
+    MyChart = new Chart(
         document.getElementById('dashboard'),
         config
     )
 }
+
+function atualizarGrafico(resultadoGeral, dados, myChart) {
+
+    dados.labels = []; // apagar o primeiro
+    dados.datasets[0].data = [];  // apagar o primeiro de umidade
+    dados.datasets[1].data = [];  // apagar o primeiro de temperatura
+    dados.datasets[2].data = [];  // apagar o primeiro de temperatura
+
+    for (i = 0; i < 7; i++) {
+        dia = new Date(resultadoGeral.dias[i]);
+        dados.labels.push(`${weekdays[dia.getDay()]}`);
+        dados.datasets[0].data.push(resultadoGeral.pendentes[i]);
+        dados.datasets[1].data.push(resultadoGeral.progresso[i]);
+        dados.datasets[2].data.push(resultadoGeral.concluidos[i]);
+    }
+    myChart.update();
+}
+
