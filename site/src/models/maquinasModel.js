@@ -5,7 +5,7 @@ function buscarUltimasMedidas(idMaquina, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top ${limite_linhas} l.nivelRAM, l.nivelCPU, l.discoDisponivel, FORMAT(l.dataHora, 'HH:mm') as momento_grafico from [dbo].[logDesempenho] as l where fkMaquina = ${idMaquina};`
+        instrucaoSql = `select top ${limite_linhas} l.nivelRAM, l.nivelCPU, l.discoDisponivel, l.dataHora as momento_grafico from [dbo].[logDesempenho] as l where fkMaquina = ${idMaquina} ORDER BY momento_grafico DESC;`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select top ${limite_linhas} l.nivelCPU, l.nivelRam , l.discoDisponivel, FORMAT(l.dataHora, 'HH:mm') as momento_grafico from [dbo].[logDesempenho] as l where fkMaquina = ${idMaquina};`
@@ -37,7 +37,6 @@ function buscarMedidasEmTempoReal(idMaquina) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
 //DASHBOARD /\========================/\==========================/\
 function listar(fkEmpresa) {
     instrucaoSql = `SELECT idMaquina, Hostname, Fabricante, Modelo, Cor, YEAR (anoFabricacao) as ano FROM dbo.Maquina WHERE fkEmpresa = ${fkEmpresa};`;
