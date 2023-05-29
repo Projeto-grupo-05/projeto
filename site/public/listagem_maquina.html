@@ -118,36 +118,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
-        aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Relatório de Solução</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div> Nome do Responsável: <select name="responsavel" id="iptResponsavel">
-                        </select></div>
-                    <div> Problema: <textarea class="textareaModal" type="text" id="iptDescProblema"></textarea></div>
-                    <div> Solução: <textarea class="textareaModal" type="text" id="iptDescSolucao"></textarea></div>
-                    <div>Componente: <select name="componente" id="slcComponente">
-                            <option value="RAM">RAM</option>
-                            <option value="CPU">CPU</option>
-                            <option value="Disco">Disco</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" onclick="registraSolucao()">Salvar mudanças</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
@@ -209,20 +179,17 @@
                             resposta[i].Fabricante = "A CONFIGURAR"
                         }
                         listagem.innerHTML += `<tr class="pointer">
-                                    <td><button onclick="configuraModal(${resposta[i].idMaquina})" type="button" class="btn" data-toggle="modal" data-target="#ExemploModalCentralizado">
-                                            <i class="ri-error-warning-line"></i>
-                                        </button>
-                                    </td>
-                                    <td>${resposta[i].Hostname}</td>
-                                    <td>${resposta[i].Fabricante}</td>
-                                    <td>${resposta[i].Modelo}</td>
-                                    <td>${resposta[i].Cor}</td>
-                                    <td>${resposta[i].ano}</td>
-                                    <td>-</td>
-                                    <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].idMaquina}, '${resposta[i].Hostname}', '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
-                                    <td><i class="ri-delete-bin-line pointer" onclick="excluirMaquina(${resposta[i].idMaquina})"></i></td>
-                                    <td><i class="ri-dashboard-3-line pointer" onclick="telaMaquina(${resposta[i].idMaquina})"></i></td>
-                                    </tr>`;
+                                    
+                            <td>${resposta[i].Hostname}</td>
+                            <td>${resposta[i].Fabricante}</td>
+                            <td>${resposta[i].Modelo}</td>
+                            <td>${resposta[i].Cor}</td>
+                            <td>${resposta[i].ano}</td>
+                            <td>-</td>
+                            <td><i class="ri-pencil-line pointer" onclick="editarMaquina(${resposta[i].idMaquina}, '${resposta[i].Hostname}', '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
+                            <td><i class="ri-delete-bin-line pointer" onclick="excluirMaquina(${resposta[i].idMaquina})"></i></td>
+                            <td><i class="ri-dashboard-3-line pointer" onclick="telaMaquina(${resposta[i].idMaquina})"></i></td>
+                            </tr>`;
                     }
                 });
             } else {
@@ -272,57 +239,6 @@
         window.location = "telaUnitaria.html";
     }
 
-    function configuraModal(idMaquina) {
-        sessionStorage.ID_MAQUINA = idMaquina;
-
-        var fkEmpresaVar = sessionStorage.ID_EMPRESA;
-
-        fetch(`/maquinas/listaFunc/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-                    for (let i = 0; i < resposta.length; i++) {
-                        iptResponsavel.innerHTML += `
-                        <option value="${resposta[i].idUsuario}">${resposta[i].nome}</option>
-                        `;
-                    }
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    function registraSolucao() {
-
-        fetch(`/maquinas/solucao/${sessionStorage.ID_MAQUINA}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                descProblema: iptDescProblema.value,
-                descSolucao: iptDescSolucao.value,
-                componente: slcComponente.value
-            })
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                swalUpdateRealizado()
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
 </script>
 
 <script>

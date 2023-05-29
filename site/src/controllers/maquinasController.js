@@ -1,4 +1,45 @@
+const { DateTime } = require("mssql");
 var maquinasModel = require("../models/maquinasModel");
+
+function buscarUltimasMedidas(req, res) {
+
+    const limite_linhas = 3;
+
+    var idMaquina = req.params.idMaquina;
+
+    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    maquinasModel.buscarUltimasMedidas(idMaquina, limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoReal(req, res) {
+
+    var idMaquina = req.params.idMaquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    maquinasModel.buscarMedidasEmTempoReal(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function listar(req, res) {
 
@@ -54,6 +95,38 @@ function listarAvisos(req, res) {
     });
 }
 
+function listarAvisosPendentes(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    maquinasModel.listarAvisosPendentes(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os incidentes não resolvidos.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarAvisosProgresso(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    maquinasModel.listarAvisosProgresso(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os incidentes em progresso.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function editar(req, res) {
     var idMaquina = req.params.idMaquina;
     var hostname = req.body.hostname;
@@ -77,16 +150,38 @@ function editar(req, res) {
         );
 }
 
-function solucao(req, res) {
-    var idMaquina = req.params.idMaquina;
-    var descProblema = req.body.descProblema;
-    var descSolucao = req.body.descSolucao;
+function atribuirIncidente(req, res) {
+    var idIncidente = req.params.idIncidente;
+    var idUsuario = req.body.idUsuarioServer;
+    var data = req.body.dataServer;
 
-
-    maquinasModel.solucao(idMaquina, descProblema, descSolucao)
+    maquinasModel.atribuirIncidente(idIncidente, idUsuario, data)
         .then(
             function (resultado) {
                 res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function solucao(req, res) {
+    var idIncidente = req.params.idIncidente;
+    var descProblema = req.body.descProblema;
+    var descSolucao = req.body.descSolucao;
+    var data = req.body.dataServer;
+
+    console.log('aqui a data do controller' +data)
+    maquinasModel.solucao(descProblema, descSolucao, idIncidente, data)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+                console.log('resultado do controller data ' +data)
             }
         )
         .catch(
@@ -139,7 +234,12 @@ module.exports = {
     editar,
     excluirMaquina,
     verificarMaquina,
+    atribuirIncidente,
     listarAvisos,
+    listarAvisosProgresso,
+    listarAvisosPendentes,
     solucao,
-    listaFunc
+    listaFunc,
+    buscarUltimasMedidas,
+    buscarMedidasEmTempoReal
 }

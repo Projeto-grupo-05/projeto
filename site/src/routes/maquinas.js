@@ -15,11 +15,31 @@ router.get("/listarAvisos/:fkEmpresa", function (req, res) {
     maquinasController.listarAvisos(req, res);
 });
 
+router.get("/listarAvisosPendentes/:fkEmpresa", function (req,res) {
+    maquinasController.listarAvisosPendentes(req, res);
+});
+
+router.get("/listarAvisosProgresso/:fkEmpresa", function (req,res) {
+    maquinasController.listarAvisosProgresso(req, res);
+});
+
+router.put("/atribuirIncidente/:idIncidente", function (req, res) {
+    maquinasController.atribuirIncidente(req, res);
+});
+
 router.put("/editar/:idMaquina", function (req, res) {
     maquinasController.editar(req, res);
 });
+// DASHBOARD ------------------------------------------------------------------------
+router.get("/atualizaGrafico/:idMaquina", function (req, res) {
+    maquinasController.buscarMedidasEmTempoReal(req, res);
+});
 
-router.put("/solucao/:idMaquina", function (req, res) {
+router.get("/buscarUltimasMedidas/:idMaquina", function (req, res) {
+    maquinasController.buscarUltimasMedidas(req, res);
+});
+// DASHBOARD ------------------------------------------------------------------------
+router.put("/solucao/:idIncidente", function (req, res) {
     maquinasController.solucao(req, res);
 });
 

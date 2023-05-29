@@ -1,13 +1,3 @@
-/*var idMaquinas = document.getElementById("novoinputQtdMaquina");
-var addMaquinas;
-
-for (let i = 1; i <= 100; i++) {
-    addMaquinas += "<option value = '1'>" + i + "</option>";
-}
-
-idMaquinas.innerHTML = addMaquinas;
-*/
-
 function cadastrarMaquina() {
     //aplicar variável do session storage
     

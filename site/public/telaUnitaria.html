@@ -21,7 +21,7 @@
     <title>Informações da Máquina</title>
 </head>
 
-<body onload="verificarMaquina()" style="overflow-x: hidden;">
+<body onload="verificarMaquina(), obterDadosGrafico()" style="overflow-x: hidden;">
     <div class="menu-lateral" id="menuLateral">
         <div>
             <img src="assets/logo/logo-light.svg" class="logo">
@@ -78,15 +78,6 @@
                 </li>
             </div>
 
-            <div id="statusMqn" class="status bold-20">
-                <li class="color-azul-caneta">
-                    Status
-                </li>
-
-                <span id="cor">
-                    <i class="ri-checkbox-blank-circle-fill"></i>
-                </span>
-            </div>
         </div>
 
         <div id="grafico" class="grafico" style="width: 55%">
@@ -112,7 +103,7 @@
                     </div>
                     <div class="campos">
                         <div class="campo">
-                            <span class="color-azul sbold-24">HDD/SSD</span>
+                            <span class="color-azul sbold-24">Disco Disponível</span>
                             <span id="buscarArmazenamento">--</span>
                         </div>
                     </div>
