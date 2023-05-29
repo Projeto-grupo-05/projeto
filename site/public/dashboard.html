@@ -97,10 +97,10 @@
 
             <div id="grafico" class="grafico" style="width: 70%">
                 <h4 style="color: black;">Performance da Equipe</h4>
-                <select name="ano" id="ano" onchange="configuraComboMes(), configuraComboSemana()">
+                <select name="ano" id="anos" onchange="configuraComboMes(), configuraComboSemana()">
                     <option value="default">-</option>
                 </select>
-                <select name="mes" id="mes" onchange="configuraComboSemana()">
+                <select name="mes" id="meses" onchange="configuraComboSemana()">
                     <option value="default">-</option>
                 </select>
                 <select name="semana" id="semana">
@@ -133,31 +133,30 @@
     trazDados();
     
     let anoMes = [];
-
+    
     function trazDados() {
         var fkEmpresaVar = sessionStorage.ID_EMPRESA;
-
         if (fkEmpresaVar == "") {
             console.log('Sem empresa!');
         }
-
+        
         fetch(`/medidas/configuraCombo/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
-
+                    
                     let anosUnicos = [];
                     for (i = 0; i < resposta.length; i++) {
                         let registro = resposta[i];
                         const date = new Date(1, registro.mes - 1, 1);
-                        let month = date.toLocaleString('default', { month: 'long' });
+                        let month = date.toLocaleString('default', { month: 'long'});
                         month = month.toUpperCase();
                         anoMes.push({ ano: registro.ano, mes: registro.mes, nomeMes: month });
-
                         if (!anosUnicos.includes(registro.ano)) {
                             anosUnicos.push(registro.ano);
-                            ano.innerHTML += `<option value="${registro.ano}">${registro.ano}</option>`;
+                            console.log(`ANOSUNICOS:: ${registro.ano}`);
+                            anos.innerHTML += `<option value="${registro.ano}">${registro.ano}</option>`;
                         }
                     }
                 });
@@ -165,32 +164,32 @@
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
     }
-
+    
     function configuraComboMes() {
-        let anoEscolhido = ano.value;
-        mes.innerHTML = '<option value="default">-</option>';
-
+        let anoEscolhido = anos.value;
+        meses.innerHTML = '<option value="default">-</option>';
+        
         if (anoEscolhido != "Default") {
             mesJaForam = [];
             for (i = 0; i < anoMes.length; i++) {
                 if (anoMes[i].ano == anoEscolhido && !mesJaForam.includes(anoMes[i].mes)) {
-                    mes.innerHTML += `<option value="${anoMes[i].mes}">${anoMes[i].nomeMes}</option>`;
+                    meses.innerHTML += `<option value="${anoMes[i].mes}">${anoMes[i].nomeMes}</option>`;
                     mesJaForam.push(anoMes[i].mes);
                 }
             }
         }
     }
-
+    
     function configuraComboSemana() {
-        let mesEscolhido = mes.value;
+        let mesEscolhido = meses.value;
         semana.innerHTML = '<option value="default">-</option>';
-
+        
         if (mesEscolhido != "Default") {
-            if (mesEscolhido == 2 && ano.value % 4 == 0) {
+            if (mesEscolhido == 2 && anos.value % 4 == 0) {
                 for (i = 1; i <= 4; i++) {
                     semana.innerHTML += `<option value="${i}">Semana ${i}</option>`;
                 }
@@ -203,17 +202,17 @@
     }
 
     function desativaCombo() {
-        if (checkAgora.checked) {
-            ano.disabled = true;
-            ano.value = "default";
-            mes.disabled = true;
-            mes.value = "default";
+        if (document.getElementById("checkAgora").checked) {
+            anos.disabled = true;
+            anos.value = "default";
+            meses.disabled = true;
+            meses.value = "default";
             semana.disabled = true;
             semana.value = "default";
 
         } else {
-            ano.disabled = false;
-            mes.disabled = false;
+            anos.disabled = false;
+            meses.disabled = false;
             semana.disabled = false;
         }
     }

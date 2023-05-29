@@ -114,7 +114,6 @@ function obterDadosGrafico(fkEmpresa) {
         mes = document.getElementById('mes').value;
         semana = document.getElementById('semana').value;
         diaMaximo = 7 * semana;
-        console.log("To entrando aqui")
     }
     diaInicio = diaMaximo - 6;
 
@@ -129,7 +128,6 @@ function obterDadosGrafico(fkEmpresa) {
     for (c = 0; c < 3; c++) {
 
         for (i = diaInicio; i <= diaMaximo; i++) {
-            console.log("To entrando na dash")
             let data = "" + ano + "-" + mes + "-" + i;
             let dataDate = new Date(data);
 
