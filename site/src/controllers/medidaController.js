@@ -23,7 +23,6 @@ function buscarUltimasMedidas(req, res) {
         case '1':
             medidaModel.buscarUltimasMedidasProgresso(fkEmpresa, data, status, i).then(function (resultado) {
                 if (resultado.length > 0) {
-                    
                     res.status(200).json(resultado);
                 } else {
                     res.status(204).send("Nenhum resultado encontrado!");
@@ -108,6 +107,24 @@ function listar(req, res) {
     });
 }
 
+function contaMaq(req, res) {
+
+    var fkEmpresa = req.params.fkEmpresa;
+
+    medidaModel.contaMaq(fkEmpresa).then(function (resultado) {
+
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function checa(req, res) {
 
     medidaModel.checa().then(function (resultado) {
@@ -156,5 +173,6 @@ module.exports = {
     checa,
     cadastrarNU,
     listar,
-    configuraCombo
+    configuraCombo,
+    contaMaq
 }

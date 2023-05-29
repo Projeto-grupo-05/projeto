@@ -113,6 +113,12 @@ function listar(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function contaMaq(fkEmpresa) {
+    instrucaoSql = `SELECT COUNT(1) as contagem FROM MAQUINA WHERE fkEmpresa = ${fkEmpresa};`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function configuraCombo(fkEmpresa) {
     instrucaoSql = `SELECT distinct YEAR(dataHoraIncidente) as ano, MONTH(dataHoraIncidente) as mes from Rastreabilidade JOIN [dbo].[Incidente] on fkIncidente = idIncidente JOIN [dbo].[logDesempenho] on fkLogDesempenho = idLogDesempenho JOIN [dbo].[Maquina] on fkMaquina = idMaquina JOIN [dbo].[Empresa] on fkEmpresa = idEmpresa WHERE fkEmpresa = ${fkEmpresa};`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -147,5 +153,6 @@ module.exports = {
     listar,
     checa,
     cadastrarNU,
-    configuraCombo
+    configuraCombo,
+    contaMaq
 }

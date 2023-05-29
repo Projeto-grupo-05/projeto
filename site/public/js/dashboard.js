@@ -1,13 +1,14 @@
-/*<option value="">Janeiro</option>
-<option value="">Fevereiro</option>
-<option value="">Março</option>
-*/
-
 let fkEmpresa = sessionStorage.ID_EMPRESA;
 let MyChart;
 let dados;
 
-// window.onload = obterDadosGrafico(fkEmpresa);
+let gerou = false;
+let weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+let hoje = new Date();
+
+checkAgora.checked = true;
+window.onload = obterDadosGrafico(fkEmpresa);
+window.onload = obterDadosKPI(fkEmpresa);
 
 // function alterarTitulo(fkEmpresa) {
 //     var tituloAquario = document.getElementById("tituloAquario")
@@ -25,8 +26,76 @@ let dados;
 
 //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
 //     Para ajustar o "select", ajuste o comando sql em src/models
-let gerou = false;
-let weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+
+var maqTotais;
+
+function obterDadosKPI(fkEmpresa) {
+    ano = hoje.getFullYear();
+    mes = hoje.getMonth() + 1;
+    dia = hoje.getDate();
+
+    contaMaq(fkEmpresa);
+
+    let data = "" + ano + "-" + mes + "-" + dia;
+    let maqPendente;
+    let maqProgresso;
+    let maqFunfando;
+
+    for (c = 1; c < 3; c++) {
+        fetch(`/medidas/ultimas/${fkEmpresa}/${data}/${c}/0`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    switch (resposta[0].conjunto) {
+                        case 1:
+                            maqProgresso = resposta[0].contagem;
+                            document.getElementById('numConcerto').innerHTML = `${maqProgresso}`;
+                            break;
+                        case 2:
+                            maqPendente = resposta[0].contagem;
+                            document.getElementById('numAlerta').innerHTML = `${maqPendente}`;
+                            break;
+                    }
+                });
+
+                if (maqProgresso !== undefined && maqPendente !== undefined) {
+                    maqFunfando = (maqTotais - maqPendente) - maqProgresso;
+                    document.getElementById('numOperacao').innerHTML = `${maqFunfando}`;
+                }
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+
+
+    setTimeout(() => obterDadosKPI(fkEmpresa), 5000);
+
+}
+
+function contaMaq(fkEmpresa) {
+    fetch(`/medidas/contaMaq/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+                maqTotais = resposta[0].contagem;
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
 function obterDadosGrafico(fkEmpresa) {
     // alterarTitulo(fkEmpresa)
     let ano;
@@ -34,8 +103,9 @@ function obterDadosGrafico(fkEmpresa) {
     let semana;
     let diaMaximo;
     let diaInicio;
-    let hoje = new Date();
+
     if (document.getElementById('checkAgora').checked) {
+        let hoje = new Date();
         ano = hoje.getFullYear();
         mes = hoje.getMonth() + 1;
         diaMaximo = hoje.getDate();
@@ -44,6 +114,7 @@ function obterDadosGrafico(fkEmpresa) {
         mes = document.getElementById('mes').value;
         semana = document.getElementById('semana').value;
         diaMaximo = 7 * semana;
+        console.log("To entrando aqui")
     }
     diaInicio = diaMaximo - 6;
 
@@ -58,10 +129,10 @@ function obterDadosGrafico(fkEmpresa) {
     for (c = 0; c < 3; c++) {
 
         for (i = diaInicio; i <= diaMaximo; i++) {
+            console.log("To entrando na dash")
             let data = "" + ano + "-" + mes + "-" + i;
             let dataDate = new Date(data);
 
-            
             if (dataDate > hoje) {
                 break;
             }
