@@ -110,8 +110,8 @@ function obterDadosGrafico(fkEmpresa) {
         mes = hoje.getMonth() + 1;
         diaMaximo = hoje.getDate();
     } else {
-        ano = document.getElementById('ano').value;
-        mes = document.getElementById('mes').value;
+        ano = document.getElementById('anos').value;
+        mes = document.getElementById('meses').value;
         semana = document.getElementById('semana').value;
         diaMaximo = 7 * semana;
     }
