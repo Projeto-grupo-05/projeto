@@ -79,13 +79,10 @@ function plotarGrafico(resposta, idMaquina) {
             label: '# RAM',
             data: [],
             borderWidth: 1
-        }, {
-            label: '# disco disponível',
-            data: [],
-            borderWidth: 1
-        }]
-
+        }
+    ]
     };
+
 
 
     console.log('----------------------------------------------')
@@ -97,10 +94,14 @@ function plotarGrafico(resposta, idMaquina) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
 
-        dados.labels.push(registro.momento_grafico);
+        var dataIncidente = new Date(resposta[0].momento_grafico);
+        var hora = dataIncidente.getUTCHours();
+        var minuto = dataIncidente.getMinutes();
+        var teste = `${hora}:${minuto}`
+
+        dados.labels.push(teste);
         dados.datasets[0].data.push(registro.nivelCPU);
         dados.datasets[1].data.push(registro.nivelRAM);
-        dados.datasets[2].data.push(registro.discoDisponivel);
     }
 
     console.log('----------------------------------------------')
@@ -165,9 +166,6 @@ function atualizarGrafico(idMaquina, dados, myChart) {
 
                     dados.datasets[1].data.shift();
                     dados.datasets[1].data.push(novoRegistro[0].nivelRam);
-
-                    dados.datasets[2].data.shift();
-                    dados.datasets[2].data.push(novoRegistro[0].discoDisponivel);
 
 
 

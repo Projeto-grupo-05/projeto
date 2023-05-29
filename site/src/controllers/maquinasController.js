@@ -3,7 +3,7 @@ var maquinasModel = require("../models/maquinasModel");
 
 function buscarUltimasMedidas(req, res) {
 
-    const limite_linhas = 3;
+    const limite_linhas = 5;
 
     var idMaquina = req.params.idMaquina;
 
