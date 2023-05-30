@@ -73,7 +73,7 @@ function obterDadosKPI(fkEmpresa) {
 
 
 
-    setTimeout(() => obterDadosKPI(fkEmpresa), 1000);
+    setTimeout(() => obterDadosKPI(fkEmpresa), 5000);
 
 }
 
