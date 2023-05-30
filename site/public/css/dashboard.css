@@ -122,7 +122,6 @@ select:hover{
 
 .nivelUrgencia{
     margin-top: 30px;
-    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,10 +135,18 @@ select:hover{
 .title-dash {
     font-weight: var(--bold);
     color: black;
+    margin: 20px 0 20px 0;
 }
 
 .ano-select {
-    outline:none;
+
+}
+
+.selects {
+    border: none;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
 }
 
 .select-style {
@@ -152,4 +159,39 @@ select:hover{
     display: flex;
     width: 100%;
     justify-content: space-between;
+}
+
+.container-checkbox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.checkbox {
+    width: 20px;
+}
+
+.checkbox-group {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.top-part-checkbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+#filtrar {
+     background-color: var(--azul);
+     height: 40px;
+     margin-top: 10px;
+     color: var(--branco-azul);
+     border: none;
+     border-radius: 5px;
 }

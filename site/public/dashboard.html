@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/global.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -16,7 +16,7 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
-    
+
     <link rel="stylesheet" href="css/menuLateral.css">
     <title>DASHBOARD</title>
 </head>
@@ -66,8 +66,8 @@
             </a>
         </div>
     </div>
-    <div class="mainContent">
-        <div class="dados">
+    <div class="mainContent" style="width: 70%;">
+            <h4 class="title-dash" style="text-align: center;">Visão geral máquinas</h4>
             <div class="alerta">
                 <div class="kpi red">
                     <li class="bold-20">A consertar</li>
@@ -95,30 +95,41 @@
                 </div>
             </div>
             <div id="grafico" class="grafico">
-                <h4 class="title-dash">Performance da Equipe</h4>
                 <div class="select-container">
                     <div class="select-style">
-                        <select name="ano" id="anos" class="ano-select" onchange="configuraComboMes(), configuraComboSemana()">
+                        <span class="title-dash">Ano</span>
+                        <select name="ano" id="anos" class="selects"
+                            onchange=" configuraComboMes(), configuraComboSemana()">
                             <option value="default">-</option>
                         </select>
                     </div>
                     <div class="select-style">
-                        <select name="mes" id="meses" onchange="configuraComboSemana()">
+                        <span class="title-dash">Mês</span>
+                        <select name="mes" id="meses" onchange="configuraComboSemana()" class="selects">
                             <option value="default">-</option>
                         </select>
                     </div>
-                        <div class="select-style">
-                        <select name="semana" id="semana">
+                    <div class="select-style">
+                        <span class="title-dash">Semana</span>
+                        <select name="semana" id="semana" class="selects">
                             <option value="default">-</option>
                         </select>
                     </div>
                 </div>
-                <input type="checkbox" id="checkAgora" onclick="desativaCombo()"> Últimos 7 dias
-                <button id="filtrar" onclick="obterDadosGrafico(sessionStorage.ID_EMPRESA)">Filtrar</button>
+                <div class="container-checkbox">
+                    <div class="checkbox-group">
+                        <span class="top-part-checkbox"><input type="checkbox" class="checkbox" id="checkAgora"
+                                onclick="desativaCombo()">
+                            <label for="checkAgora" class="sbold-16">Últimos 7 dias</label>
+                        </span>
+                        <button id="filtrar" class="sbold-16"
+                            onclick="obterDadosGrafico(sessionStorage.ID_EMPRESA)">Filtrar</button>
+                    </div>
+                </div>
+                <h4 class="title-dash">Performance da Equipe</h4>
                 <canvas id="dashboard"></canvas>
             </div>
 
-        </div>
         <div class="nivelUrgencia">
             <h3 style="color: black;">Níveis de Urgência</h3>
             <table id="listagem" style="margin-top: 40px; width: 85%;">
@@ -138,26 +149,26 @@
     checkAgora.checked = true;
     desativaCombo();
     trazDados();
-    
+
     let anoMes = [];
-    
+
     function trazDados() {
         var fkEmpresaVar = sessionStorage.ID_EMPRESA;
         if (fkEmpresaVar == "") {
             console.log('Sem empresa!');
         }
-        
+
         fetch(`/medidas/configuraCombo/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
-                    
+
                     let anosUnicos = [];
                     for (i = 0; i < resposta.length; i++) {
                         let registro = resposta[i];
                         const date = new Date(1, registro.mes - 1, 1);
-                        let month = date.toLocaleString('default', { month: 'long'});
+                        let month = date.toLocaleString('default', { month: 'long' });
                         month = month.toUpperCase();
                         anoMes.push({ ano: registro.ano, mes: registro.mes, nomeMes: month });
                         if (!anosUnicos.includes(registro.ano)) {
@@ -171,15 +182,15 @@
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
     }
-    
+
     function configuraComboMes() {
         let anoEscolhido = anos.value;
         meses.innerHTML = '<option value="default">-</option>';
-        
+
         if (anoEscolhido != "Default") {
             mesJaForam = [];
             for (i = 0; i < anoMes.length; i++) {
@@ -190,11 +201,11 @@
             }
         }
     }
-    
+
     function configuraComboSemana() {
         let mesEscolhido = meses.value;
         semana.innerHTML = '<option value="default">-</option>';
-        
+
         if (mesEscolhido != "Default") {
             if (mesEscolhido == 2 && anos.value % 4 == 0) {
                 for (i = 1; i <= 4; i++) {
