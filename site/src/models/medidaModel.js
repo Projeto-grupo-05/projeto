@@ -1,27 +1,72 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
+function buscarUltimasMedidasConcluidos(fkEmpresa, data, conjunto, i) {
+    console.log("To entrando no Model")
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `
+        SELECT COUNT(1) as contagem,
+        ${i} as dia,
+        ${conjunto} as conjunto
+        FROM Incidente
+        JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente
+        JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho
+        JOIN [dbo].[Maquina] ON idMaquina = fkMaquina
+        WHERE fkEmpresa = ${fkEmpresa}
+        AND (CONVERT(date, dataHoraSolucao, 101)) = '${data}';`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimasMedidasProgresso(fkEmpresa, data, conjunto, i) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc limit ${limite_linhas}`;
+        instrucaoSql = `
+        SELECT COUNT(1) as contagem,
+        ${i} as dia,
+        ${conjunto} as conjunto
+        FROM Incidente 
+        JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente 
+        JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho 
+        JOIN [dbo].[Maquina] ON idMaquina = fkMaquina 
+        WHERE fkEmpresa = ${fkEmpresa}
+        AND (CONVERT(date, dataHoraManutencao, 101)) <= '${data}'
+        AND ((CONVERT(date, dataHoraSolucao, 101)) > '${data}'
+        OR (CONVERT(date, dataHoraSolucao, 101)) IS NULL)`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimasMedidasPendente(fkEmpresa, data, conjunto, i) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `
+        SELECT COUNT(1) as contagem,
+        ${i} as dia,
+        ${conjunto} as conjunto
+        FROM Incidente
+        JOIN [dbo].[Rastreabilidade] ON idIncidente = fkIncidente
+        JOIN [dbo].[logDesempenho] ON idLogDesempenho = fkLogDesempenho
+        JOIN [dbo].[Maquina] ON idMaquina = fkMaquina
+        WHERE fkEmpresa = ${fkEmpresa}
+        AND (CONVERT(date, dataHoraIncidente, 101)) <= '${data}'
+        AND ((CONVERT(date, dataHoraManutencao, 101)) > '${data}'
+        OR (CONVERT(date, dataHoraManutencao, 101)) IS NULL);`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -78,6 +123,18 @@ function listar(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function contaMaq(fkEmpresa) {
+    instrucaoSql = `SELECT COUNT(1) as contagem FROM MAQUINA WHERE fkEmpresa = ${fkEmpresa};`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function configuraCombo(fkEmpresa) {
+    instrucaoSql = `SELECT distinct YEAR(dataHoraIncidente) as ano, MONTH(dataHoraIncidente) as mes from Rastreabilidade JOIN [dbo].[Incidente] on fkIncidente = idIncidente JOIN [dbo].[logDesempenho] on fkLogDesempenho = idLogDesempenho JOIN [dbo].[Maquina] on fkMaquina = idMaquina JOIN [dbo].[Empresa] on fkEmpresa = idEmpresa WHERE fkEmpresa = ${fkEmpresa};`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function checa() {
     instrucaoSql = `SELECT idEmpresa FROM dbo.Empresa LEFT JOIN dbo.NiveisUrgencia ON fkEmpresa = idEmpresa where fkEmpresa IS NULL ;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -99,10 +156,14 @@ function cadastrarNU(idEmpresa) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
+    buscarUltimasMedidasConcluidos,
+    buscarUltimasMedidasProgresso,
+    buscarUltimasMedidasPendente,
     buscarMedidasEmTempoReal,
     editar,
     listar,
     checa,
-    cadastrarNU
+    cadastrarNU,
+    configuraCombo,
+    contaMaq
 }

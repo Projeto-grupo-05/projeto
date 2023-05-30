@@ -23,4 +23,16 @@ router.get("/listar/:fkEmpresa", function (req, res) {
     medidaController.listar(req, res);
 });
 
+router.get("/contaMaq/:fkEmpresa", function (req, res) {
+    medidaController.contaMaq(req, res);
+});
+
+router.get("/configuraCombo/:fkEmpresa", function (req, res) {
+    medidaController.configuraCombo(req, res);
+});
+
+router.get("/ultimas/:fkEmpresa/:data/:c/:i", function (req, res) {
+    medidaController.buscarUltimasMedidas(req, res);
+});
+
 module.exports = router;
