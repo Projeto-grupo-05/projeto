@@ -65,7 +65,6 @@ function listarAvisos() {
                             <hr>
                         <div class="mt-10"><span class="xbold-16">Urgência RAM: </span><span>${resposta[i].urgenciaRAM}</span></span></div>
                             <div class="mt-10"><span class="xbold-16">Urgência CPU: </span><span>${resposta[i].urgenciaCPU}</span></span></div>
-                            <div class="mt-10"><span class="xbold-16">Urgência Disco: </span><span>${resposta[i].urgenciaDisco}</span></span></div>
                         </div>
                     </div>
                     <hr>
@@ -129,7 +128,6 @@ function listarAvisosPendentes() {
                             <hr>
                             <div class="mt-10"><span class="xbold-16">Urgência RAM: </span><span>${resposta[i].urgenciaRAM}</span></span></div>
                             <div class="mt-10"><span class="xbold-16">Urgência CPU: </span><span>${resposta[i].urgenciaCPU}</span></span></div>
-                            <div class="mt-10"><span class="xbold-16">Urgência Disco: </span><span>${resposta[i].urgenciaDisco}</span></span></div>
                         </div>
                     </div>
                     <hr>
@@ -279,7 +277,6 @@ function listarAvisosProgresso() {
                             <hr>
                         <div class="mt-10"><span class="xbold-16">Urgência RAM: </span><span>${resposta[i].urgenciaRAM}</span></span></div>
                             <div class="mt-10"><span class="xbold-16">Urgência CPU: </span><span>${resposta[i].urgenciaCPU}</span></span></div>
-                            <div class="mt-10"><span class="xbold-16">Urgência Disco: </span><span>${resposta[i].urgenciaDisco}</span></span></div>
                         </div>
                         
                     </div>
