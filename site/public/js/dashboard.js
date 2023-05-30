@@ -57,12 +57,11 @@ function obterDadosKPI(fkEmpresa) {
                             document.getElementById('numAlerta').innerHTML = `${maqPendente}`;
                             break;
                     }
+                    if (maqProgresso !== undefined && maqPendente !== undefined) {
+                        maqFunfando = (maqTotais - maqPendente) - maqProgresso;
+                        document.getElementById('numOperacao').innerHTML = `${maqFunfando}`;
+                    }
                 });
-
-                if (maqProgresso !== undefined && maqPendente !== undefined) {
-                    maqFunfando = (maqTotais - maqPendente) - maqProgresso;
-                    document.getElementById('numOperacao').innerHTML = `${maqFunfando}`;
-                }
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
