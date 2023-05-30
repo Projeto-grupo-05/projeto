@@ -94,17 +94,25 @@
                     <i class="ri-checkbox-circle-fill"></i>
                 </div>
             </div>
-            <div id="grafico" class="grafico" style="width: 70%">
-                <h4 style="color: black;">Performance da Equipe</h4>
-                <select name="ano" id="anos" onchange="configuraComboMes(), configuraComboSemana()">
-                    <option value="default">-</option>
-                </select>
-                <select name="mes" id="meses" onchange="configuraComboSemana()">
-                    <option value="default">-</option>
-                </select>
-                <select name="semana" id="semana">
-                    <option value="default">-</option>
-                </select>
+            <div id="grafico" class="grafico">
+                <h4 class="title-dash">Performance da Equipe</h4>
+                <div class="select-container">
+                    <div class="select-style">
+                        <select name="ano" id="anos" class="ano-select" onchange="configuraComboMes(), configuraComboSemana()">
+                            <option value="default">-</option>
+                        </select>
+                    </div>
+                    <div class="select-style">
+                        <select name="mes" id="meses" onchange="configuraComboSemana()">
+                            <option value="default">-</option>
+                        </select>
+                    </div>
+                        <div class="select-style">
+                        <select name="semana" id="semana">
+                            <option value="default">-</option>
+                        </select>
+                    </div>
+                </div>
                 <input type="checkbox" id="checkAgora" onclick="desativaCombo()"> Últimos 7 dias
                 <button id="filtrar" onclick="obterDadosGrafico(sessionStorage.ID_EMPRESA)">Filtrar</button>
                 <canvas id="dashboard"></canvas>
