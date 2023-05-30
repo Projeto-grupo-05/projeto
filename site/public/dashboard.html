@@ -21,7 +21,7 @@
     <title>DASHBOARD</title>
 </head>
 
-<body onload="listar(), obterDadosGrafico(sessionStorage.ID_EMPRESA)" style="overflow-x: hidden;">
+<body style="overflow-x: hidden;">
     <div class="menu-lateral" id="menuLateral">
         <div>
             <img src="assets/logo/logo-light.svg" class="logo">
@@ -134,6 +134,7 @@
 <script src="js/dashboard.js"></script>
 
 <script>
+    window.onload = listar();
     checkAgora.checked = true;
     desativaCombo();
     trazDados();
@@ -224,6 +225,7 @@
     }
 
     function listar() {
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
 
         var fkEmpresaVar = sessionStorage.ID_EMPRESA;
 
