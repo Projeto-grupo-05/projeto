@@ -164,7 +164,7 @@ select:hover{
 .container-checkbox {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     height: 60px;
     align-items: center;
     margin-top: 30px;

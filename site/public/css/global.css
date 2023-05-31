@@ -141,7 +141,7 @@ body {
 }
 
 .bg-amarelo {
-    background-color: var(--amarelo)!important;
+    background-color: var(--azul)!important;
 }
 
 /* COLORS */
@@ -166,7 +166,7 @@ body {
 }
 
 .color-amarelo {
-    color: var(--amarelo)!important;
+    color: var(--azul)!important;
 }
 
 /* FLEX  */

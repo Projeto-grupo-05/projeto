@@ -95,7 +95,7 @@
 }
 
 .color-amarelo {
-    color: #fff4e0;
+    color: var(--azul);
 }
 
 .atribuir-icon:hover {
