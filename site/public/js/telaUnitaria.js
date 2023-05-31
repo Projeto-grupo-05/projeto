@@ -75,10 +75,14 @@ function plotarGrafico(resposta, idMaquina) {
             label: '# CPU',
             data: [],
             borderWidth: 1,
+            backgroundColor: 'rgba(222, 75, 144, 0.5)',
+            fill: true
         }, {
             label: '# RAM',
             data: [],
-            borderWidth: 1
+            borderWidth: 1,
+            backgroundColor: 'rgba(75, 112, 222, 0.5)',
+            fill: true
         }
     ]
     };
