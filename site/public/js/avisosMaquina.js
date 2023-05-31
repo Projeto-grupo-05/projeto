@@ -150,7 +150,6 @@ function temCerteza() {
         'Gostaria de atribuir essa tarefa a você?',
         'question'
     )
-    recarregarPagina();
 }
 
 function temCertezaConcluir() {
