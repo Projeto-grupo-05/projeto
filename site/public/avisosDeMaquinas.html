@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/listagem_maquina.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/avisosMaquinas.css">
+    <link rel="stylesheet" href="css/menuLateral.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+
+    <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+
+    <link rel="stylesheet" href="css/menuLateral.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Histórico de Incidentes | SollicitUS</title>
+</head>
+
+<body onload="listarAvisos(); listarAvisosPendentes(); listarAvisosProgresso()">
+
+    <div class="main">
+        <div class="menu-lateral" id="menuLateralG">
+            <div>
+                <img src="assets/logo/logo-light.svg" class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="dashboard.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                    </div>
+                </a>
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+                <a href="cadastroInterno.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-lateral" id="menuLateral">
+            <div>
+                <img src="assets/logo/logo-light.svg" class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="mainContent">
+            <div>
+            <p class="titulo-h1">Histórico de incidentes</p>
+
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Pendentes</button>
+                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Em progresso</button>
+                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Concluídos</button>
+                </div>
+              </nav>
+            </div>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <p class="titulo-h2 color-vermelho mt-16">Pendentes (<span id="campoQtdeIncPen"></span>)</p>
+                    <div id="avisosPendentes"></div>
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <p class="titulo-h2 color-amarelo mt-16">Em progresso (<span id="campoQtdeIncPro"></span>)</p>
+                    <div id="avisosProgresso"></div>
+                </div>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    <p class="titulo-h2 color-verde-agua mt-16">Concluídos (<span id="campoQtdeInc"></span>)</p>
+                
+                    <div id="avisos"></div>
+                </div>
+              </div>
+
+
+                  <!-- Modal -->
+            <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
+                aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="TituloModalCentralizado">Relatório de Solução</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div> Nome do Responsável: <select name="responsavel" id="iptResponsavel">
+                                </select></div>
+                            <div class="mt-16"> Problema: <textarea class="textareaModal" type="text" id="iptDescProblema"></textarea></div>
+                            <div class="mt-16"> Solução: <textarea class="textareaModal" type="text" id="iptDescSolucao"></textarea></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-purple" onclick="dataAtual(); registraSolucao(); recarregarPagina()">Salvar mudanças</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>
+<script src="js/avisosMaquina.js"></script>
+<script src="js/autenticacaoUsuario.js"></script>
+
+<script>
+
+    function recarregarPagina() {
+        setTimeout(function () {
+                window.location.reload();
+                }, 3000);
+    }
+
+    function configuraModal(idIncidente) {
+        sessionStorage.ID_INCIDENTE = idIncidente;
+        var fkEmpresaVar = sessionStorage.ID_EMPRESA;
+
+        fetch(`/maquinas/listaFunc/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    iptResponsavel.innerHTML = '';
+                    for (let i = 0; i < resposta.length; i++) {
+                        iptResponsavel.innerHTML += `
+                        <option value="${resposta[i].idUsuario}">${resposta[i].nome}</option>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function registraSolucao(data) {
+        data = sessionStorage.DATE_TIME;
+        console.log('aqui a data do regsitra solucao do html ' +data)
+        idIncidente = sessionStorage.ID_INCIDENTE;
+        fetch(`/maquinas/solucao/${idIncidente}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descProblema: iptDescProblema.value,
+                descSolucao: iptDescSolucao.value,
+                idIncidenteServer: idIncidente,
+                dataServer: data
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                swalUpdateRealizado()
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+    function swalUpdateRealizado() {   
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Solução registrada com sucesso',
+            showConfirmButton: false,
+            timer: 1500
+            })
+} 
+</script>

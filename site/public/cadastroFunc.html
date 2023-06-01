@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de usuário | SollicitUS</title>
+    <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/cadastroFunc.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/header-resp.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-azul-claro p-4">
+                    <h5 class="text-white h4 d-flex jc-center"><img src="../../assets/logo/logo-name.svg" width="20%"
+                            alt=""></h5>
+                    <div class="item-menu-collapse d-flex w-100 jc-between">
+                        <a href="index.html" class="color-white">Home</a>
+                        <a href="login.html" class="color-white">Entrar</a>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-dark bg-azul-claro" style="height: 13vh;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Alterna navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+        </div>
+
+        <div class="header bold-24 bg-azul-claro">
+            <div class="container2 header-bg">
+                <div class="item">
+                    <li class="item-branco-azul">
+                        <a href="index.html">Home</a>
+                    </li>
+                </div>
+
+                <img src="assets/logo/logo-name.svg" alt="logo" width="80%" height="80%">
+                <div class="item" style=" justify-content: end;">
+                    <li class="item-branco-azul">
+                        <a href="login.html">Entrar</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="caixa-maior">
+        <div class="corpo">
+        </div>
+
+        <div class="caixa-menor">
+            <div class="sombra">
+                <div id="formulario-back" class="formulario-back">
+
+                    <h2 class="titulo-branco-azul">Passo 1/2</h2>
+                    <div class="input-group" style="display: flex;">
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">E-mail</label>
+                            <input type="email" id="inputEmail" class="bold-20 input-login"
+                                placeholder="exemplo@email.com">
+                        </div>
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Senha</label>
+                            <input type="password" id="inputSenha" class="bold-20 input-login" placeholder="*********">
+                        </div>
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Repita sua senha</label>
+                            <input type="password" id="inputConfirmaSenha" class="bold-20 input-login"
+                                placeholder="*********">
+                        </div>
+                    </div>
+                    <a href="login.html" class="sbold-16 color-white">
+                        Já possui uma conta? Entre aqui!
+                    </a>
+                    <button id="butao" class="btn-login" onclick="verificarValidacao()">Continuar</button>
+                </div>
+
+                <div id="formulario" style="display: none" class="formulario">
+                    <div style="width: 80%; display: flex;" class="louquinha">
+                        <i id="arrowLeft" style="color: white;" class="ri-arrow-left-line"></i>
+
+                    </div>
+                    <h2 class="titulo-branco-azul">Passo 2/2</h2>
+                    <div class="input-group" style="display: flex;">
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Token</label>
+                            <input type="text" id="inputToken" class="bold-20 input-login" placeholder="Token">
+                        </div>
+                        <div class="box-input" style="width: 100%;">
+                            <label for="input_email" class="bold-20 color-white">Nome completo</label>
+                            <input type="text" id="inputNome" class="bold-20 input-login" placeholder="Nome completo">
+                        </div>
+                    </div>
+
+
+                    <!-- QUAL SERÁ O NOME DA FUNÇÃO DO BOTÃO? -->
+                    <button onclick="autenticarT()" class="btn-login">Cadastrar</button>
+                </div>
+            </div>
+            <div class="img-atrativa">
+                <div class="frase">
+                    <p class="xbold-36">JUNTE-SE A NÓS!</p>
+                    <h3>É um prazer recebê-lo.</h3>
+                </div>
+
+                <img src="assets/images/ilustra-cadastro.svg" alt="cara passando pela porta" width="100%"
+                    style="margin-top: 30px;">
+            </div>
+        </div>
+
+        <div class="corpo">
+        </div>
+    </div>
+    </div>
+</body>
+<script src="js/continuacao.js"></script>
+
+</html>
+
+<script>
+
+    function cadastrar() {
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = inputNome.value;
+        var emailVar = inputEmail.value;
+        var senhaVar = inputSenha.value;
+        var confirmacaoSenhaVar = inputConfirmaSenha.value;
+        var idEmpresaVar = sessionStorage.ID_EMPRESA;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            swalCadastroError()
+
+
+            return false;
+        }
+        else {
+            console.log("Era pra sumir a mensagem")
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                idEmpresaServer: idEmpresaVar
+            })
+
+        }).then(function (resposta) {
+            console.log("");
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                window.location = 'login.html'
+
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+
+    function autenticarT() {
+        var tokenVar = inputToken.value;
+
+        fetch("/usuarios/autenticarT", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                tokenServer: tokenVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO autenticarT()!")
+            console.log(resposta[0] + '<--- resposta')
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.ID_EMPRESA = json.idEmpresa;
+                    console.log(sessionStorage.ID_EMPRESA)
+
+                    cadastrar()
+
+                });
+
+            } else {
+                Swal.fire(
+                    'Token inválido',
+                    'Digite o token fornecido por sua empresa!',
+                    'error'
+                )
+                console.log("Houve um erro ao tentar realizar a autenticação do token!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        // return false;
+    }
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function swalCadastroError() {
+        Swal.fire(
+            'Falha ao cadastrar!',
+            'Preencha todos os campos para prosseguir.',
+            'warning'
+        )
+    }
+
+    function swalLoginInexistente() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro ao entrar!',
+            text: 'Parece que não está cadastrado em nosso sistema!',
+            footer: '<a href="cadastroFunc.html">Deseja cadastrar-se? Clique aqui!</a>'
+        })
+    }
+</script>

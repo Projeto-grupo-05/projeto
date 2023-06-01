@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro_maquina.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/menuLateral.css">
+    <title>Gerenciamento de Máquinas | SollicitUS</title>
+</head>
+
+<body style="overflow-x: hidden;">
+    <div class="container22">
+        <div class="menu-lateral" id="menuLateralG">
+            <div class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="dashboard.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                    </div>
+                </a>
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div>Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+                <a href="cadastroInterno.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-lateral" id="menuLateral">
+            <div class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="mainContent">
+
+
+            <div class="titulo">
+                <span class="texto-titulo">
+                    <div class="menu-lateral-hamburguer">
+                        <div>
+                            <img src="assets/icons/hamb-icon.svg" class="icon-hamb" onclick="sideBar()">
+                        </div>
+                    </div>
+                    <span class="d-flex jc-between">
+                        <p>
+                            Gerenciamento de Máquinas
+                        </p>
+                        <a href="login.html" class="sair"><i class="ri-door-open-fill" style="color: #990000;"
+                                onclick="sair()"></i></a>
+                    </span>
+                </span>
+                <div class="botoes-selecao">
+                    <a href="listagem_maquina.html">
+                        <div class="botao-selecao">Listagem</div>
+                    </a>
+                    <a href="cadastro_maquina.html">
+                        <div class="botao-selecao-agora">Cadastro</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="formulario">
+                <div class="formulario-titulo"><span class="spam-titulo-formulario">Pré-cadastro de Máquinas</span>
+                    <span class="tooltipp" >
+                        <span class="i-icon"><i class="ri-information-line"></i>
+                        <span class="tooltiptext">Cadastre as informações aqui e depois conclua em Sollicitus Collector</span></span>
+                    </span>
+                    </span>
+                </div>
+                <div style="margin-top: 40px;">
+                    <div class="formulario-inputs">
+                        <div class="formulario-inputs-esquerda">
+                            <div><span class="inputs-titulos bold-24">Informações</span></div>
+                            <div class="box-input">
+                                <div class="esquerda">
+                                    <div class="div-formulario-input"><span class="inputs-titulos">Nome da máquina
+                                            (Hostname)</span><input id="inputHost" type="text" class="input-shadow">
+                                    </div>
+                                    <div class="div-formulario-input"><span class="inputs-titulos">Modelo</span><input
+                                            id="inputModelo" type="text" class="input-shadow"></div>
+                                            <div class="div-formulario-input"><span class="inputs-titulos">Fabricante</span><input
+                                                id="inputFabricante" type="text" class="input-shadow"></div>
+                                </div>
+                                <div class="direita">
+                                    <div class="div-formulario-input"><span class="inputs-titulos">Cor</span><input
+                                            id="inputCor" type="text" class="input-shadow"></div>
+                                    <div class="div-formulario-input"><span class="inputs-titulos">Ano de
+                                            fabricação</span><input type="number" maxlength="4"
+                                            id="novoinputDtFabricacao" class="input-shadow"
+                                            onblur="if (!this.value) this.type='text'"></div>
+                                            <div class="formulario-botao"><button onclick="cadastrarMaquina()">Cadastrar</button></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+<script src="js/cadastroMaquina.js"></script>
+<script src="js/sair.js"></script>
+
+<script>
+    var teste = false;
+    var menu = document.getElementById("menuLateral");
+    function sideBar() {
+        if (!teste) {
+            menu.style.display = "block";
+            teste = true;
+        } else {
+            menu.style.display = "none";
+            teste = false;
+        }
+    }
+
+    function myFunction(x) {
+        if (x.matches) {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "block";
+        }
+    }
+
+    var x = window.matchMedia("(max-width: 630px)")
+    myFunction(x)
+    x.addListener(myFunction)
+
+
+</script>
+
+<script src="js/autenticacaoUsuario.js"></script>

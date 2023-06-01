@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/listagem_maquina.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="css/menuLateral.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>Gerenciamento de Máquinas</title>
+</head>
+
+<body onload="listar()" style="overflow-x: hidden;">
+    <div class="container2">
+        <div class="menu-lateral" id="menuLateral">
+            <div>
+                <img src="assets/logo/logo-light.svg" class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="menu-lateral" id="menuLateralG">
+            <div>
+                <img src="assets/logo/logo-light.svg" class="logo">
+            </div>
+            <div class="div-menu-icones">
+                <a href="dashboard.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                    </div>
+                </a>
+                <a href="cadastro_maquina.html">
+                    <div class="menu-icones-agora">
+                        <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                    </div>
+                </a>
+                <a href="avisosDeMaquinas.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                    </div>
+                </a>
+                <a href="cadastroInterno.html">
+                    <div class="menu-icones">
+                        <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="mainContent">
+            <div class="titulo">
+                <span class="texto-titulo">
+                    <div class="menu-lateral-hamburguer">
+                        <div>
+                            <img src="assets/icons/hamb-icon.svg" class="icon-hamb" onclick="sideBar()">
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span> Gerenciamento de Máquinas</span>
+                        <a href="login.html" class="sair"><i class="ri-door-open-fill" style="color: #990000;"
+                            onclick="sair()"></i>
+                        </a>
+                    </div>
+                </span>
+                <div class="botoes-selecao">
+                    <a href="listagem_maquina.html">
+                        <div class="botao-selecao-agora">Listagem</div>
+                    </a>
+                    <a href="cadastro_maquina.html">
+                        <div class="botao-selecao" style="color: var(--azul);" >Cadastro</div>
+                    </a>
+                </div>
+            </div>
+            <div class="formulario">
+                <div class="formulario-titulo"><span class="spam-titulo-formulario">Listagem de Máquinas</span></div>
+                <div class="formulario-inputs">
+                    <table id="listagem" style="margin-top: 40px;">
+                    </table>
+                </div>
+                <!-- <div class="formulario-botao"><button>1</button><button>2</button></div> -->
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="js/autenticacaoUsuario.js"></script>
+
+<script>
+    var teste = false;
+    var menu = document.getElementById("menuLateral");
+    function sideBar() {
+        if (!teste) {
+            menu.style.display = "block";
+            teste = true;
+        } else {
+            menu.style.display = "none";
+            teste = false;
+        }
+    }
+
+    if (window.matchMedia("(max-width: 1999px)").matches) {
+        menu.style.display = "block";
+    }
+
+    function listar() {
+
+        sessionStorage.ID_MAQUINA = null;
+        sessionStorage.HOSTNAME = null;
+        sessionStorage.FABRICANTE = null;
+        sessionStorage.COR = null;
+        sessionStorage.MODELO = null;
+
+        var fkEmpresaVar = sessionStorage.ID_EMPRESA;
+
+
+        if (fkEmpresaVar == "") {
+            console.log('Sem empresa!');
+        }
+
+        fetch(`/maquinas/listar/${fkEmpresaVar}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    listagem.innerHTML = `<thead>
+                            <tr>
+                                <th>HOSTNAME</th>
+                                <th>FABRICANTE</th>
+                                <th>MODELO</th>
+                                <th>COR</th>
+                                <th>ANO</th>
+                            </tr>
+                        </thead>
+                        `;
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        if (resposta[i].Fabricante == null) {
+                            resposta[i].Fabricante = "A CONFIGURAR"
+                        }
+                        listagem.innerHTML += `<tr class="pointer">
+                                    
+                            <td class="mt-5 mb-5">${resposta[i].Hostname}</td>
+                            <td class="mt-5 mb-5">${resposta[i].Fabricante}</td>
+                            <td class="mt-5 mb-5">${resposta[i].Modelo}</td>
+                            <td class="mt-5 mb-5">${resposta[i].Cor}</td>
+                            <td class="mt-5 mb-5">${resposta[i].ano}</td>
+                            <td><i class="ri-pencil-line pointer" style="font-size: 20px;" onclick="editarMaquina(${resposta[i].idMaquina}, '${resposta[i].Hostname}', '${resposta[i].Fabricante}', '${resposta[i].Cor}', '${resposta[i].Modelo}')"></i></td>
+                            <td><i class="ri-delete-bin-line pointer" style="font-size: 20px;" onclick="excluirMaquina(${resposta[i].idMaquina})"></i></td>
+                            <td><i class="ri-dashboard-3-line pointer" style="font-size: 20px;" onclick="telaMaquina(${resposta[i].idMaquina})"></i></td>
+                            </tr>`;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function editarMaquina(idMaquina, hostname, fabricante, cor, modelo) {
+        sessionStorage.ID_MAQUINA = idMaquina;
+        sessionStorage.HOSTNAME = hostname;
+        sessionStorage.FABRICANTE = fabricante;
+        sessionStorage.COR = cor;
+        sessionStorage.MODELO = modelo;
+        console.log("cliquei em editar - " + idMaquina);
+        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idMaquina);
+        window.location = "edicaoMaquina.html";
+    }
+
+    function excluirMaquina(idMaquina) {
+        console.log("Criar função de apagar maquina" + idMaquina);
+        fetch(`/maquinas/excluirMaquina/${idMaquina}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                // window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "listagem_maquina.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function telaMaquina(idMaquina) {
+        sessionStorage.ID_MAQUINA = idMaquina;
+        window.location = "telaUnitaria.html";
+    }
+
+</script>
+
+<script>
+    function swalUpdateRealizado() {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Solução registrada com sucesso',
+            showConfirmButton: false,
+            timer: 1500
+            })
+}  
+</script>

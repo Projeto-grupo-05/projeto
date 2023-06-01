@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edicao Maquinas | SollicitUS</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/edicaoMaquina.css">
+</head>
+
+<body onload="">
+
+    <div class="container">
+        <div class="caixa">
+            <img src="./assets/logo/logo-name.svg" alt="SollicitUS" style="width: 80%;">
+            <span id="aviso" class="bold-20 color-white"></span>
+            <a href="./listagem_maquina.html">
+                <button class="btn-voltar">Voltar</button>
+            </a>
+        </div>
+        <div class="caixa">
+            <li class="titulo bold-24 color-white">Edição de Máquina</li>
+            <div class="formulario">
+                <li class="bold-20 color-white">Hostname</li>
+                <input type="text" class="campo" id="iptHostname" placeholder="Novo/Atual HOSTNAME">
+                <li class="bold-20 color-white">Fabricante</li>
+                <input type="text" class="campo" id="iptFabricante" placeholder="Novo/Atual FABRICANTE">
+                <li class="bold-20 color-white">Modelo</li>
+                <input type="text" class="campo" id="iptModelo" placeholder="Novo/Atual MODELO">
+                <li class="bold-20 color-white">Cor</li>
+                <input type="text" class="campo" id="iptCor" placeholder="Novo/Atual COR">
+                <button onclick="editar()" class="btn-atualizarMaquina">EDITAR</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    iptHostname.value = sessionStorage.HOSTNAME;
+    iptFabricante.value = sessionStorage.FABRICANTE;
+    iptModelo.value = sessionStorage.MODELO;
+    iptCor.value = sessionStorage.COR;
+
+
+    function editar() {
+
+        if (iptCor.value.length == "" || iptFabricante.value.length == "" ||
+            iptModelo.value.length == "" || iptHostname.value.length == "") {
+            aviso.innerHTML = "ERRO campos vazios!";
+
+            return false;
+        } else if (iptCor.value.length < 3 || iptFabricante.value.length < 3 ||
+            iptModelo.value.length < 3 || iptHostname.value.length < 3) {
+            aviso.innerHTML = "ERRO número de caracteres inválido!";
+
+            return false;
+        }
+
+        fetch(`/maquinas/editar/${sessionStorage.ID_MAQUINA}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                hostname: iptHostname.value,
+                fabricante: iptFabricante.value,
+                modelo: iptModelo.value,
+                cor: iptCor.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                aviso.innerHTML = "Máquina atualizada com sucesso!";
+                setTimeout(function () {
+                    window.location = "./listagem_maquina.html"
+                }, 4000);
+
+
+            } else if (resposta.status == 404) {
+                aviso.innerHTML = "ERRO 404!";
+            } else {
+                // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+</script>

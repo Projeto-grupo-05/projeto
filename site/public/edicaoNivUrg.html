@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edicao Maquinas | SollicitUS</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/edicaoMaquina.css">
+</head>
+
+<body onload="">
+
+    <div class="container">
+        <div class="caixa">
+            <img src="./assets/logo/logo-name.svg" alt="SollicitUS" style="width: 80%;">
+            <span id="aviso" class="bold-20 color-white"></span>
+            <a href="./dashboard.html">
+                <button class="btn-voltar">Voltar</button>
+            </a>
+        </div>
+        <div class="caixa">
+            <li class="titulo bold-24 color-white">Edição de Nível de Urgência</li>
+            <div class="formulario">
+                <li class="bold-20 color-white">Componete</li>
+                <input type="text" class="campo" id="iptComponente" placeholder="Novo/Atual FABRICANTE">
+                <li class="bold-20 color-white">Alta</li>
+                <input type="text" class="campo" id="iptAlta" placeholder="Novo/Atual FABRICANTE">
+                <li class="bold-20 color-white">Média</li>
+                <input type="text" class="campo" id="iptMedia" placeholder="Novo/Atual MODELO">
+                <li class="bold-20 color-white">Baixa</li>
+                <input type="text" class="campo" id="iptBaixa" placeholder="Novo/Atual COR">
+                <button onclick="editar()" class="btn-atualizarMaquina">EDITAR</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    iptComponente.value = sessionStorage.COMPONENTE;
+    iptAlta.value = sessionStorage.ALTA;
+    iptMedia.value = sessionStorage.MEDIA;
+    iptBaixa.value = sessionStorage.BAIXA;
+
+
+    function editar() {
+
+        if (iptAlta.value.length == "" || iptMedia.value.length == "" || iptBaixa.value.length == "") {
+            aviso.innerHTML = "ERRO campos vazios!";
+
+            return false;
+        } else if (iptAlta.value == 0 || iptMedia.value == 0 || iptBaixa.value == 0) {
+            aviso.innerHTML = "ERRO digite um número maior que 0!";
+
+            return false;
+        }
+
+        fetch(`/medidas/editar/${sessionStorage.FK_COMPONENTE}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                alta : iptAlta.value,
+                media : iptMedia.value,
+                baixa : iptBaixa.value,
+                idEmpresa : sessionStorage.ID_EMPRESA
+
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                aviso.innerHTML = "Níveis atualizados com sucesso!";
+                setTimeout(function () {
+                    window.location = "./dashboard.html"
+                }, 3000);
+
+
+            } else if (resposta.status == 404) {
+                aviso.innerHTML = "ERRO 404!";
+            } else {
+                // throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+</script>

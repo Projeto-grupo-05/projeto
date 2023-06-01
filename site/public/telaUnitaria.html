@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/telaUnitaria.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/menuLateral.css">
+    <title>Informações da Máquina</title>
+</head>
+
+<body onload="verificarMaquina(), obterDadosGrafico()" style="overflow-x: hidden;">
+    <div class="menu-lateral" id="menuLateral">
+        <div>
+            <img src="assets/logo/logo-light.svg" class="logo">
+        </div>
+        <div class="div-menu-icones">
+            <a href="cadastro_maquina.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                </div>
+            </a>
+            <a href="avisosDeMaquinas.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="menu-lateral" id="menuLateralG">
+        <div>
+            <img src="assets/logo/logo-light.svg" class="logo">
+        </div>
+        <div class="div-menu-icones">
+            <a href="dashboard.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-home-4-line"></i></div>Dashboard
+                </div>
+            </a>
+            <a href="cadastro_maquina.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-macbook-line"></i></div> Gerenciamento de máquinas
+                </div>
+            </a>
+            <a href="avisosDeMaquinas.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-file-text-fill"></i></div>Histórico de incidentes
+                </div>
+            </a>
+            <a href="cadastroInterno.html">
+                <div class="menu-icones">
+                    <div class="div-icones"><i class="ri-user-add-fill"></i></div>Cadastrar funcionário
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="mainContent">
+
+        <div class="nomeStatus">
+            <div class="nome bold-20">
+                <li class="color-azul-caneta">
+                    Nome da máquina:
+                    <span id="nomeMaquina"></span>
+                </li>
+            </div>
+
+        </div>
+
+        <div id="grafico" class="grafico" style="width: 55%">
+            <canvas id="graficoIncidente"></canvas>
+        </div>
+
+        <div id="infoMaquina" class="formulario" style="display: block;">
+            <p class="color-azul-caneta bold-24" style="margin-top: 40px; margin-bottom: 40px;">Informações da Máquina</p>
+            <div class="dados">
+                <div class="formularioEsquerda">
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">CPU</span>
+                            <span id="buscarUCP">--</span>
+                        </div>
+                    </div>
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">RAM</span>
+                            <span id="buscarRAM">--</span>
+                        </div>
+                    </div>
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">Disco Disponível</span>
+                            <span id="buscarArmazenamento">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formularioDireita">
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">SO</span>
+                            <span id="buscarSO">--</span>
+                        </div>
+                    </div>
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">Modelo</span>
+                            <span id="buscarModelo">--</span>
+                        </div>
+                    </div>
+                    <div class="campos">
+                        <div class="campo">
+                            <span class="color-azul sbold-24">Cor</span>
+                            <span id="buscarCor">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/telaUnitaria.js"></script>
+<script src="js/autenticacaoUsuario.js"></script>
